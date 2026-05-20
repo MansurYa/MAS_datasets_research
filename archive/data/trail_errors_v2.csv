@@ -1,0 +1,841 @@
+trajectory_id,trail_category,error_id,error_step,trajectory_length,normalized_position,impact,benchmark
+0035f455b3ff2295167a844f04d85d34,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+0035f455b3ff2295167a844f04d85d34,Tool-related,hallucination,9.0,11,0.818182,HIGH,GAIA
+0035f455b3ff2295167a844f04d85d34,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+0140b3f657eddf76ca82f72c49ac8e58,Context Handling Failures,kv_cache_loss,40.0,60,0.666667,MEDIUM,GAIA
+0140b3f657eddf76ca82f72c49ac8e58,Language-only,hallucination,53.0,60,0.883333,LOW,GAIA
+0140b3f657eddf76ca82f72c49ac8e58,Formatting Errors,code_error,23.0,60,0.383333,HIGH,GAIA
+0140b3f657eddf76ca82f72c49ac8e58,Formatting Errors,code_error,28.0,60,0.466667,HIGH,GAIA
+0140b3f657eddf76ca82f72c49ac8e58,Formatting Errors,code_error,31.0,60,0.516667,HIGH,GAIA
+0140b3f657eddf76ca82f72c49ac8e58,Formatting Errors,code_error,34.0,60,0.566667,HIGH,GAIA
+0140b3f657eddf76ca82f72c49ac8e58,Formatting Errors,code_error,37.0,60,0.616667,HIGH,GAIA
+0140b3f657eddf76ca82f72c49ac8e58,Resource Abuse,resource_abuse,37.0,60,0.616667,HIGH,GAIA
+01c5727165fc43899b3b594b9bef5f19,Formatting Errors,code_error,7.0,52,0.134615,LOW,GAIA
+01c5727165fc43899b3b594b9bef5f19,Formatting Errors,code_error,12.0,52,0.230769,LOW,GAIA
+01c5727165fc43899b3b594b9bef5f19,Formatting Errors,code_error,34.0,52,0.653846,MEDIUM,GAIA
+01c5727165fc43899b3b594b9bef5f19,Formatting Errors,code_error,37.0,52,0.711538,MEDIUM,GAIA
+01c5727165fc43899b3b594b9bef5f19,Formatting Errors,code_error,39.0,52,0.75,MEDIUM,GAIA
+01c5727165fc43899b3b594b9bef5f19,Resource Abuse,resource_abuse,38.0,52,0.730769,MEDIUM,GAIA
+01c5727165fc43899b3b594b9bef5f19,Goal Deviation,orchestration_failure,48.0,52,0.923077,HIGH,GAIA
+01c5727165fc43899b3b594b9bef5f19,Poor Information Retrieval,misinterpretation_of_tool_output,45.0,52,0.865385,MEDIUM,GAIA
+0242ca2533fac5b8b604a9060b3e15d6,Formatting Errors,code_error,9.0,15,0.6,HIGH,GAIA
+0242ca2533fac5b8b604a9060b3e15d6,Tool Selection Errors,orchestration_failure,9.0,15,0.6,MEDIUM,GAIA
+0242ca2533fac5b8b604a9060b3e15d6,Poor Information Retrieval,misinterpretation_of_tool_output,13.0,15,0.866667,HIGH,GAIA
+0242ca2533fac5b8b604a9060b3e15d6,Language-only,hallucination,13.0,15,0.866667,HIGH,GAIA
+0242ca2533fac5b8b604a9060b3e15d6,Goal Deviation,orchestration_failure,13.0,15,0.866667,HIGH,GAIA
+041b7f9c8c76c2ca1a8e67c6769267c3,Tool-related,hallucination,11.0,15,0.733333,HIGH,GAIA
+041b7f9c8c76c2ca1a8e67c6769267c3,Formatting Errors,code_error,13.0,15,0.866667,MEDIUM,GAIA
+041b7f9c8c76c2ca1a8e67c6769267c3,Context Handling Failure,kv_cache_loss,13.0,15,0.866667,MEDIUM,GAIA
+041b7f9c8c76c2ca1a8e67c6769267c3,Context Handling Failure,kv_cache_loss,13.0,15,0.866667,MEDIUM,GAIA
+041b7f9c8c76c2ca1a8e67c6769267c3,Tool-related,hallucination,11.0,15,0.733333,HIGH,GAIA
+08be1639c58e086cf0bb8c269039973d,Task Orchestration,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+08be1639c58e086cf0bb8c269039973d,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+08be1639c58e086cf0bb8c269039973d,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,HIGH,GAIA
+08be1639c58e086cf0bb8c269039973d,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+08be1639c58e086cf0bb8c269039973d,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+0adc4f3b99d9564d32811e913cc9d248,Formatting Errors,code_error,7.0,11,0.636364,LOW,GAIA
+0ebe673d64647ec44c370638b82d3c78,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+1427b326e21963a1228647ad8dff2bf4,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+1427b326e21963a1228647ad8dff2bf4,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+1427b326e21963a1228647ad8dff2bf4,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,MEDIUM,GAIA
+1427b326e21963a1228647ad8dff2bf4,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+14be0e98b825d2da5665e2e10f6cc927,Formatting Errors,code_error,51.0,84,0.607143,HIGH,GAIA
+14be0e98b825d2da5665e2e10f6cc927,Formatting Errors,code_error,56.0,84,0.666667,HIGH,GAIA
+14be0e98b825d2da5665e2e10f6cc927,Formatting Errors,code_error,59.0,84,0.702381,HIGH,GAIA
+14be0e98b825d2da5665e2e10f6cc927,Formatting Errors,code_error,65.0,84,0.77381,HIGH,GAIA
+14be0e98b825d2da5665e2e10f6cc927,Formatting Errors,code_error,20.0,84,0.238095,HIGH,GAIA
+14be0e98b825d2da5665e2e10f6cc927,Context Handling Failures,kv_cache_loss,20.0,84,0.238095,HIGH,GAIA
+18efa24e637b9423f34180d1f2041d3e,Incorrect Problem Identification,orchestration_failure,9.0,13,0.692308,HIGH,GAIA
+18efa24e637b9423f34180d1f2041d3e,Goal Deviation,orchestration_failure,9.0,13,0.692308,HIGH,GAIA
+18efa24e637b9423f34180d1f2041d3e,Authentication Errors,tool_web_failure,9.0,13,0.692308,MEDIUM,GAIA
+18efa24e637b9423f34180d1f2041d3e,Context Handling Failure,kv_cache_loss,11.0,13,0.846154,MEDIUM,GAIA
+1dd91d388cb4889e6c1f5ea5ca06bce6,Task Orchestration,orchestration_failure,9.0,15,0.6,HIGH,GAIA
+1dd91d388cb4889e6c1f5ea5ca06bce6,Tool Selection Errors,orchestration_failure,9.0,15,0.6,HIGH,GAIA
+1dd91d388cb4889e6c1f5ea5ca06bce6,Context Handling Failures,kv_cache_loss,13.0,15,0.866667,HIGH,GAIA
+1dd91d388cb4889e6c1f5ea5ca06bce6,Tool-related,hallucination,13.0,15,0.866667,HIGH,GAIA
+1dd91d388cb4889e6c1f5ea5ca06bce6,Goal Deviation,orchestration_failure,13.0,15,0.866667,HIGH,GAIA
+21f0c6c8d76ac61f4388f36ddffe1c38,Task Orchestration,orchestration_failure,7.0,32,0.21875,MEDIUM,GAIA
+21f0c6c8d76ac61f4388f36ddffe1c38,Authentication Errors,tool_web_failure,24.0,32,0.75,MEDIUM,GAIA
+21f0c6c8d76ac61f4388f36ddffe1c38,Poor Information Retrieval,misinterpretation_of_tool_output,20.0,32,0.625,MEDIUM,GAIA
+21f0c6c8d76ac61f4388f36ddffe1c38,Resource Abuse,resource_abuse,21.0,32,0.65625,MEDIUM,GAIA
+21f0c6c8d76ac61f4388f36ddffe1c38,Task Orchestration,orchestration_failure,26.0,32,0.8125,MEDIUM,GAIA
+21f0c6c8d76ac61f4388f36ddffe1c38,Context Handling Failures,kv_cache_loss,28.0,32,0.875,MEDIUM,GAIA
+2209204b631e26f4cee4dc3dd995608c,Instruction Non-compliance,instruction_adherence_failure,7.0,13,0.538462,LOW,GAIA
+2209204b631e26f4cee4dc3dd995608c,Tool-related,hallucination,9.0,13,0.692308,MEDIUM,GAIA
+2209204b631e26f4cee4dc3dd995608c,Task Orchestration,orchestration_failure,7.0,13,0.538462,MEDIUM,GAIA
+2209204b631e26f4cee4dc3dd995608c,Tool Selection Errors,orchestration_failure,9.0,13,0.692308,HIGH,GAIA
+25c8275651013fe8398ef0f735eb0912,Formatting Errors,code_error,7.0,11,0.636364,LOW,GAIA
+25c8275651013fe8398ef0f735eb0912,Poor Information Retrieval,misinterpretation_of_tool_output,9.0,11,0.818182,HIGH,GAIA
+25c8275651013fe8398ef0f735eb0912,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+25c8275651013fe8398ef0f735eb0912,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+2713fa0aa73f0c5a8b480f026c21a547,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+2713fa0aa73f0c5a8b480f026c21a547,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+2713fa0aa73f0c5a8b480f026c21a547,Task Orchestration,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+2713fa0aa73f0c5a8b480f026c21a547,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+2713fa0aa73f0c5a8b480f026c21a547,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+27a6c5ebc3311542156fdde857a0035f,Formatting Errors,code_error,7.0,11,0.636364,LOW,GAIA
+2c77a8feec544cc61a00a387ad792a13,Tool-related,hallucination,19.0,21,0.904762,HIGH,GAIA
+2c77a8feec544cc61a00a387ad792a13,Instruction Non-compliance,instruction_adherence_failure,21.0,21,1.0,HIGH,GAIA
+2cb6924caac94b32d2bf4b40bdf4ab51,Poor Information Retrieval,misinterpretation_of_tool_output,15.0,46,0.326087,MEDIUM,GAIA
+2cb6924caac94b32d2bf4b40bdf4ab51,Resource Abuse,resource_abuse,24.0,46,0.521739,MEDIUM,GAIA
+2cb6924caac94b32d2bf4b40bdf4ab51,Tool-related,hallucination,32.0,46,0.695652,MEDIUM,GAIA
+2cb6924caac94b32d2bf4b40bdf4ab51,Formatting Errors,code_error,34.0,46,0.73913,LOW,GAIA
+2cb6924caac94b32d2bf4b40bdf4ab51,Tool-related,hallucination,35.0,46,0.76087,MEDIUM,GAIA
+2cb6924caac94b32d2bf4b40bdf4ab51,Formatting Errors,code_error,37.0,46,0.804348,LOW,GAIA
+2cb6924caac94b32d2bf4b40bdf4ab51,Tool-related,hallucination,38.0,46,0.826087,MEDIUM,GAIA
+2cb6924caac94b32d2bf4b40bdf4ab51,Resource Abuse,resource_abuse,38.0,46,0.826087,MEDIUM,GAIA
+2cb6924caac94b32d2bf4b40bdf4ab51,Language-only,hallucination,44.0,46,0.956522,MEDIUM,GAIA
+3205fa0cb2135fe671bf7cd0e5a26151,Tool Selection Errors,orchestration_failure,36.0,40,0.9,HIGH,GAIA
+3205fa0cb2135fe671bf7cd0e5a26151,Goal Deviation,orchestration_failure,36.0,40,0.9,HIGH,GAIA
+3205fa0cb2135fe671bf7cd0e5a26151,Tool Selection Errors,orchestration_failure,38.0,40,0.95,HIGH,GAIA
+3215fc75e81bdb73706a4fb37b66427f,Task Orchestration,orchestration_failure,17.0,21,0.809524,LOW,GAIA
+331aece579d942bb4c345a86c86efb83,Instruction Non-compliance,instruction_adherence_failure,7.0,18,0.388889,LOW,GAIA
+331aece579d942bb4c345a86c86efb83,Instruction Non-compliance,instruction_adherence_failure,12.0,18,0.666667,LOW,GAIA
+33cedc57294f33839f1acc3ee5182788,Formatting Errors,code_error,20.0,48,0.416667,LOW,GAIA
+33cedc57294f33839f1acc3ee5182788,Environment Setup Errors,invalid_invocation,39.0,48,0.8125,MEDIUM,GAIA
+33cedc57294f33839f1acc3ee5182788,Formatting Errors,code_error,23.0,48,0.479167,LOW,GAIA
+33cedc57294f33839f1acc3ee5182788,Tool Selection Errors,orchestration_failure,17.0,48,0.354167,HIGH,GAIA
+33cedc57294f33839f1acc3ee5182788,Tool Output Misinterpretation,misinterpretation_of_tool_output,46.0,48,0.958333,MEDIUM,GAIA
+33cedc57294f33839f1acc3ee5182788,Authentication Errors,tool_web_failure,32.0,48,0.666667,HIGH,GAIA
+33cedc57294f33839f1acc3ee5182788,Formatting Errors,code_error,46.0,48,0.958333,LOW,GAIA
+3637c5845140adbf29c565923c20e94d,Tool Selection Errors,orchestration_failure,9.0,13,0.692308,HIGH,GAIA
+3637c5845140adbf29c565923c20e94d,Task Orchestration,orchestration_failure,9.0,13,0.692308,MEDIUM,GAIA
+3637c5845140adbf29c565923c20e94d,Tool-related,hallucination,9.0,13,0.692308,HIGH,GAIA
+3637c5845140adbf29c565923c20e94d,Goal Deviation,orchestration_failure,9.0,13,0.692308,HIGH,GAIA
+387546b0d3e81503bd8d392c6f1b6b25,Formatting Errors,code_error,12.0,38,0.315789,LOW,GAIA
+387546b0d3e81503bd8d392c6f1b6b25,Poor Information Retrieval,misinterpretation_of_tool_output,18.0,38,0.473684,MEDIUM,GAIA
+387546b0d3e81503bd8d392c6f1b6b25,Tool Output Misinterpretation,misinterpretation_of_tool_output,34.0,38,0.894737,HIGH,GAIA
+387546b0d3e81503bd8d392c6f1b6b25, Incorrect Problem Identification,orchestration_failure,20.0,38,0.526316,LOW,GAIA
+387546b0d3e81503bd8d392c6f1b6b25,Goal Deviation,orchestration_failure,34.0,38,0.894737,HIGH,GAIA
+387546b0d3e81503bd8d392c6f1b6b25,Context Handling Failures,kv_cache_loss,36.0,38,0.947368,MEDIUM,GAIA
+396b6aa1ab86eb2e20d27582eb5eebd9,Formatting Errors,code_error,37.0,77,0.480519,HIGH,GAIA
+396b6aa1ab86eb2e20d27582eb5eebd9,Formatting Errors,code_error,42.0,77,0.545455,HIGH,GAIA
+396b6aa1ab86eb2e20d27582eb5eebd9,Formatting Errors,code_error,45.0,77,0.584416,HIGH,GAIA
+396b6aa1ab86eb2e20d27582eb5eebd9,Formatting Errors,code_error,48.0,77,0.623377,HIGH,GAIA
+396b6aa1ab86eb2e20d27582eb5eebd9,Service Errors,system_failure,59.0,77,0.766234,HIGH,GAIA
+396b6aa1ab86eb2e20d27582eb5eebd9,Formatting Errors,code_error,59.0,77,0.766234,MEDIUM,GAIA
+3acaa3150977e199eddb95c64f2ada2e,Poor Information Retrieval,misinterpretation_of_tool_output,14.0,32,0.4375,MEDIUM,GAIA
+3acaa3150977e199eddb95c64f2ada2e,Poor Information Retrieval,misinterpretation_of_tool_output,17.0,32,0.53125,MEDIUM,GAIA
+3acaa3150977e199eddb95c64f2ada2e,Poor Information Retrieval,misinterpretation_of_tool_output,23.0,32,0.71875,MEDIUM,GAIA
+3acaa3150977e199eddb95c64f2ada2e,Resource Abuse,resource_abuse,20.0,32,0.625,LOW,GAIA
+3acaa3150977e199eddb95c64f2ada2e,Poor Information Retrieval,misinterpretation_of_tool_output,20.0,32,0.625,MEDIUM,GAIA
+3acaa3150977e199eddb95c64f2ada2e,Tool-related,hallucination,30.0,32,0.9375,HIGH,GAIA
+3acaa3150977e199eddb95c64f2ada2e,Goal Deviation,orchestration_failure,30.0,32,0.9375,HIGH,GAIA
+3f05ba33cd4ae18ccba6db9a5749c16f,Task Orchestration,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+3f05ba33cd4ae18ccba6db9a5749c16f,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+3f05ba33cd4ae18ccba6db9a5749c16f,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+41b597524173272503073a0799ac523c,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,HIGH,GAIA
+41bbc898aa7de0f31d2382ff57700a76,Instruction Non-compliance,instruction_adherence_failure,9.0,21,0.428571,MEDIUM,GAIA
+41bbc898aa7de0f31d2382ff57700a76,Environment Setup Errors,invalid_invocation,14.0,21,0.666667,HIGH,GAIA
+41bbc898aa7de0f31d2382ff57700a76,Tool Selection Errors,orchestration_failure,9.0,21,0.428571,HIGH,GAIA
+41bbc898aa7de0f31d2382ff57700a76,Resource Not Found,resource_not_found,17.0,21,0.809524,HIGH,GAIA
+41bbc898aa7de0f31d2382ff57700a76,Language-only,hallucination,19.0,21,0.904762,HIGH,GAIA
+41bbc898aa7de0f31d2382ff57700a76,Goal Deviation,orchestration_failure,19.0,21,0.904762,HIGH,GAIA
+4514626d62ed350ee7878c03f51bbe68,Instruction Non-compliance,instruction_adherence_failure,7.0,13,0.538462,LOW,GAIA
+4514626d62ed350ee7878c03f51bbe68,Tool Selection Errors,orchestration_failure,7.0,13,0.538462,HIGH,GAIA
+4514626d62ed350ee7878c03f51bbe68,Goal Deviation,orchestration_failure,9.0,13,0.692308,LOW,GAIA
+4514626d62ed350ee7878c03f51bbe68,Instruction Non-compliance,instruction_adherence_failure,7.0,13,0.538462,MEDIUM,GAIA
+4a8d094e92433f1ba1da21f602c417d9,Task Orchestration,orchestration_failure,9.0,13,0.692308,MEDIUM,GAIA
+4a8d094e92433f1ba1da21f602c417d9,Tool-related,hallucination,11.0,13,0.846154,HIGH,GAIA
+4a8d094e92433f1ba1da21f602c417d9,Goal Deviation,orchestration_failure,11.0,13,0.846154,HIGH,GAIA
+4ae16319f0de44a7d1e84595b41ae08d,Tool-related,hallucination,9.0,11,0.818182,HIGH,GAIA
+4ae16319f0de44a7d1e84595b41ae08d,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+4ae16319f0de44a7d1e84595b41ae08d,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+4c79c8ba0cf1e8fcb1c408d53016c560,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+4c79c8ba0cf1e8fcb1c408d53016c560,Tool-related,hallucination,9.0,11,0.818182,HIGH,GAIA
+4c79c8ba0cf1e8fcb1c408d53016c560,Task Orchestration,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+4c79c8ba0cf1e8fcb1c408d53016c560,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,MEDIUM,GAIA
+4c79c8ba0cf1e8fcb1c408d53016c560,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+512475a321c616e45337da3575f6a185,Formatting Errors,code_error,12.0,24,0.5,MEDIUM,GAIA
+512475a321c616e45337da3575f6a185,Tool Output Misinterpretation,misinterpretation_of_tool_output,12.0,24,0.5,MEDIUM,GAIA
+512475a321c616e45337da3575f6a185,Context Handling Failure,kv_cache_loss,12.0,24,0.5,HIGH,GAIA
+512475a321c616e45337da3575f6a185,Incorrect Problem Identification,orchestration_failure,12.0,24,0.5,MEDIUM,GAIA
+512475a321c616e45337da3575f6a185,Formatting Errors,code_error,20.0,24,0.833333,MEDIUM,GAIA
+512475a321c616e45337da3575f6a185,Language-only,hallucination,22.0,24,0.916667,HIGH,GAIA
+53dba4241b22d5039c9c119871c7c8b4,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+53dba4241b22d5039c9c119871c7c8b4,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+53dba4241b22d5039c9c119871c7c8b4,Tool-related,hallucination,9.0,11,0.818182,HIGH,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Formatting Errors,code_error,31.0,69,0.449275,MEDIUM,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Formatting Errors,code_error,34.0,69,0.492754,MEDIUM,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Formatting Errors,code_error,37.0,69,0.536232,MEDIUM,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Formatting Errors,code_error,45.0,69,0.652174,MEDIUM,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Formatting Errors,code_error,48.0,69,0.695652,MEDIUM,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Formatting Errors,code_error,51.0,69,0.73913,MEDIUM,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Tool-related,hallucination,57.0,69,0.826087,MEDIUM,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Formatting Errors,code_error,59.0,69,0.855072,MEDIUM,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Poor Information Retrieval,misinterpretation_of_tool_output,59.0,69,0.855072,MEDIUM,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Context Handling Failures,kv_cache_loss,57.0,69,0.826087,HIGH,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Resource Abuse,resource_abuse,57.0,69,0.826087,MEDIUM,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Formatting Errors,code_error,62.0,69,0.898551,LOW,GAIA
+59365b27641e501d105b0e8f5e7c5af7,Formatting Errors,code_error,67.0,69,0.971014,LOW,GAIA
+5a6c51d59f870513c68745e2e0f9269f,Task Orchestration,orchestration_failure,20.0,48,0.416667,MEDIUM,GAIA
+5a6c51d59f870513c68745e2e0f9269f,Poor Information Retrieval,misinterpretation_of_tool_output,20.0,48,0.416667,LOW,GAIA
+5a6c51d59f870513c68745e2e0f9269f,Resource Not Found,resource_not_found,23.0,48,0.479167,HIGH,GAIA
+5a6c51d59f870513c68745e2e0f9269f,Task Orchestration,orchestration_failure,23.0,48,0.479167,MEDIUM,GAIA
+5a6c51d59f870513c68745e2e0f9269f,Formatting Errors,code_error,23.0,48,0.479167,LOW,GAIA
+5a6c51d59f870513c68745e2e0f9269f,Language-only,hallucination,46.0,48,0.958333,HIGH,GAIA
+5b5a35053775cbf29701c171e6675853,Instruction Non-compliance,instruction_adherence_failure,7.0,21,0.333333,LOW,GAIA
+5b5a35053775cbf29701c171e6675853,Instruction Non-compliance,instruction_adherence_failure,12.0,21,0.571429,LOW,GAIA
+5b5a35053775cbf29701c171e6675853,Goal Deviation,orchestration_failure,17.0,21,0.809524,MEDIUM,GAIA
+5b5a35053775cbf29701c171e6675853,Language-only,hallucination,17.0,21,0.809524,MEDIUM,GAIA
+5bbd1534b199c57861f55b58be9949a0,Poor Information Retrieval,misinterpretation_of_tool_output,24.0,66,0.363636,MEDIUM,GAIA
+5bbd1534b199c57861f55b58be9949a0,Resource Abuse,resource_abuse,24.0,66,0.363636,MEDIUM,GAIA
+5bbd1534b199c57861f55b58be9949a0,Tool-related,hallucination,35.0,66,0.530303,HIGH,GAIA
+5bbd1534b199c57861f55b58be9949a0,Formatting Errors,code_error,37.0,66,0.560606,LOW,GAIA
+5bbd1534b199c57861f55b58be9949a0,Formatting Errors,code_error,45.0,66,0.681818,MEDIUM,GAIA
+5bbd1534b199c57861f55b58be9949a0,Formatting Errors,code_error,48.0,66,0.727273,MEDIUM,GAIA
+5bbd1534b199c57861f55b58be9949a0,Tool-related,hallucination,38.0,66,0.575758,HIGH,GAIA
+5bbd1534b199c57861f55b58be9949a0,Resource Abuse,resource_abuse,38.0,66,0.575758,MEDIUM,GAIA
+5bbd1534b199c57861f55b58be9949a0,Tool-related,hallucination,52.0,66,0.787879,HIGH,GAIA
+5bbd1534b199c57861f55b58be9949a0,Formatting Errors,code_error,48.0,66,0.727273,LOW,GAIA
+5bbd1534b199c57861f55b58be9949a0,Goal Deviation,orchestration_failure,17.0,66,0.257576,LOW,GAIA
+5bbd1534b199c57861f55b58be9949a0,Resource Abuse,resource_abuse,52.0,66,0.787879,MEDIUM,GAIA
+5bbd1534b199c57861f55b58be9949a0,Formatting Errors,code_error,34.0,66,0.515152,MEDIUM,GAIA
+5bbd1534b199c57861f55b58be9949a0,Formatting Errors,code_error,51.0,66,0.772727,LOW,GAIA
+5dc4cf8d5175f2782f46265456998d39,Task Orchestration,orchestration_failure,9.0,17,0.529412,MEDIUM,GAIA
+5dc4cf8d5175f2782f46265456998d39,Task Orchestration,orchestration_failure,11.0,17,0.647059,MEDIUM,GAIA
+5dc4cf8d5175f2782f46265456998d39,Tool-related,hallucination,15.0,17,0.882353,HIGH,GAIA
+5dc4cf8d5175f2782f46265456998d39,Task Orchestration,orchestration_failure,13.0,17,0.764706,MEDIUM,GAIA
+5dc4cf8d5175f2782f46265456998d39,Context Handling Failures,kv_cache_loss,15.0,17,0.882353,HIGH,GAIA
+5dc4cf8d5175f2782f46265456998d39,Resource Abuse,resource_abuse,15.0,17,0.882353,HIGH,GAIA
+5e5dc94e090341c564d582f551a0cddb,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+5e5dc94e090341c564d582f551a0cddb,Incorrect Problem Identification,orchestration_failure,7.0,11,0.636364,MEDIUM,GAIA
+5e5dc94e090341c564d582f551a0cddb,Task Orchestration,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+5e5dc94e090341c564d582f551a0cddb,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+5e5dc94e090341c564d582f551a0cddb,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,HIGH,GAIA
+5ec1cd43eb8ae4094e93a4892ff0f06f,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+5ec1cd43eb8ae4094e93a4892ff0f06f,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+5ec1cd43eb8ae4094e93a4892ff0f06f,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+5ec1cd43eb8ae4094e93a4892ff0f06f,Incorrect Problem Identification,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+5ec1cd43eb8ae4094e93a4892ff0f06f,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Instruction Non-compliance,instruction_adherence_failure,7.0,64,0.109375,LOW,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Formatting Errors,code_error,34.0,64,0.53125,LOW,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Tool-related,hallucination,24.0,64,0.375,HIGH,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Tool-related,hallucination,29.0,64,0.453125,HIGH,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Instruction Non-compliance,instruction_adherence_failure,12.0,64,0.1875,LOW,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Formatting Errors,code_error,31.0,64,0.484375,LOW,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Resource Abuse,resource_abuse,35.0,64,0.546875,MEDIUM,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Formatting Errors,code_error,37.0,64,0.578125,LOW,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Formatting Errors,code_error,28.0,64,0.4375,LOW,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Goal Deviation,orchestration_failure,28.0,64,0.4375,HIGH,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Formatting Errors,code_error,62.0,64,0.96875,LOW,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Context Handling Failures,kv_cache_loss,37.0,64,0.578125,HIGH,GAIA
+5f3a0a7fc572f49630c069e4e5a64ae3,Resource Abuse,resource_abuse,28.0,64,0.4375,MEDIUM,GAIA
+62df2a06b647ca730391602dbf62f843,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+62df2a06b647ca730391602dbf62f843,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+62df2a06b647ca730391602dbf62f843,Task Orchestration,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+62df2a06b647ca730391602dbf62f843,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+63ac9e03bf750e58eecbc5b148d8d215,Formatting Errors,code_error,7.0,13,0.538462,MEDIUM,GAIA
+63ac9e03bf750e58eecbc5b148d8d215,Instruction Non-compliance,instruction_adherence_failure,7.0,13,0.538462,LOW,GAIA
+63ac9e03bf750e58eecbc5b148d8d215,Language-only,hallucination,11.0,13,0.846154,HIGH,GAIA
+672d36d8ecc4816738433c75136eb99d,Tool Definition Issues,invalid_invocation,15.0,22,0.681818,HIGH,GAIA
+672d36d8ecc4816738433c75136eb99d,Goal Deviation,orchestration_failure,15.0,22,0.681818,MEDIUM,GAIA
+672d36d8ecc4816738433c75136eb99d,Context Handling Failures,kv_cache_loss,18.0,22,0.818182,MEDIUM,GAIA
+672d36d8ecc4816738433c75136eb99d,Language-only,hallucination,20.0,22,0.909091,HIGH,GAIA
+672d36d8ecc4816738433c75136eb99d,Task Orchestration,orchestration_failure,18.0,22,0.818182,MEDIUM,GAIA
+672d36d8ecc4816738433c75136eb99d,Environment Setup Errors,invalid_invocation,15.0,22,0.681818,HIGH,GAIA
+6cc6dc35a28bbed6cfd873756094bc16,Tool Output Misinterpretation,misinterpretation_of_tool_output,87.0,137,0.635036,MEDIUM,GAIA
+6cc6dc35a28bbed6cfd873756094bc16,Formatting Errors,code_error,87.0,137,0.635036,MEDIUM,GAIA
+6cc6dc35a28bbed6cfd873756094bc16,Tool Output Misinterpretation,misinterpretation_of_tool_output,82.0,137,0.59854,MEDIUM,GAIA
+6cc6dc35a28bbed6cfd873756094bc16,Tool Output Misinterpretation,misinterpretation_of_tool_output,98.0,137,0.715328,MEDIUM,GAIA
+6cc6dc35a28bbed6cfd873756094bc16,Tool Output Misinterpretation,misinterpretation_of_tool_output,101.0,137,0.737226,MEDIUM,GAIA
+6cc6dc35a28bbed6cfd873756094bc16,Goal Deviation,orchestration_failure,84.0,137,0.613139,HIGH,GAIA
+6cc6dc35a28bbed6cfd873756094bc16,Context Handling Failures,kv_cache_loss,101.0,137,0.737226,MEDIUM,GAIA
+6d5b91f06e5a7377d4798be65fe46e97,Instruction Non-compliance,instruction_adherence_failure,7.0,13,0.538462,LOW,GAIA
+6d5b91f06e5a7377d4798be65fe46e97,Formatting Errors,code_error,11.0,13,0.846154,LOW,GAIA
+6d5b91f06e5a7377d4798be65fe46e97,Tool Selection Errors,orchestration_failure,9.0,13,0.692308,HIGH,GAIA
+6d5b91f06e5a7377d4798be65fe46e97,Language-only,hallucination,9.0,13,0.692308,HIGH,GAIA
+6d5b91f06e5a7377d4798be65fe46e97,Goal Deviation,orchestration_failure,9.0,13,0.692308,HIGH,GAIA
+6e64c2e543327a7c2f2ce3d26ced94d1,Instruction Non-compliance,instruction_adherence_failure,7.0,13,0.538462,LOW,GAIA
+6e64c2e543327a7c2f2ce3d26ced94d1,Tool-related,hallucination,11.0,13,0.846154,HIGH,GAIA
+6e64c2e543327a7c2f2ce3d26ced94d1,Goal Deviation,orchestration_failure,11.0,13,0.846154,HIGH,GAIA
+6f0ede30602ae3fe2ced3f9fabb008a6,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+6f0ede30602ae3fe2ced3f9fabb008a6,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+6f0ede30602ae3fe2ced3f9fabb008a6,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+6f0ede30602ae3fe2ced3f9fabb008a6,Task Orchestration,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+72877db591837666d500b459fb3cf29d,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+72877db591837666d500b459fb3cf29d,Instruction Non-compliance,instruction_adherence_failure,11.0,11,1.0,LOW,GAIA
+75121379e11c550f3ca58e17c972266b,Language-only,hallucination,7.0,11,0.636364,HIGH,GAIA
+75121379e11c550f3ca58e17c972266b,Formatting Errors,code_error,7.0,11,0.636364,LOW,GAIA
+75121379e11c550f3ca58e17c972266b,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+75121379e11c550f3ca58e17c972266b,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+772605f0794b0fa96bc942a8a7736571,Instruction Non-compliance,instruction_adherence_failure,7.0,32,0.21875,LOW,GAIA
+772605f0794b0fa96bc942a8a7736571,Instruction Non-compliance,instruction_adherence_failure,12.0,32,0.375,LOW,GAIA
+772605f0794b0fa96bc942a8a7736571,Formatting Errors,code_error,23.0,32,0.71875,MEDIUM,GAIA
+772605f0794b0fa96bc942a8a7736571,Resource Abuse,resource_abuse,24.0,32,0.75,MEDIUM,GAIA
+772605f0794b0fa96bc942a8a7736571,Poor Information Retrieval,misinterpretation_of_tool_output,20.0,32,0.625,MEDIUM,GAIA
+772605f0794b0fa96bc942a8a7736571,Tool-related,hallucination,30.0,32,0.9375,HIGH,GAIA
+7bf0addde339e4cac9dd3b772232a7e0,Environment Setup Errors,invalid_invocation,9.0,16,0.5625,HIGH,GAIA
+7bf0addde339e4cac9dd3b772232a7e0,Task Orchestration,orchestration_failure,9.0,16,0.5625,MEDIUM,GAIA
+7bf0addde339e4cac9dd3b772232a7e0,Instruction Non-compliance,instruction_adherence_failure,9.0,16,0.5625,MEDIUM,GAIA
+7bf0addde339e4cac9dd3b772232a7e0,Language-only,hallucination,9.0,16,0.5625,HIGH,GAIA
+7bf0addde339e4cac9dd3b772232a7e0,Formatting Errors,code_error,12.0,16,0.75,LOW,GAIA
+7bf0addde339e4cac9dd3b772232a7e0,Incorrect Problem Identification,orchestration_failure,10.0,16,0.625,MEDIUM,GAIA
+7bf0addde339e4cac9dd3b772232a7e0,Timeout Issues,tool_timeout,14.0,16,0.875,HIGH,GAIA
+7bf0addde339e4cac9dd3b772232a7e0,Resource Exhaustion,resource_abuse,14.0,16,0.875,HIGH,GAIA
+7c98d39b2699d41fa913f8fbe60c04ed,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+7c98d39b2699d41fa913f8fbe60c04ed,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,HIGH,GAIA
+7c98d39b2699d41fa913f8fbe60c04ed,Task Orchestration,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+7c98d39b2699d41fa913f8fbe60c04ed,Tool Selection,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+7c98d39b2699d41fa913f8fbe60c04ed,Incorrect Problem Identification,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+7c98d39b2699d41fa913f8fbe60c04ed,Instruction Non-compliance,instruction_adherence_failure,11.0,11,1.0,HIGH,GAIA
+7ee8e8df6e8cd101d9af8a4a4f6ceedb,Timeout Issues,tool_timeout,11.0,15,0.733333,HIGH,GAIA
+7ee8e8df6e8cd101d9af8a4a4f6ceedb,Resource Exhaustion,resource_abuse,11.0,15,0.733333,HIGH,GAIA
+7ee8e8df6e8cd101d9af8a4a4f6ceedb,Incorrect Problem Identification,orchestration_failure,11.0,15,0.733333,HIGH,GAIA
+85c14ced5177cdad83f1f1f898a1c6c7,Instruction Non-compliance,instruction_adherence_failure,9.0,17,0.529412,MEDIUM,GAIA
+85c14ced5177cdad83f1f1f898a1c6c7,Goal Deviation,orchestration_failure,15.0,17,0.882353,HIGH,GAIA
+85c14ced5177cdad83f1f1f898a1c6c7,Task Orchestration,orchestration_failure,11.0,17,0.647059,MEDIUM,GAIA
+85c14ced5177cdad83f1f1f898a1c6c7,Tool Output Misinterpretation,misinterpretation_of_tool_output,15.0,17,0.882353,HIGH,GAIA
+85c14ced5177cdad83f1f1f898a1c6c7,Task Orchestration,orchestration_failure,13.0,17,0.764706,MEDIUM,GAIA
+85c14ced5177cdad83f1f1f898a1c6c7,Language-only,hallucination,15.0,17,0.882353,HIGH,GAIA
+860f9d45f2e50bfecb190bb26eff1f32,Formatting Errors,code_error,83.0,164,0.506098,HIGH,GAIA
+860f9d45f2e50bfecb190bb26eff1f32,Formatting Errors,code_error,86.0,164,0.52439,HIGH,GAIA
+860f9d45f2e50bfecb190bb26eff1f32,Formatting Errors,code_error,89.0,164,0.542683,HIGH,GAIA
+860f9d45f2e50bfecb190bb26eff1f32,Resource Abuse,resource_abuse,89.0,164,0.542683,MEDIUM,GAIA
+860f9d45f2e50bfecb190bb26eff1f32,Goal Deviation,orchestration_failure,103.0,164,0.628049,HIGH,GAIA
+860f9d45f2e50bfecb190bb26eff1f32,Tool-related,hallucination,145.0,164,0.884146,HIGH,GAIA
+860f9d45f2e50bfecb190bb26eff1f32,Environment Setup Errors,invalid_invocation,148.0,164,0.902439,HIGH,GAIA
+860f9d45f2e50bfecb190bb26eff1f32,Resource Not Found,resource_not_found,148.0,164,0.902439,HIGH,GAIA
+860f9d45f2e50bfecb190bb26eff1f32,Instruction Non-compliance,instruction_adherence_failure,111.0,164,0.676829,HIGH,GAIA
+860f9d45f2e50bfecb190bb26eff1f32,Tool-related,hallucination,136.0,164,0.829268,HIGH,GAIA
+876eb108c8650d4ada63a8d39aa1e96c,Goal Deviation,orchestration_failure,9.0,16,0.5625,HIGH,GAIA
+876eb108c8650d4ada63a8d39aa1e96c,Task Orchestration,orchestration_failure,9.0,16,0.5625,MEDIUM,GAIA
+876eb108c8650d4ada63a8d39aa1e96c,Instruction Non-compliance,instruction_adherence_failure,9.0,16,0.5625,HIGH,GAIA
+876eb108c8650d4ada63a8d39aa1e96c,Formatting Errors,code_error,11.0,16,0.6875,LOW,GAIA
+876eb108c8650d4ada63a8d39aa1e96c,Context Handling Failure,kv_cache_loss,11.0,16,0.6875,MEDIUM,GAIA
+876eb108c8650d4ada63a8d39aa1e96c,Tool Selection Errors,orchestration_failure,9.0,16,0.5625,HIGH,GAIA
+876eb108c8650d4ada63a8d39aa1e96c,Incorrect Problem Identification,orchestration_failure,12.0,16,0.75,MEDIUM,GAIA
+876eb108c8650d4ada63a8d39aa1e96c,Formatting Errors,code_error,14.0,16,0.875,LOW,GAIA
+876eb108c8650d4ada63a8d39aa1e96c,Incorrect Problem Identification,orchestration_failure,14.0,16,0.875,MEDIUM,GAIA
+876eb108c8650d4ada63a8d39aa1e96c,Tool Output Misinterpretation,misinterpretation_of_tool_output,14.0,16,0.875,HIGH,GAIA
+88c63c780aba1f23c3c5345aa340d7e2,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+88c63c780aba1f23c3c5345aa340d7e2,Tool-related,hallucination,9.0,11,0.818182,HIGH,GAIA
+88e4ce6a659df42a4146331fff36417c,Task Orchestration,orchestration_failure,11.0,17,0.647059,MEDIUM,GAIA
+88e4ce6a659df42a4146331fff36417c,Tool-related,hallucination,15.0,17,0.882353,HIGH,GAIA
+88e4ce6a659df42a4146331fff36417c,Tool Selection Errors,orchestration_failure,9.0,17,0.529412,HIGH,GAIA
+88e4ce6a659df42a4146331fff36417c,Tool Selection Errors,orchestration_failure,11.0,17,0.647059,HIGH,GAIA
+88e4ce6a659df42a4146331fff36417c,Tool Selection Errors,orchestration_failure,13.0,17,0.764706,HIGH,GAIA
+88e4ce6a659df42a4146331fff36417c,Resource Abuse,resource_abuse,15.0,17,0.882353,HIGH,GAIA
+88e4ce6a659df42a4146331fff36417c,Goal Deviation,orchestration_failure,15.0,17,0.882353,HIGH,GAIA
+911e853f02d03e976dbf0c16f653ab57,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+911e853f02d03e976dbf0c16f653ab57,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+911e853f02d03e976dbf0c16f653ab57,Goal deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+911e853f02d03e976dbf0c16f653ab57,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,MEDIUM,GAIA
+911e853f02d03e976dbf0c16f653ab57,Task Orchestration,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+911e853f02d03e976dbf0c16f653ab57,Context Handling Failures,kv_cache_loss,9.0,11,0.818182,HIGH,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Formatting Errors,code_error,100.0,156,0.641026,HIGH,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Poor Information Retrieval,misinterpretation_of_tool_output,121.0,156,0.775641,HIGH,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Formatting Errors,code_error,39.0,156,0.25,MEDIUM,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Resource Not Found,resource_not_found,43.0,156,0.275641,HIGH,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Resource Not Found,resource_not_found,46.0,156,0.294872,HIGH,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Resource Not Found,resource_not_found,57.0,156,0.365385,HIGH,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Resource Not Found,resource_not_found,60.0,156,0.384615,HIGH,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Instruction Non-compliance,instruction_adherence_failure,68.0,156,0.435897,HIGH,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Context Handling Failures,kv_cache_loss,68.0,156,0.435897,HIGH,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Resource Abuse,resource_abuse,68.0,156,0.435897,MEDIUM,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Context Handling Failures,kv_cache_loss,96.0,156,0.615385,MEDIUM,GAIA
+915d2c66879657f694f88e0ed6f02cf5,Poor Information Retrieval,misinterpretation_of_tool_output,66.0,156,0.423077,MEDIUM,GAIA
+96be1bf61f2915e52ec59173b9bd9828,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+96be1bf61f2915e52ec59173b9bd9828,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+96be1bf61f2915e52ec59173b9bd9828,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+96be1bf61f2915e52ec59173b9bd9828,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+96be1bf61f2915e52ec59173b9bd9828,Task Orchestration,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+99f6b447779ba86b3cff2caede832d59,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+9cd6dc7c0af658a87f603b488950f409,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+9cd6dc7c0af658a87f603b488950f409,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+9cd6dc7c0af658a87f603b488950f409,Tool-related,hallucination,9.0,11,0.818182,HIGH,GAIA
+9e67afe0ff4eca1558073c2e5cfbf876,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+9e67afe0ff4eca1558073c2e5cfbf876,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,MEDIUM,GAIA
+9e67afe0ff4eca1558073c2e5cfbf876,Tool-related,hallucination,9.0,11,0.818182,HIGH,GAIA
+9e67afe0ff4eca1558073c2e5cfbf876,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+9ec7d4a8ab8c74ab56361ef29d1b1660,Formatting Errors,code_error,7.0,11,0.636364,LOW,GAIA
+9ec7d4a8ab8c74ab56361ef29d1b1660,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+9ec7d4a8ab8c74ab56361ef29d1b1660,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+9ec7d4a8ab8c74ab56361ef29d1b1660,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,MEDIUM,GAIA
+9ec7d4a8ab8c74ab56361ef29d1b1660,Task Orchestration,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+9ec7d4a8ab8c74ab56361ef29d1b1660,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+a041b8d88e3fedcc7d387da328f8a3b4,Tool-related,hallucination,13.0,15,0.866667,HIGH,GAIA
+a041b8d88e3fedcc7d387da328f8a3b4,Tool Selection Errors,orchestration_failure,9.0,15,0.6,HIGH,GAIA
+a041b8d88e3fedcc7d387da328f8a3b4,Instruction Non-compliance,instruction_adherence_failure,11.0,15,0.733333,HIGH,GAIA
+a041b8d88e3fedcc7d387da328f8a3b4,Goal Deviation,orchestration_failure,13.0,15,0.866667,HIGH,GAIA
+a32806e19bac45a34d3712ccc433ec9d,Formatting Errors,code_error,20.0,41,0.487805,LOW,GAIA
+a32806e19bac45a34d3712ccc433ec9d,Instruction Non-compliance,instruction_adherence_failure,20.0,41,0.487805,LOW,GAIA
+a32806e19bac45a34d3712ccc433ec9d,Formatting Errors,code_error,34.0,41,0.829268,LOW,GAIA
+a32806e19bac45a34d3712ccc433ec9d,Language-only,hallucination,39.0,41,0.95122,HIGH,GAIA
+a32806e19bac45a34d3712ccc433ec9d,Goal Deviation,orchestration_failure,39.0,41,0.95122,HIGH,GAIA
+a4af6c6d200e6d19d7f24e1d1d688188,Tool Selection Errors,orchestration_failure,9.0,13,0.692308,HIGH,GAIA
+a4af6c6d200e6d19d7f24e1d1d688188,Language-only,hallucination,11.0,13,0.846154,HIGH,GAIA
+a4af6c6d200e6d19d7f24e1d1d688188,Goal Deviation,orchestration_failure,11.0,13,0.846154,HIGH,GAIA
+a5c2947f441d65edf60131463fb79999,Formatting Errors,code_error,31.0,63,0.492063,LOW,GAIA
+a5c2947f441d65edf60131463fb79999,Formatting Errors,code_error,34.0,63,0.539683,LOW,GAIA
+a5c2947f441d65edf60131463fb79999,Resource Abuse,resource_abuse,49.0,63,0.777778,MEDIUM,GAIA
+a5c2947f441d65edf60131463fb79999,Formatting Errors,code_error,37.0,63,0.587302,LOW,GAIA
+a5c2947f441d65edf60131463fb79999,Tool-related,hallucination,49.0,63,0.777778,HIGH,GAIA
+a5c2947f441d65edf60131463fb79999,Formatting Errors,code_error,51.0,63,0.809524,LOW,GAIA
+a5c2947f441d65edf60131463fb79999,Context Handling Failures,kv_cache_loss,51.0,63,0.809524,HIGH,GAIA
+a5c2947f441d65edf60131463fb79999,Tool-related,hallucination,61.0,63,0.968254,HIGH,GAIA
+a7017f40866dd77c6c0c0e98bad17f69,Task Orchestration,orchestration_failure,9.0,13,0.692308,MEDIUM,GAIA
+a7017f40866dd77c6c0c0e98bad17f69,Tool-related,hallucination,11.0,13,0.846154,HIGH,GAIA
+a7017f40866dd77c6c0c0e98bad17f69,Goal Deviation,orchestration_failure,11.0,13,0.846154,HIGH,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Context Handling Failures,kv_cache_loss,28.0,85,0.329412,HIGH,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Task Orchestration,orchestration_failure,65.0,85,0.764706,MEDIUM,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Service Errors,system_failure,74.0,85,0.870588,MEDIUM,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Formatting Errors,code_error,20.0,85,0.235294,HIGH,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Formatting Errors,code_error,23.0,85,0.270588,HIGH,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Formatting Errors,code_error,31.0,85,0.364706,HIGH,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Formatting Errors,code_error,34.0,85,0.4,HIGH,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Formatting Errors,code_error,37.0,85,0.435294,HIGH,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Context Handling Failures,kv_cache_loss,37.0,85,0.435294,HIGH,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Poor Information Retrieval,misinterpretation_of_tool_output,79.0,85,0.929412,LOW,GAIA
+a99faf782e8ad4d5f1ccdfcb7e143b9a,Task Orchestration,orchestration_failure,81.0,85,0.952941,MEDIUM,GAIA
+aa76e85e274bb7187a186c5ed9c90b43,Instruction Non-compliance,instruction_adherence_failure,7.0,13,0.538462,LOW,GAIA
+ae345023ab5e1c09d49c2b2c6e311877,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,MEDIUM,GAIA
+ae345023ab5e1c09d49c2b2c6e311877,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+ae345023ab5e1c09d49c2b2c6e311877,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+ae345023ab5e1c09d49c2b2c6e311877,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+b159cbc7eb989d874a0337cbee8a373c,Environment Setup Errors,invalid_invocation,12.0,34,0.352941,LOW,GAIA
+b159cbc7eb989d874a0337cbee8a373c,Incorrect Problem Identification,orchestration_failure,12.0,34,0.352941,MEDIUM,GAIA
+b159cbc7eb989d874a0337cbee8a373c,Formatting Errors,code_error,20.0,34,0.588235,LOW,GAIA
+b159cbc7eb989d874a0337cbee8a373c,Incorrect Problem Identification,orchestration_failure,22.0,34,0.647059,MEDIUM,GAIA
+b159cbc7eb989d874a0337cbee8a373c,Formatting Errors,code_error,30.0,34,0.882353,LOW,GAIA
+b159cbc7eb989d874a0337cbee8a373c,Tool Output Misinterpretation,misinterpretation_of_tool_output,32.0,34,0.941176,HIGH,GAIA
+b159cbc7eb989d874a0337cbee8a373c,Resource Abuse,resource_abuse,28.0,34,0.823529,MEDIUM,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Formatting Errors,code_error,17.0,62,0.274194,LOW,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Resource Abuse,resource_abuse,21.0,62,0.33871,MEDIUM,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Poor Information Retrieval,misinterpretation_of_tool_output,21.0,62,0.33871,MEDIUM,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Instruction Non-compliance,instruction_adherence_failure,29.0,62,0.467742,MEDIUM,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Tool-related,hallucination,38.0,62,0.612903,HIGH,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Formatting Errors,code_error,45.0,62,0.725806,LOW,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Resource Abuse,resource_abuse,46.0,62,0.741935,MEDIUM,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Formatting Errors,code_error,48.0,62,0.774194,LOW,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Resource Abuse,resource_abuse,49.0,62,0.790323,MEDIUM,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Formatting Errors,code_error,51.0,62,0.822581,LOW,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Resource Abuse,resource_abuse,52.0,62,0.83871,MEDIUM,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Incorrect Problem Identification,orchestration_failure,58.0,62,0.935484,MEDIUM,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Formatting Errors,code_error,60.0,62,0.967742,LOW,GAIA
+b1f9b9baefa4c69d1d848e35c130e29d,Language-only,hallucination,60.0,62,0.967742,HIGH,GAIA
+b241cb7deedf9646f01fa15095ed96d2,Context Handling Failures,kv_cache_loss,42.0,178,0.235955,HIGH,GAIA
+b241cb7deedf9646f01fa15095ed96d2,Formatting Errors,code_error,121.0,178,0.679775,LOW,GAIA
+b241cb7deedf9646f01fa15095ed96d2,Formatting Errors,code_error,124.0,178,0.696629,LOW,GAIA
+b241cb7deedf9646f01fa15095ed96d2,Formatting Errors,code_error,129.0,178,0.724719,LOW,GAIA
+b241cb7deedf9646f01fa15095ed96d2,Formatting Errors,code_error,132.0,178,0.741573,LOW,GAIA
+b241cb7deedf9646f01fa15095ed96d2,Tool Selection Errors,orchestration_failure,42.0,178,0.235955,HIGH,GAIA
+b241cb7deedf9646f01fa15095ed96d2,Goal Deviation,orchestration_failure,37.0,178,0.207865,HIGH,GAIA
+b241cb7deedf9646f01fa15095ed96d2,Poor Information Retrieval,misinterpretation_of_tool_output,37.0,178,0.207865,HIGH,GAIA
+b241cb7deedf9646f01fa15095ed96d2,Tool Selection Errors,orchestration_failure,37.0,178,0.207865,HIGH,GAIA
+b5576ffca7ad7cce0fc34b5aad7fc543,Goal Deviation,orchestration_failure,37.0,37,1.0,HIGH,GAIA
+b5576ffca7ad7cce0fc34b5aad7fc543,Tool-related,hallucination,9.0,37,0.243243,HIGH,GAIA
+b5576ffca7ad7cce0fc34b5aad7fc543,Goal Deviation,orchestration_failure,9.0,37,0.243243,HIGH,GAIA
+b5576ffca7ad7cce0fc34b5aad7fc543,Environment Setup Errors,invalid_invocation,12.0,37,0.324324,HIGH,GAIA
+b5576ffca7ad7cce0fc34b5aad7fc543,Resource Abuse,resource_abuse,15.0,37,0.405405,HIGH,GAIA
+b5576ffca7ad7cce0fc34b5aad7fc543,Poor Information Retrieval,misinterpretation_of_tool_output,23.0,37,0.621622,MEDIUM,GAIA
+b69bcf49516121f03e5809cbd776c21f,Task Orchestration,orchestration_failure,89.0,95,0.936842,MEDIUM,GAIA
+b69bcf49516121f03e5809cbd776c21f,Language-only,hallucination,91.0,95,0.957895,HIGH,GAIA
+b69bcf49516121f03e5809cbd776c21f,Context Handling Failures,kv_cache_loss,83.0,95,0.873684,MEDIUM,GAIA
+b7f8fcd484777f9d330f24a2ff30dd25,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+b810534e7915119254ea6977a72493ae,Formatting Errors,code_error,7.0,13,0.538462,LOW,GAIA
+b810534e7915119254ea6977a72493ae,Language-only,hallucination,9.0,13,0.692308,HIGH,GAIA
+b810534e7915119254ea6977a72493ae,Tool Selection Errors,orchestration_failure,9.0,13,0.692308,HIGH,GAIA
+b810534e7915119254ea6977a72493ae,Task Orchestration,orchestration_failure,9.0,13,0.692308,MEDIUM,GAIA
+b93b2145c5e2022c56bc2a50d5e94d8a,Instruction Non-compliance,instruction_adherence_failure,35.0,37,0.945946,MEDIUM,GAIA
+b93b2145c5e2022c56bc2a50d5e94d8a,Poor Information Retrieval,misinterpretation_of_tool_output,35.0,37,0.945946,HIGH,GAIA
+b93b2145c5e2022c56bc2a50d5e94d8a,Instruction Non-compliance,instruction_adherence_failure,37.0,37,1.0,HIGH,GAIA
+b93b2145c5e2022c56bc2a50d5e94d8a,Resource Abuse,resource_abuse,20.0,37,0.540541,MEDIUM,GAIA
+b93b2145c5e2022c56bc2a50d5e94d8a,Tool Selection Errors,orchestration_failure,23.0,37,0.621622,LOW,GAIA
+b93b2145c5e2022c56bc2a50d5e94d8a,Task Orchestration,orchestration_failure,26.0,37,0.702703,MEDIUM,GAIA
+bc9c8f8dc13a51d0cd6762bd325ab17e,Poor Information Retrieval,misinterpretation_of_tool_output,21.0,46,0.456522,MEDIUM,GAIA
+bc9c8f8dc13a51d0cd6762bd325ab17e,Resource Abuse,resource_abuse,21.0,46,0.456522,MEDIUM,GAIA
+bc9c8f8dc13a51d0cd6762bd325ab17e,Formatting Errors,code_error,31.0,46,0.673913,LOW,GAIA
+bc9c8f8dc13a51d0cd6762bd325ab17e,Poor Information Retrieval,misinterpretation_of_tool_output,38.0,46,0.826087,MEDIUM,GAIA
+bc9c8f8dc13a51d0cd6762bd325ab17e,Resource Abuse,resource_abuse,38.0,46,0.826087,MEDIUM,GAIA
+bc9c8f8dc13a51d0cd6762bd325ab17e,Formatting Errors,code_error,37.0,46,0.804348,LOW,GAIA
+bcaad76af172d10d2c7e4c257bf20d27,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+bcaad76af172d10d2c7e4c257bf20d27,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+bcaad76af172d10d2c7e4c257bf20d27,Task Orchestration,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+bcaad76af172d10d2c7e4c257bf20d27,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+c60ad8608dd94271a6c6805eedfa26a8,Formatting Errors,code_error,39.0,74,0.527027,HIGH,GAIA
+c60ad8608dd94271a6c6805eedfa26a8,Tool Selection Errors,orchestration_failure,40.0,74,0.540541,HIGH,GAIA
+c60ad8608dd94271a6c6805eedfa26a8,Resource Abuse,resource_abuse,40.0,74,0.540541,HIGH,GAIA
+c60ad8608dd94271a6c6805eedfa26a8,Authentication Errors,tool_web_failure,63.0,74,0.851351,MEDIUM,GAIA
+c60ad8608dd94271a6c6805eedfa26a8,Formatting Errors,code_error,20.0,74,0.27027,HIGH,GAIA
+cac8b6b2d84841d9a5177e399f0595b4,Task Orchestration,orchestration_failure,12.0,32,0.375,MEDIUM,GAIA
+cac8b6b2d84841d9a5177e399f0595b4,Poor Information Retrieval,misinterpretation_of_tool_output,24.0,32,0.75,MEDIUM,GAIA
+cac8b6b2d84841d9a5177e399f0595b4,Resource Abuse,resource_abuse,24.0,32,0.75,MEDIUM,GAIA
+cac8b6b2d84841d9a5177e399f0595b4,Poor Information Retrieval,misinterpretation_of_tool_output,23.0,32,0.71875,LOW,GAIA
+cac8b6b2d84841d9a5177e399f0595b4,Tool Output Misinterpretation,misinterpretation_of_tool_output,28.0,32,0.875,HIGH,GAIA
+cac8b6b2d84841d9a5177e399f0595b4,Goal Deviation,orchestration_failure,30.0,32,0.9375,HIGH,GAIA
+cbefff615c15f4de61bd0ffd1ce97d2e,Tool Selection Errors,orchestration_failure,9.0,13,0.692308,HIGH,GAIA
+cbefff615c15f4de61bd0ffd1ce97d2e,Language-only,hallucination,9.0,13,0.692308,HIGH,GAIA
+d277cf50c742ad43ddf128587f59b363,Formatting Errors,code_error,17.0,32,0.53125,LOW,GAIA
+d277cf50c742ad43ddf128587f59b363,Task Orchestration,orchestration_failure,26.0,32,0.8125,MEDIUM,GAIA
+d277cf50c742ad43ddf128587f59b363,Language-only,hallucination,30.0,32,0.9375,HIGH,GAIA
+d2868d12880a41ad5ed1fb3bb39159d5,,no_errors,,21,,,GAIA
+d67a8ae853c0b8ed0e55f7fafe4e2f64,Goal Deviation,orchestration_failure,11.0,13,0.846154,HIGH,GAIA
+d67a8ae853c0b8ed0e55f7fafe4e2f64,Language-only,hallucination,11.0,13,0.846154,HIGH,GAIA
+d7f2f823ff4d4d8bbec1039c6c302a06,Tool Selection Errors,orchestration_failure,7.0,17,0.411765,HIGH,GAIA
+d7f2f823ff4d4d8bbec1039c6c302a06,Language-only,hallucination,15.0,17,0.882353,HIGH,GAIA
+d7f2f823ff4d4d8bbec1039c6c302a06,Tool Selection Errors,orchestration_failure,9.0,17,0.529412,HIGH,GAIA
+d7f2f823ff4d4d8bbec1039c6c302a06,Tool Selection Errors,orchestration_failure,11.0,17,0.647059,HIGH,GAIA
+d7f2f823ff4d4d8bbec1039c6c302a06,Tool Selection Errors,orchestration_failure,13.0,17,0.764706,HIGH,GAIA
+d7f2f823ff4d4d8bbec1039c6c302a06,Goal Deviation,orchestration_failure,15.0,17,0.882353,HIGH,GAIA
+d857dc7d137db732306e97c3820652bd,Language-only,hallucination,11.0,13,0.846154,HIGH,GAIA
+d857dc7d137db732306e97c3820652bd,Goal Deviation,orchestration_failure,11.0,13,0.846154,HIGH,GAIA
+d9a8dff7edce2d1b15ed4769886d9a2a,Instruction Non-compliance,instruction_adherence_failure,7.0,17,0.411765,LOW,GAIA
+d9a8dff7edce2d1b15ed4769886d9a2a,Tool Selection Errors,orchestration_failure,9.0,17,0.529412,HIGH,GAIA
+d9a8dff7edce2d1b15ed4769886d9a2a,Tool Selection Errors,orchestration_failure,11.0,17,0.647059,HIGH,GAIA
+d9a8dff7edce2d1b15ed4769886d9a2a,Tool-related,hallucination,13.0,17,0.764706,HIGH,GAIA
+d9a8dff7edce2d1b15ed4769886d9a2a,Goal Deviation,orchestration_failure,13.0,17,0.764706,HIGH,GAIA
+d9a8dff7edce2d1b15ed4769886d9a2a,Formatting Errors,code_error,15.0,17,0.882353,LOW,GAIA
+dbc070b918d4a052c0b686081408fb52,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+dbc070b918d4a052c0b686081408fb52,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+dbc070b918d4a052c0b686081408fb52,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,MEDIUM,GAIA
+dcb89b6b049d424caf4c3e5fcd22c84c,Authentication Errors,tool_web_failure,18.0,80,0.225,LOW,GAIA
+dcb89b6b049d424caf4c3e5fcd22c84c,Formatting Errors,code_error,31.0,80,0.3875,LOW,GAIA
+dcb89b6b049d424caf4c3e5fcd22c84c,Formatting Errors,code_error,34.0,80,0.425,LOW,GAIA
+dcb89b6b049d424caf4c3e5fcd22c84c,Formatting Errors,code_error,37.0,80,0.4625,LOW,GAIA
+dcb89b6b049d424caf4c3e5fcd22c84c,Formatting Errors,code_error,39.0,80,0.4875,LOW,GAIA
+dcb89b6b049d424caf4c3e5fcd22c84c,Formatting Errors,code_error,45.0,80,0.5625,LOW,GAIA
+dcb89b6b049d424caf4c3e5fcd22c84c,Formatting Errors,code_error,48.0,80,0.6,LOW,GAIA
+dcb89b6b049d424caf4c3e5fcd22c84c,Resource Abuse,resource_abuse,39.0,80,0.4875,LOW,GAIA
+e491d73ca2fd8a2a6f8984feb1c408a3,Formatting Errors,code_error,12.0,16,0.75,LOW,GAIA
+e491d73ca2fd8a2a6f8984feb1c408a3,Environment Setup Errors,invalid_invocation,9.0,16,0.5625,HIGH,GAIA
+e491d73ca2fd8a2a6f8984feb1c408a3,Tool-related,hallucination,12.0,16,0.75,HIGH,GAIA
+e491d73ca2fd8a2a6f8984feb1c408a3,Goal Deviation,orchestration_failure,12.0,16,0.75,HIGH,GAIA
+e491d73ca2fd8a2a6f8984feb1c408a3,Context Handling Failures,kv_cache_loss,12.0,16,0.75,HIGH,GAIA
+e491d73ca2fd8a2a6f8984feb1c408a3,Language-only,hallucination,12.0,16,0.75,HIGH,GAIA
+e491d73ca2fd8a2a6f8984feb1c408a3,Task Orchestration,orchestration_failure,9.0,16,0.5625,HIGH,GAIA
+e6ca28af6722fc00fc7294d1b291bea4,Language-only,hallucination,9.0,11,0.818182,HIGH,GAIA
+e7d5dd0d36db95a40a4fbe258edd0aba,Tool-related,hallucination,24.0,46,0.521739,HIGH,GAIA
+e7d5dd0d36db95a40a4fbe258edd0aba,Tool-related,hallucination,35.0,46,0.76087,HIGH,GAIA
+e7d5dd0d36db95a40a4fbe258edd0aba,Formatting Errors,code_error,37.0,46,0.804348,LOW,GAIA
+e7d5dd0d36db95a40a4fbe258edd0aba,Resource Abuse,resource_abuse,38.0,46,0.826087,MEDIUM,GAIA
+e7d5dd0d36db95a40a4fbe258edd0aba,Tool Output Misinterpretation,misinterpretation_of_tool_output,17.0,46,0.369565,LOW,GAIA
+ea313eef484bb042ddb079771359c8e6,Instruction Non-compliance,instruction_adherence_failure,25.0,25,1.0,HIGH,GAIA
+eb42da715add1437eced9e494b0f62f7,Formatting Errors,code_error,12.0,26,0.461538,LOW,GAIA
+eb42da715add1437eced9e494b0f62f7,Incorrect Problem Identification,orchestration_failure,14.0,26,0.538462,MEDIUM,GAIA
+eb42da715add1437eced9e494b0f62f7,Formatting Errors,code_error,14.0,26,0.538462,MEDIUM,GAIA
+eb42da715add1437eced9e494b0f62f7,Tool-related,hallucination,14.0,26,0.538462,MEDIUM,GAIA
+eb42da715add1437eced9e494b0f62f7,Tool Output Misinterpretation,misinterpretation_of_tool_output,22.0,26,0.846154,HIGH,GAIA
+eb42da715add1437eced9e494b0f62f7,Language-only,hallucination,24.0,26,0.923077,LOW,GAIA
+eb42da715add1437eced9e494b0f62f7,Incorrect Problem Identification,orchestration_failure,24.0,26,0.923077,MEDIUM,GAIA
+eb42da715add1437eced9e494b0f62f7,Goal Deviation,orchestration_failure,24.0,26,0.923077,HIGH,GAIA
+ee9335fbe7329b273a8d922bd3f73b84,Tool Output Misinterpretation,misinterpretation_of_tool_output,17.0,42,0.404762,MEDIUM,GAIA
+ee9335fbe7329b273a8d922bd3f73b84,Incorrect Problem Identification,orchestration_failure,9.0,42,0.214286,MEDIUM,GAIA
+ee9335fbe7329b273a8d922bd3f73b84,Formatting Errors,code_error,23.0,42,0.547619,MEDIUM,GAIA
+ee9335fbe7329b273a8d922bd3f73b84,Resource Abuse,resource_abuse,18.0,42,0.428571,MEDIUM,GAIA
+ee9335fbe7329b273a8d922bd3f73b84,Goal Deviation,orchestration_failure,34.0,42,0.809524,MEDIUM,GAIA
+ee939c276d2bdab808593f5121c52faf,Formatting Errors,code_error,20.0,92,0.217391,LOW,GAIA
+ee939c276d2bdab808593f5121c52faf,Formatting Errors,code_error,23.0,92,0.25,LOW,GAIA
+ee939c276d2bdab808593f5121c52faf,Formatting Errors,code_error,25.0,92,0.271739,LOW,GAIA
+ee939c276d2bdab808593f5121c52faf,Formatting Errors,code_error,34.0,92,0.369565,LOW,GAIA
+ee939c276d2bdab808593f5121c52faf,Formatting Errors,code_error,37.0,92,0.402174,LOW,GAIA
+ee939c276d2bdab808593f5121c52faf,Formatting Errors,code_error,39.0,92,0.423913,LOW,GAIA
+ee939c276d2bdab808593f5121c52faf,Formatting Errors,code_error,45.0,92,0.48913,LOW,GAIA
+ee939c276d2bdab808593f5121c52faf,Formatting Errors,code_error,46.0,92,0.5,LOW,GAIA
+ee939c276d2bdab808593f5121c52faf,Resource Abuse,resource_abuse,46.0,92,0.5,MEDIUM,GAIA
+ef0207e4427fe22aeb1c2105932b74d7,Formatting Errors,code_error,24.0,52,0.461538,MEDIUM,GAIA
+ef0207e4427fe22aeb1c2105932b74d7,Formatting Errors,code_error,29.0,52,0.557692,MEDIUM,GAIA
+ef0207e4427fe22aeb1c2105932b74d7,Formatting Errors,code_error,31.0,52,0.596154,LOW,GAIA
+ef0207e4427fe22aeb1c2105932b74d7,Formatting Errors,code_error,34.0,52,0.653846,LOW,GAIA
+ef0207e4427fe22aeb1c2105932b74d7,Resource Abuse,resource_abuse,34.0,52,0.653846,MEDIUM,GAIA
+f04b425c107f7b972209528a46c407d9,Formatting Errors,code_error,12.0,27,0.444444,MEDIUM,GAIA
+f04b425c107f7b972209528a46c407d9,Incorrect Problem Identification,orchestration_failure,12.0,27,0.444444,MEDIUM,GAIA
+f04b425c107f7b972209528a46c407d9,Task Orchestration Errors,orchestration_failure,12.0,27,0.444444,MEDIUM,GAIA
+f04b425c107f7b972209528a46c407d9,Incorrect Problem Identification,orchestration_failure,14.0,27,0.518519,MEDIUM,GAIA
+f04b425c107f7b972209528a46c407d9,Formatting Errors,code_error,17.0,27,0.62963,LOW,GAIA
+f04b425c107f7b972209528a46c407d9,Incorrect Problem Identification,orchestration_failure,17.0,27,0.62963,MEDIUM,GAIA
+f04b425c107f7b972209528a46c407d9,Task Orchestration,orchestration_failure,17.0,27,0.62963,MEDIUM,GAIA
+f04b425c107f7b972209528a46c407d9,Task Orchestration,orchestration_failure,21.0,27,0.777778,MEDIUM,GAIA
+f04b425c107f7b972209528a46c407d9,Task Orchestration,orchestration_failure,23.0,27,0.851852,MEDIUM,GAIA
+f04b425c107f7b972209528a46c407d9,Tool Output Misinterpretation,misinterpretation_of_tool_output,25.0,27,0.925926,HIGH,GAIA
+f04b425c107f7b972209528a46c407d9,Resource Abuse,resource_abuse,23.0,27,0.851852,MEDIUM,GAIA
+f2de3b74884dc2312bb0fbf7c9867a9c,Tool Selection Errors,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+f2de3b74884dc2312bb0fbf7c9867a9c,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+f2de3b74884dc2312bb0fbf7c9867a9c,Instruction Non-compliance,instruction_adherence_failure,10.0,11,0.909091,MEDIUM,GAIA
+f39aec9b8a61fd2aaed5849cc00bc165,Tool-related,hallucination,9.0,11,0.818182,HIGH,GAIA
+f39aec9b8a61fd2aaed5849cc00bc165,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+f510c80d120dc75e4259704184ee802d,,no_errors,,11,,,GAIA
+f5a297c9b9bc74ca0b1060b1c4c99c0f,Instruction Non-compliance,instruction_adherence_failure,7.0,35,0.2,MEDIUM,GAIA
+f5a297c9b9bc74ca0b1060b1c4c99c0f,Resource Abuse,resource_abuse,28.0,35,0.8,MEDIUM,GAIA
+f5a297c9b9bc74ca0b1060b1c4c99c0f,Tool Output Misinterpretation,misinterpretation_of_tool_output,31.0,35,0.885714,MEDIUM,GAIA
+f75d18151ad96809e922a80ebe2a171e,Instruction Non-compliance,instruction_adherence_failure,7.0,11,0.636364,LOW,GAIA
+f75d18151ad96809e922a80ebe2a171e,Tool-related,hallucination,9.0,11,0.818182,HIGH,GAIA
+f75d18151ad96809e922a80ebe2a171e,Goal Deviation,orchestration_failure,9.0,11,0.818182,HIGH,GAIA
+f75d18151ad96809e922a80ebe2a171e,Task Orchestration,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+f84e4dfe98f92d8d39a1e00115cd77df,Poor Information Retrieval,misinterpretation_of_tool_output,18.0,69,0.26087,MEDIUM,GAIA
+f84e4dfe98f92d8d39a1e00115cd77df,Resource Abuse,resource_abuse,18.0,69,0.26087,MEDIUM,GAIA
+f84e4dfe98f92d8d39a1e00115cd77df,Tool-related,hallucination,46.0,69,0.666667,HIGH,GAIA
+f84e4dfe98f92d8d39a1e00115cd77df,Formatting Errors,code_error,48.0,69,0.695652,MEDIUM,GAIA
+f84e4dfe98f92d8d39a1e00115cd77df,Tool-related,hallucination,49.0,69,0.710145,HIGH,GAIA
+f84e4dfe98f92d8d39a1e00115cd77df,Formatting Errors,code_error,51.0,69,0.73913,MEDIUM,GAIA
+f84e4dfe98f92d8d39a1e00115cd77df,Tool-related,hallucination,52.0,69,0.753623,HIGH,GAIA
+f84e4dfe98f92d8d39a1e00115cd77df,Resource Abuse,resource_abuse,52.0,69,0.753623,MEDIUM,GAIA
+f84e4dfe98f92d8d39a1e00115cd77df,Poor Information Retrieval,misinterpretation_of_tool_output,63.0,69,0.913043,MEDIUM,GAIA
+f84e4dfe98f92d8d39a1e00115cd77df,Resource Abuse,resource_abuse,63.0,69,0.913043,MEDIUM,GAIA
+fa31e4af04a2469c88d6e8845e8aac69,,no_errors,,13,,,GAIA
+fb3333ca30eb8af56d4f31839ca9e317,Tool Definition Issues,invalid_invocation,7.0,11,0.636364,LOW,GAIA
+fb3333ca30eb8af56d4f31839ca9e317,Tool-related,hallucination,9.0,11,0.818182,HIGH,GAIA
+fb3333ca30eb8af56d4f31839ca9e317,Goal Deviation,orchestration_failure,9.0,11,0.818182,MEDIUM,GAIA
+fb3333ca30eb8af56d4f31839ca9e317,Instruction Non-compliance,instruction_adherence_failure,9.0,11,0.818182,HIGH,GAIA
+fcdcb46c7df316b571138b53bd3c822a,Instruction Non-compliance,instruction_adherence_failure,7.0,18,0.388889,LOW,GAIA
+fcdcb46c7df316b571138b53bd3c822a,Tool Definition Issues,invalid_invocation,12.0,18,0.666667,HIGH,GAIA
+fcdcb46c7df316b571138b53bd3c822a,Instruction Non-compliance,instruction_adherence_failure,12.0,18,0.666667,LOW,GAIA
+fcdcb46c7df316b571138b53bd3c822a,Instruction Non-compliance,instruction_adherence_failure,18.0,18,1.0,LOW,GAIA
+fcdcb46c7df316b571138b53bd3c822a,Goal Deviation,orchestration_failure,12.0,18,0.666667,MEDIUM,GAIA
+0e6f7928953ab5a568bae640ce915cc3,Formatting Errors,code_error,7.0,32,0.21875,LOW,SWE-bench
+0e6f7928953ab5a568bae640ce915cc3,Incorrect Problem Identification,orchestration_failure,9.0,32,0.28125,MEDIUM,SWE-bench
+0e6f7928953ab5a568bae640ce915cc3,Language-only,hallucination,9.0,32,0.28125,HIGH,SWE-bench
+0e6f7928953ab5a568bae640ce915cc3,Formatting Errors,code_error,15.0,32,0.46875,LOW,SWE-bench
+0e6f7928953ab5a568bae640ce915cc3,Poor Information Retrieval,misinterpretation_of_tool_output,17.0,32,0.53125,LOW,SWE-bench
+0e6f7928953ab5a568bae640ce915cc3,Formatting Errors,code_error,21.0,32,0.65625,MEDIUM,SWE-bench
+0e6f7928953ab5a568bae640ce915cc3,Incorrect Memory Usage,kv_cache_loss,21.0,32,0.65625,MEDIUM,SWE-bench
+0e6f7928953ab5a568bae640ce915cc3,Context Handling Failures,kv_cache_loss,32.0,32,1.0,MEDIUM,SWE-bench
+0f7f322da4c91fef845b1aee25eac003,Formatting Errors,code_error,15.0,52,0.288462,LOW,SWE-bench
+0f7f322da4c91fef845b1aee25eac003,Resource Abuse,resource_abuse,15.0,52,0.288462,MEDIUM,SWE-bench
+0f7f322da4c91fef845b1aee25eac003,Instruction Non-compliance,instruction_adherence_failure,25.0,52,0.480769,MEDIUM,SWE-bench
+0f7f322da4c91fef845b1aee25eac003,Instruction Non-compliance,instruction_adherence_failure,29.0,52,0.557692,MEDIUM,SWE-bench
+0f7f322da4c91fef845b1aee25eac003,Instruction Non-compliance,instruction_adherence_failure,39.0,52,0.75,MEDIUM,SWE-bench
+0f7f322da4c91fef845b1aee25eac003,Instruction Non-compliance,instruction_adherence_failure,41.0,52,0.788462,MEDIUM,SWE-bench
+0f7f322da4c91fef845b1aee25eac003,Context Handling Failures,kv_cache_loss,52.0,52,1.0,MEDIUM,SWE-bench
+0f7f322da4c91fef845b1aee25eac003,Language-only,hallucination,52.0,52,1.0,HIGH,SWE-bench
+0f7f322da4c91fef845b1aee25eac003,Instruction Non-Compliance,instruction_adherence_failure,52.0,52,1.0,MEDIUM,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Formatting Errors,code_error,7.0,22,0.318182,MEDIUM,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Tool-related,hallucination,7.0,22,0.318182,HIGH,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Resource Abuse,resource_abuse,7.0,22,0.318182,MEDIUM,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Formatting Errors,code_error,9.0,22,0.409091,MEDIUM,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Tool-related,hallucination,9.0,22,0.409091,HIGH,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Formatting Errors,code_error,11.0,22,0.5,MEDIUM,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Tool-related,hallucination,11.0,22,0.5,HIGH,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Formatting Errors,code_error,13.0,22,0.590909,MEDIUM,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Tool-related,hallucination,13.0,22,0.590909,HIGH,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Formatting Errors,code_error,15.0,22,0.681818,MEDIUM,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Formatting Errors,code_error,17.0,22,0.772727,MEDIUM,SWE-bench
+2102eea2af6327834c8bd97b1488474c,Language-only,hallucination,17.0,22,0.772727,HIGH,SWE-bench
+272cdc645b731837366576b37d40fb65,Formatting Errors,code_error,11.0,58,0.189655,MEDIUM,SWE-bench
+272cdc645b731837366576b37d40fb65,Poor Information Retrieval,misinterpretation_of_tool_output,13.0,58,0.224138,MEDIUM,SWE-bench
+272cdc645b731837366576b37d40fb65,Formatting Errors,code_error,15.0,58,0.258621,MEDIUM,SWE-bench
+272cdc645b731837366576b37d40fb65,Formatting Errors,code_error,17.0,58,0.293103,MEDIUM,SWE-bench
+272cdc645b731837366576b37d40fb65,Resource Abuse,resource_abuse,17.0,58,0.293103,MEDIUM,SWE-bench
+272cdc645b731837366576b37d40fb65,Poor Information Retrieval,misinterpretation_of_tool_output,19.0,58,0.327586,MEDIUM,SWE-bench
+272cdc645b731837366576b37d40fb65,Incorrect Problem Identification,orchestration_failure,29.0,58,0.5,MEDIUM,SWE-bench
+272cdc645b731837366576b37d40fb65,Formatting Errors,code_error,31.0,58,0.534483,MEDIUM,SWE-bench
+272cdc645b731837366576b37d40fb65,Incorrect Problem Identification,orchestration_failure,41.0,58,0.706897,MEDIUM,SWE-bench
+272cdc645b731837366576b37d40fb65,Context Handling Failures,kv_cache_loss,58.0,58,1.0,MEDIUM,SWE-bench
+3e65ac7e09b0edd2a5f6b0b18df20f65,Formatting Errors,code_error,7.0,50,0.14,LOW,SWE-bench
+3e65ac7e09b0edd2a5f6b0b18df20f65,Instruction Non-compliance,instruction_adherence_failure,13.0,50,0.26,MEDIUM,SWE-bench
+3e65ac7e09b0edd2a5f6b0b18df20f65,Instruction Non-compliance,instruction_adherence_failure,27.0,50,0.54,MEDIUM,SWE-bench
+3e65ac7e09b0edd2a5f6b0b18df20f65,Formatting Errors,code_error,31.0,50,0.62,LOW,SWE-bench
+3e65ac7e09b0edd2a5f6b0b18df20f65,Instruction Non-compliance,instruction_adherence_failure,37.0,50,0.74,MEDIUM,SWE-bench
+3e65ac7e09b0edd2a5f6b0b18df20f65,Context Handling Failures,kv_cache_loss,50.0,50,1.0,MEDIUM,SWE-bench
+567b83e63b59748d46419aa05ee50256,Formatting Errors,code_error,7.0,15,0.466667,MEDIUM,SWE-bench
+567b83e63b59748d46419aa05ee50256,Formatting Errors,code_error,11.0,15,0.733333,MEDIUM,SWE-bench
+567b83e63b59748d46419aa05ee50256,Instruction Non-compliance,instruction_adherence_failure,11.0,15,0.733333,LOW,SWE-bench
+567b83e63b59748d46419aa05ee50256,Formatting Errors,code_error,13.0,15,0.866667,MEDIUM,SWE-bench
+567b83e63b59748d46419aa05ee50256,Instruction Non-compliance,instruction_adherence_failure,13.0,15,0.866667,LOW,SWE-bench
+567b83e63b59748d46419aa05ee50256,Instruction Non-compliance,instruction_adherence_failure,15.0,15,1.0,HIGH,SWE-bench
+567b83e63b59748d46419aa05ee50256,Language-only,hallucination,15.0,15,1.0,HIGH,SWE-bench
+567b83e63b59748d46419aa05ee50256,Context Handling Failures,kv_cache_loss,15.0,15,1.0,HIGH,SWE-bench
+58220f414fdb39dd7bcedaef6f89c6da,Resource Abuse,resource_abuse,5.0,32,0.15625,MEDIUM,SWE-bench
+58220f414fdb39dd7bcedaef6f89c6da,Formatting Errors,code_error,9.0,32,0.28125,LOW,SWE-bench
+58220f414fdb39dd7bcedaef6f89c6da,Instruction Non-compliance,instruction_adherence_failure,15.0,32,0.46875,MEDIUM,SWE-bench
+58220f414fdb39dd7bcedaef6f89c6da,Instruction Non-compliance,instruction_adherence_failure,19.0,32,0.59375,MEDIUM,SWE-bench
+58220f414fdb39dd7bcedaef6f89c6da,Formatting Errors,code_error,31.0,32,0.96875,LOW,SWE-bench
+58220f414fdb39dd7bcedaef6f89c6da,Context Handling Failures,kv_cache_loss,32.0,32,1.0,MEDIUM,SWE-bench
+58bfe9dde723516f4d9366eb6b4b6388,Instruction Non-compliance,instruction_adherence_failure,7.0,24,0.291667,MEDIUM,SWE-bench
+58bfe9dde723516f4d9366eb6b4b6388,Incorrect Problem Identification,orchestration_failure,7.0,24,0.291667,MEDIUM,SWE-bench
+58bfe9dde723516f4d9366eb6b4b6388,Language-only,hallucination,7.0,24,0.291667,HIGH,SWE-bench
+58bfe9dde723516f4d9366eb6b4b6388,Instruction Non-compliance,instruction_adherence_failure,17.0,24,0.708333,LOW,SWE-bench
+58bfe9dde723516f4d9366eb6b4b6388,Resource Exhaustion,resource_abuse,21.0,24,0.875,MEDIUM,SWE-bench
+58bfe9dde723516f4d9366eb6b4b6388,Tool Output Misinterpretation,misinterpretation_of_tool_output,21.0,24,0.875,MEDIUM,SWE-bench
+68b2aa2892a6fb749227d827c7463806,Formatting Errors,code_error,7.0,54,0.12963,LOW,SWE-bench
+68b2aa2892a6fb749227d827c7463806,Task Orchestration Error,orchestration_failure,9.0,54,0.166667,MEDIUM,SWE-bench
+68b2aa2892a6fb749227d827c7463806,Instruction Non-compliance,instruction_adherence_failure,21.0,54,0.388889,MEDIUM,SWE-bench
+68b2aa2892a6fb749227d827c7463806,Instruction Non-compliance,instruction_adherence_failure,23.0,54,0.425926,MEDIUM,SWE-bench
+68b2aa2892a6fb749227d827c7463806,Instruction Non-compliance,instruction_adherence_failure,31.0,54,0.574074,MEDIUM,SWE-bench
+68b2aa2892a6fb749227d827c7463806,Instruction Non-compliance,instruction_adherence_failure,35.0,54,0.648148,MEDIUM,SWE-bench
+68b2aa2892a6fb749227d827c7463806,Instruction Non-compliance,instruction_adherence_failure,37.0,54,0.685185,MEDIUM,SWE-bench
+68b2aa2892a6fb749227d827c7463806,Instruction Non-compliance,instruction_adherence_failure,41.0,54,0.759259,MEDIUM,SWE-bench
+68b2aa2892a6fb749227d827c7463806,Context Handling Failures,kv_cache_loss,54.0,54,1.0,MEDIUM,SWE-bench
+72822db6e120878d916b515c2501246b,Formatting Errors,code_error,7.0,13,0.538462,LOW,SWE-bench
+790482a54f9837ee5bcd410b9d7595b9,Formatting Errors,code_error,7.0,32,0.21875,LOW,SWE-bench
+790482a54f9837ee5bcd410b9d7595b9,Resource Abuse,resource_abuse,7.0,32,0.21875,MEDIUM,SWE-bench
+790482a54f9837ee5bcd410b9d7595b9,Formatting Errors,code_error,9.0,32,0.28125,LOW,SWE-bench
+790482a54f9837ee5bcd410b9d7595b9,Instruction Non-compliance,instruction_adherence_failure,9.0,32,0.28125,MEDIUM,SWE-bench
+790482a54f9837ee5bcd410b9d7595b9,Resource Abuse,resource_abuse,13.0,32,0.40625,MEDIUM,SWE-bench
+790482a54f9837ee5bcd410b9d7595b9,Resource Abuse,resource_abuse,15.0,32,0.46875,MEDIUM,SWE-bench
+790482a54f9837ee5bcd410b9d7595b9,Formatting Errors,code_error,21.0,32,0.65625,LOW,SWE-bench
+790482a54f9837ee5bcd410b9d7595b9,Formatting Errors,code_error,31.0,32,0.96875,LOW,SWE-bench
+7930cbe4edc3f5ebec88c6c1b8bb4fb9,Formatting Errors,code_error,7.0,24,0.291667,LOW,SWE-bench
+7930cbe4edc3f5ebec88c6c1b8bb4fb9,Formatting Errors,code_error,11.0,24,0.458333,LOW,SWE-bench
+7930cbe4edc3f5ebec88c6c1b8bb4fb9,Formatting Errors,code_error,13.0,24,0.541667,LOW,SWE-bench
+7930cbe4edc3f5ebec88c6c1b8bb4fb9,Instruction Non-compliance,instruction_adherence_failure,19.0,24,0.791667,MEDIUM,SWE-bench
+7930cbe4edc3f5ebec88c6c1b8bb4fb9,Context Handling Failures,kv_cache_loss,24.0,24,1.0,MEDIUM,SWE-bench
+7ddf86eec0423e66949f63319f5efdb1,Formatting Errors,code_error,7.0,42,0.166667,LOW,SWE-bench
+7ddf86eec0423e66949f63319f5efdb1,Instruction Non-compliance,instruction_adherence_failure,7.0,42,0.166667,LOW,SWE-bench
+7ddf86eec0423e66949f63319f5efdb1,Formatting Errors,code_error,19.0,42,0.452381,LOW,SWE-bench
+7ddf86eec0423e66949f63319f5efdb1,Instruction Non-compliance,instruction_adherence_failure,25.0,42,0.595238,MEDIUM,SWE-bench
+7ddf86eec0423e66949f63319f5efdb1,Instruction Non-compliance,instruction_adherence_failure,27.0,42,0.642857,MEDIUM,SWE-bench
+7ddf86eec0423e66949f63319f5efdb1,Instruction Non-Compliance,instruction_adherence_failure,31.0,42,0.738095,MEDIUM,SWE-bench
+7ddf86eec0423e66949f63319f5efdb1,Formatting Errors,code_error,35.0,42,0.833333,MEDIUM,SWE-bench
+7ddf86eec0423e66949f63319f5efdb1,Formatting Errors,code_error,37.0,42,0.880952,MEDIUM,SWE-bench
+7ddf86eec0423e66949f63319f5efdb1,Context Handling Failures,kv_cache_loss,42.0,42,1.0,MEDIUM,SWE-bench
+81d7ec041d71e4e6d97b6332a8182e78,Tool-related,hallucination,9.0,19,0.473684,MEDIUM,SWE-bench
+81d7ec041d71e4e6d97b6332a8182e78,Formatting Error,code_error,15.0,19,0.789474,LOW,SWE-bench
+81d7ec041d71e4e6d97b6332a8182e78,Poor Information retrieval,misinterpretation_of_tool_output,15.0,19,0.789474,MEDIUM,SWE-bench
+81d7ec041d71e4e6d97b6332a8182e78,Context Handling Failures,kv_cache_loss,19.0,19,1.0,MEDIUM,SWE-bench
+81d7ec041d71e4e6d97b6332a8182e78,Goal Deviation,orchestration_failure,19.0,19,1.0,HIGH,SWE-bench
+81d7ec041d71e4e6d97b6332a8182e78,Instruction Non-compliance,instruction_adherence_failure,19.0,19,1.0,MEDIUM,SWE-bench
+83bce802f0f19098f351cf9dcd6d88e7,Incorrect Problem Identification,orchestration_failure,9.0,39,0.230769,MEDIUM,SWE-bench
+83bce802f0f19098f351cf9dcd6d88e7,Instruction Non-compliance,instruction_adherence_failure,19.0,39,0.487179,MEDIUM,SWE-bench
+83bce802f0f19098f351cf9dcd6d88e7,Resource Abuse,resource_abuse,7.0,39,0.179487,HIGH,SWE-bench
+83bce802f0f19098f351cf9dcd6d88e7,Instruction Non-compliance,instruction_adherence_failure,31.0,39,0.794872,LOW,SWE-bench
+83bce802f0f19098f351cf9dcd6d88e7,Instruction Non-compliance,instruction_adherence_failure,29.0,39,0.74359,MEDIUM,SWE-bench
+83bce802f0f19098f351cf9dcd6d88e7,Instruction Non-compliance,instruction_adherence_failure,27.0,39,0.692308,MEDIUM,SWE-bench
+83bce802f0f19098f351cf9dcd6d88e7,Instruction Non-compliance,instruction_adherence_failure,25.0,39,0.641026,MEDIUM,SWE-bench
+83bce802f0f19098f351cf9dcd6d88e7,Context Handling Failures,kv_cache_loss,39.0,39,1.0,MEDIUM,SWE-bench
+83bce802f0f19098f351cf9dcd6d88e7,Goal Deviation,orchestration_failure,39.0,39,1.0,HIGH,SWE-bench
+83bce802f0f19098f351cf9dcd6d88e7,Instruction Non-compliance,instruction_adherence_failure,39.0,39,1.0,MEDIUM,SWE-bench
+8ddae19d9258d2d17b1a1b63066f3fd1,Instruction Non-compliance,instruction_adherence_failure,21.0,52,0.403846,MEDIUM,SWE-bench
+8ddae19d9258d2d17b1a1b63066f3fd1,Instruction Non-compliance,instruction_adherence_failure,31.0,52,0.596154,MEDIUM,SWE-bench
+8ddae19d9258d2d17b1a1b63066f3fd1,Instruction Non-compliance,instruction_adherence_failure,33.0,52,0.634615,MEDIUM,SWE-bench
+8ddae19d9258d2d17b1a1b63066f3fd1,Instruction Non-compliance,instruction_adherence_failure,37.0,52,0.711538,MEDIUM,SWE-bench
+8ddae19d9258d2d17b1a1b63066f3fd1,Context Handling Failures,kv_cache_loss,52.0,52,1.0,MEDIUM,SWE-bench
+8ddae19d9258d2d17b1a1b63066f3fd1,Instruction Non-compliance,instruction_adherence_failure,52.0,52,1.0,MEDIUM,SWE-bench
+8ddae19d9258d2d17b1a1b63066f3fd1,Language-only,hallucination,52.0,52,1.0,HIGH,SWE-bench
+8fa1892f94c9cfd3b66e60b5571cdc86,Formatting Errors,code_error,7.0,22,0.318182,LOW,SWE-bench
+8fa1892f94c9cfd3b66e60b5571cdc86,Resource Abuse,resource_abuse,7.0,22,0.318182,HIGH,SWE-bench
+8fa1892f94c9cfd3b66e60b5571cdc86,Instruction Non-compliance,instruction_adherence_failure,9.0,22,0.409091,MEDIUM,SWE-bench
+8fa1892f94c9cfd3b66e60b5571cdc86,Instruction Non-compliance,instruction_adherence_failure,11.0,22,0.5,MEDIUM,SWE-bench
+8fa1892f94c9cfd3b66e60b5571cdc86,Instruction Non-compliance,instruction_adherence_failure,13.0,22,0.590909,MEDIUM,SWE-bench
+8fa1892f94c9cfd3b66e60b5571cdc86,Instruction Non-compliance,instruction_adherence_failure,15.0,22,0.681818,MEDIUM,SWE-bench
+8fa1892f94c9cfd3b66e60b5571cdc86,Instruction Non-compliance,instruction_adherence_failure,17.0,22,0.772727,MEDIUM,SWE-bench
+8fa1892f94c9cfd3b66e60b5571cdc86,Context Handling Failures,kv_cache_loss,22.0,22,1.0,MEDIUM,SWE-bench
+9b97e5909765c893f941e3a106f51b06,Instruction Non-compliance,instruction_adherence_failure,7.0,50,0.14,MEDIUM,SWE-bench
+9b97e5909765c893f941e3a106f51b06,Formatting Errors,code_error,7.0,50,0.14,MEDIUM,SWE-bench
+9b97e5909765c893f941e3a106f51b06,Poor Information Retrieval,misinterpretation_of_tool_output,9.0,50,0.18,MEDIUM,SWE-bench
+9b97e5909765c893f941e3a106f51b06,Formatting Errors,code_error,11.0,50,0.22,MEDIUM,SWE-bench
+9b97e5909765c893f941e3a106f51b06,Tool-related,hallucination,17.0,50,0.34,MEDIUM,SWE-bench
+9b97e5909765c893f941e3a106f51b06,Formatting Errors,code_error,19.0,50,0.38,MEDIUM,SWE-bench
+9b97e5909765c893f941e3a106f51b06,Formatting Errors,code_error,21.0,50,0.42,MEDIUM,SWE-bench
+9b97e5909765c893f941e3a106f51b06,Poor Information Retrieval,misinterpretation_of_tool_output,21.0,50,0.42,MEDIUM,SWE-bench
+9b97e5909765c893f941e3a106f51b06,Resource Abuse,resource_abuse,29.0,50,0.58,MEDIUM,SWE-bench
+9b97e5909765c893f941e3a106f51b06,Instruction Non-compliance,instruction_adherence_failure,50.0,50,1.0,MEDIUM,SWE-bench
+a18532f8923099230c813bf79515d33b,,no_errors,,22,,,SWE-bench
+af1931b778d7a82ca6a1f7dfdb9aa8bb,Formatting Errors,code_error,7.0,42,0.166667,MEDIUM,SWE-bench
+af1931b778d7a82ca6a1f7dfdb9aa8bb,Poor Information Retrieval,misinterpretation_of_tool_output,9.0,42,0.214286,MEDIUM,SWE-bench
+af1931b778d7a82ca6a1f7dfdb9aa8bb,Formatting Errors,code_error,13.0,42,0.309524,MEDIUM,SWE-bench
+af1931b778d7a82ca6a1f7dfdb9aa8bb,Poor Information Retrieval,misinterpretation_of_tool_output,17.0,42,0.404762,MEDIUM,SWE-bench
+af1931b778d7a82ca6a1f7dfdb9aa8bb,Formatting Errors,code_error,23.0,42,0.547619,MEDIUM,SWE-bench
+af1931b778d7a82ca6a1f7dfdb9aa8bb,Poor Information Retrieval,misinterpretation_of_tool_output,35.0,42,0.833333,MEDIUM,SWE-bench
+af1931b778d7a82ca6a1f7dfdb9aa8bb,Formatting Errors,code_error,39.0,42,0.928571,MEDIUM,SWE-bench
+af1931b778d7a82ca6a1f7dfdb9aa8bb,Formatting Errors,code_error,41.0,42,0.97619,LOW,SWE-bench
+af1931b778d7a82ca6a1f7dfdb9aa8bb,Instruction Non-compliance,instruction_adherence_failure,42.0,42,1.0,MEDIUM,SWE-bench
+b1faa4956c1e33f2fef3cf77acad8902,Formatting Errors,code_error,7.0,30,0.233333,MEDIUM,SWE-bench
+b1faa4956c1e33f2fef3cf77acad8902,Formatting Errors,code_error,11.0,30,0.366667,MEDIUM,SWE-bench
+b1faa4956c1e33f2fef3cf77acad8902,Instruction Non-compliance,instruction_adherence_failure,11.0,30,0.366667,LOW,SWE-bench
+b1faa4956c1e33f2fef3cf77acad8902,Formatting Errors,code_error,13.0,30,0.433333,MEDIUM,SWE-bench
+b1faa4956c1e33f2fef3cf77acad8902,Instruction Non-compliance,instruction_adherence_failure,17.0,30,0.566667,LOW,SWE-bench
+b1faa4956c1e33f2fef3cf77acad8902,Instruction Non-compliance,instruction_adherence_failure,21.0,30,0.7,LOW,SWE-bench
+b1faa4956c1e33f2fef3cf77acad8902,Context Handling Failures,kv_cache_loss,30.0,30,1.0,MEDIUM,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Instruction Non-compliance,instruction_adherence_failure,7.0,34,0.205882,MEDIUM,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Formatting Errors,code_error,7.0,34,0.205882,LOW,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Formatting Errors,code_error,9.0,34,0.264706,LOW,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Formatting Errors,code_error,11.0,34,0.323529,LOW,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Formatting Errors,code_error,13.0,34,0.382353,LOW,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Formatting Errors,code_error,15.0,34,0.441176,LOW,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Language-Only,hallucination,15.0,34,0.441176,HIGH,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Incorrect Problem Identification,orchestration_failure,7.0,34,0.205882,MEDIUM,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Resource Abuse,resource_abuse,7.0,34,0.205882,MEDIUM,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Formatting Errors,code_error,19.0,34,0.558824,LOW,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Formatting Errors,code_error,21.0,34,0.617647,LOW,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Formatting Errors,code_error,23.0,34,0.676471,LOW,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Language-Only,hallucination,23.0,34,0.676471,HIGH,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Instruction non complience,instruction_adherence_failure,23.0,34,0.676471,MEDIUM,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Resource Abuse,resource_abuse,21.0,34,0.617647,MEDIUM,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Formatting Errors,code_error,27.0,34,0.794118,LOW,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Formatting Errors,code_error,29.0,34,0.852941,LOW,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Incorrect Problem Identification,orchestration_failure,29.0,34,0.852941,MEDIUM,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Incorrect Problem Identification,orchestration_failure,31.0,34,0.911765,MEDIUM,SWE-bench
+b4f13f317583e7ad2ed96a499e7b8f60,Context Handling Failures,kv_cache_loss,34.0,34,1.0,MEDIUM,SWE-bench
+c104d0e28f4f8dddeea1dd90b4138e5a,Instruction Non-compliance,instruction_adherence_failure,23.0,34,0.676471,LOW,SWE-bench
+c104d0e28f4f8dddeea1dd90b4138e5a,Formatting Errors,code_error,23.0,34,0.676471,MEDIUM,SWE-bench
+c104d0e28f4f8dddeea1dd90b4138e5a,Instruction Non-compliance,instruction_adherence_failure,29.0,34,0.852941,MEDIUM,SWE-bench
+c104d0e28f4f8dddeea1dd90b4138e5a,Context Handling Failures,kv_cache_loss,34.0,34,1.0,MEDIUM,SWE-bench
+cc73c286ecf30f00343373faed722f29,Formatting Errors,code_error,7.0,24,0.291667,LOW,SWE-bench
+cc73c286ecf30f00343373faed722f29,Instruction Non-compliance,instruction_adherence_failure,15.0,24,0.625,MEDIUM,SWE-bench
+cc73c286ecf30f00343373faed722f29,Poor Information Retrieval,misinterpretation_of_tool_output,7.0,24,0.291667,LOW,SWE-bench
+cc73c286ecf30f00343373faed722f29,Instruction Non-compliance,instruction_adherence_failure,13.0,24,0.541667,MEDIUM,SWE-bench
+cc73c286ecf30f00343373faed722f29,Instruction Non-compliance,instruction_adherence_failure,17.0,24,0.708333,MEDIUM,SWE-bench
+cc73c286ecf30f00343373faed722f29,Instruction Non-compliance,instruction_adherence_failure,19.0,24,0.791667,MEDIUM,SWE-bench
+cc73c286ecf30f00343373faed722f29,Context Handling Failures,kv_cache_loss,24.0,24,1.0,MEDIUM,SWE-bench
+d63514eb0007c4de6f10b375403d090c,Instruction Non-compliance,instruction_adherence_failure,7.0,54,0.12963,MEDIUM,SWE-bench
+d63514eb0007c4de6f10b375403d090c,Formatting Errors,code_error,7.0,54,0.12963,LOW,SWE-bench
+d63514eb0007c4de6f10b375403d090c,Instruction Non-compliance,instruction_adherence_failure,13.0,54,0.240741,MEDIUM,SWE-bench
+d63514eb0007c4de6f10b375403d090c,Instruction Non-compliance,instruction_adherence_failure,17.0,54,0.314815,MEDIUM,SWE-bench
+d63514eb0007c4de6f10b375403d090c,Instruction Non-compliance,instruction_adherence_failure,19.0,54,0.351852,MEDIUM,SWE-bench
+d63514eb0007c4de6f10b375403d090c,Instruction Non-compliance,instruction_adherence_failure,21.0,54,0.388889,MEDIUM,SWE-bench
+d63514eb0007c4de6f10b375403d090c,Instruction Non-compliance,instruction_adherence_failure,41.0,54,0.759259,MEDIUM,SWE-bench
+d63514eb0007c4de6f10b375403d090c,Instruction Non-compliance,instruction_adherence_failure,54.0,54,1.0,MEDIUM,SWE-bench
+d63514eb0007c4de6f10b375403d090c,Language-only,hallucination,54.0,54,1.0,HIGH,SWE-bench
+d63514eb0007c4de6f10b375403d090c,Context Handling Failures,kv_cache_loss,54.0,54,1.0,MEDIUM,SWE-bench
+da17836ad8ecb77066313bdcbf25547a,Formatting Errors,code_error,7.0,17,0.411765,LOW,SWE-bench
+da17836ad8ecb77066313bdcbf25547a,Resource Abuse,resource_abuse,9.0,17,0.529412,MEDIUM,SWE-bench
+da17836ad8ecb77066313bdcbf25547a,Poor Information Retrieval,misinterpretation_of_tool_output,11.0,17,0.647059,MEDIUM,SWE-bench
+da17836ad8ecb77066313bdcbf25547a,Resource Abuse,resource_abuse,11.0,17,0.647059,HIGH,SWE-bench
+da17836ad8ecb77066313bdcbf25547a,Poor Information Retrieval,misinterpretation_of_tool_output,13.0,17,0.764706,MEDIUM,SWE-bench
+da17836ad8ecb77066313bdcbf25547a,Instruction Non-compliance,instruction_adherence_failure,13.0,17,0.764706,MEDIUM,SWE-bench
+da17836ad8ecb77066313bdcbf25547a,Instruction Non-compliance,instruction_adherence_failure,15.0,17,0.882353,MEDIUM,SWE-bench
+da17836ad8ecb77066313bdcbf25547a,Instruction Non-compliance,instruction_adherence_failure,17.0,17,1.0,HIGH,SWE-bench
+da17836ad8ecb77066313bdcbf25547a,Context Handling Failures,kv_cache_loss,17.0,17,1.0,HIGH,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Instruction Non-compliance,instruction_adherence_failure,,28,,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Formatting Errors,code_error,7.0,28,0.25,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Instruction Non-compliance,instruction_adherence_failure,7.0,28,0.25,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Context Handling Failures,kv_cache_loss,11.0,28,0.392857,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Resource Abuse,resource_abuse,7.0,28,0.25,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Language-Only,hallucination,13.0,28,0.464286,HIGH,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Incorrect Problem Identification,orchestration_failure,13.0,28,0.464286,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Instruction Non-compliance,instruction_adherence_failure,15.0,28,0.535714,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Instruction Non-compliance,instruction_adherence_failure,17.0,28,0.607143,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Task Orchestration,orchestration_failure,19.0,28,0.678571,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Formatting Errors,code_error,21.0,28,0.75,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Task Orchestration,orchestration_failure,21.0,28,0.75,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Resource Abuse,resource_abuse,21.0,28,0.75,MEDIUM,SWE-bench
+e7bdf7bbf6b931c3be95afe323704041,Formatting Errors,code_error,23.0,28,0.821429,MEDIUM,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Task Orchestration Errors,orchestration_failure,,44,,MEDIUM,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Instruction Non-compliance,instruction_adherence_failure,13.0,44,0.295455,MEDIUM,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Instruction Non-compliance,instruction_adherence_failure,19.0,44,0.431818,MEDIUM,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Formatting Errors,code_error,19.0,44,0.431818,LOW,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Instruction Non-compliance,instruction_adherence_failure,21.0,44,0.477273,MEDIUM,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Instruction Non-compliance,instruction_adherence_failure,23.0,44,0.522727,MEDIUM,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Instruction Non-compliance,instruction_adherence_failure,29.0,44,0.659091,MEDIUM,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Formatting Errors,code_error,29.0,44,0.659091,LOW,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Instruction Non-compliance,instruction_adherence_failure,35.0,44,0.795455,MEDIUM,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Instruction Non-compliance,instruction_adherence_failure,37.0,44,0.840909,MEDIUM,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Instruction Non-compliance,instruction_adherence_failure,39.0,44,0.886364,MEDIUM,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Formatting Errors,code_error,41.0,44,0.931818,LOW,SWE-bench
+e88b6bbc943971964ce88bf46c5cf76f,Context Handling Failures,kv_cache_loss,44.0,44,1.0,MEDIUM,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Formatting Errors,code_error,7.0,19,0.368421,LOW,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Resource Abuse,resource_abuse,7.0,19,0.368421,MEDIUM,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Instruction Non-compliance,instruction_adherence_failure,9.0,19,0.473684,MEDIUM,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Language-only,hallucination,9.0,19,0.473684,HIGH,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Instruction Non-compliance,instruction_adherence_failure,9.0,19,0.473684,MEDIUM,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Instruction Non-compliance,instruction_adherence_failure,11.0,19,0.578947,MEDIUM,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Instruction Non-compliance,instruction_adherence_failure,13.0,19,0.684211,MEDIUM,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Instruction Non-compliance,instruction_adherence_failure,15.0,19,0.789474,MEDIUM,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Instruction Non-compliance,instruction_adherence_failure,19.0,19,1.0,HIGH,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Context Handling Failures,kv_cache_loss,19.0,19,1.0,HIGH,SWE-bench
+f12834d0194e0a3d406d1fe2e23d9fae,Language-only,hallucination,19.0,19,1.0,HIGH,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Formatting Errors,code_error,7.0,36,0.194444,LOW,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Task Orchestration,orchestration_failure,9.0,36,0.25,MEDIUM,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Resource Abuse,resource_abuse,11.0,36,0.305556,MEDIUM,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Instruction Non-compliance,instruction_adherence_failure,15.0,36,0.416667,MEDIUM,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Poor Information Retrieval,misinterpretation_of_tool_output,21.0,36,0.583333,MEDIUM,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Formatting Errors,code_error,25.0,36,0.694444,LOW,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Incorrect Memory Usage,kv_cache_loss,25.0,36,0.694444,MEDIUM,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Instruction Non-compliance,instruction_adherence_failure,25.0,36,0.694444,MEDIUM,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Instruction Non-compliance,instruction_adherence_failure,27.0,36,0.75,MEDIUM,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Instruction Non-compliance,instruction_adherence_failure,33.0,36,0.916667,MEDIUM,SWE-bench
+fa4a1e7a2eb87324ae399ad7efe5be5e,Context Handling Failures,kv_cache_loss,36.0,36,1.0,MEDIUM,SWE-bench
+fdaf88f3c0437bf27438b60ba4102c8a,Formatting Errors,code_error,9.0,30,0.3,MEDIUM,SWE-bench
+fdaf88f3c0437bf27438b60ba4102c8a,Instruction Non-compliance,instruction_adherence_failure,9.0,30,0.3,MEDIUM,SWE-bench
+fdaf88f3c0437bf27438b60ba4102c8a,Formatting Errors,code_error,27.0,30,0.9,MEDIUM,SWE-bench

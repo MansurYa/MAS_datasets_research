@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+._.DS_Store
+._*
+/data/
+.claude/
+datasets/TRAIL/
+datasets/AI45Research-ATBench-Claw/
+datasets/Kevin355-Who_and_When/
+datasets/SWE-Gym-OpenHands-Sampled-Trajectories/
+datasets/iMeanAI-Mind2Web-Live/
+datasets/ibm-research-ITBench-Trajectories/
+datasets/microsoft-AgentRx/
+datasets/nebius-SWE-agent-trajectories/
+datasets/yoonholee-terminalbench-trajectories/

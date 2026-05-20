@@ -1,0 +1,112 @@
+# CSV/JSON зависимости — кто читает какой файл
+
+## data/ — CSV файлы
+
+all_errors_combined.csv
+  → tz4_6_report.py:32
+  → tz4_7_heavy_tails.py:244
+
+all_errors_combined_v2.csv
+  → tz4_7_report.py:55
+
+all_errors_final.csv (data/)
+  → tz5_a_fix_data.py:249
+
+all_errors_fixed.csv
+  → tz5_c_csv.py:81
+
+aggregated_errors.csv
+  → (никто не читает) ← КАНДИДАТ НА УДАЛЕНИЕ
+
+trail_errors.csv
+  → tz4_8_final.py:202
+  → tz5_b_plots.py:102
+  → tz5_d_report.py:75
+
+trail_errors_v2.csv
+  → tz4_8_stats.py:203
+  → tz6_histograms.py:79
+
+who_and_when_handcrafted_classified.csv
+  → tz4_8_final.py:203
+  → tz4_8_stats.py:243
+  → tz5_b_plots.py:105
+  → tz6_histograms.py:126
+
+keyword_positions.csv
+  → tz4_6_report.py:127
+  → tz4_7_heavy_tails.py:113
+  → tz5_b_plots.py:106
+  → tz6_histograms.py:87
+  → tz7_analysis.py:33
+
+keyword_stats_full.csv
+  → tz4_6_keyword_stats.py:536
+  → tz4_6_report.py:30
+  → tz4_7_heavy_tails.py:114
+  → tz4_8_final.py:107
+  → tz4_8_stats.py:264
+
+keyword_distributions.csv
+  → tz4_6_keyword_stats.py:535
+  → tz4_7_heavy_tails.py:115
+  → tz4_8_final.py:108
+
+keyword_search_results.csv
+  → tz4_6_keyword_stats.py:434
+
+stats_by_category.csv
+  → tz3_aggregate.py:447
+  → tz4_distributions.py:199, 255
+
+stats_full.csv
+  → tz4_6_keyword_stats.py:534
+  → tz4_distributions.py:598
+
+stats_full_v2.csv
+  → tz4_8_final.py:103, 201
+  → tz4_8_final_table.py:130
+
+distributions.csv
+  → tz4_6_keyword_stats.py:535
+  → tz4_distributions.py:600
+
+distributions_v2.csv
+  → tz4_8_final.py:104, 261
+  → tz4_8_final_table.py:131
+  → tz5_d_report.py:73
+
+distributions_extended.csv
+  → tz4_7_report.py:54
+  → tz5_d_report.py:74
+
+chi2_tests.csv
+  → tz4_distributions.py:601
+
+step_stats.csv
+  → tz4_distributions.py:599
+
+nebius_by_exit_status.csv
+  → (никто не читает)
+
+errors_classified.csv
+  → (никто не читает)
+
+unified_taxonomy.json
+  → (никто не читает)
+
+tz7_tool_web_failure_positions.csv
+  → (никто не читает)
+
+## report/ — CSV файлы
+
+report/all_errors_final.csv
+  → tz5_b_plots.py:411
+  → tz5_d_report.py:72
+  → tz6_histograms.py:144
+  → tz6_n_obs_v2.py:34
+  → tz6_plots.py:9
+  → tz6_plots_v2.py:139
+
+report/tz7_distribution_comparison.csv
+  → (никто не читает)

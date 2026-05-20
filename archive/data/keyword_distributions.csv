@@ -1,0 +1,41 @@
+category,dataset,position_type,distribution,params,ks_statistic,ks_pvalue,low_confidence,ks_informative,note
+tool_web_failure,nebius,absolute,exponential,"2.0000, 17.4064",0.148034,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+tool_web_failure,nebius,absolute,weibull_min,"1.0398, 0.0000, 19.7753",0.104397,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+tool_web_failure,nebius,absolute,lognorm,"0.9778, 0.0000, 12.4067",0.128446,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+tool_web_failure,nebius,normalized,exponential,"0.0032, 0.3923",0.120774,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+tool_web_failure,nebius,normalized,weibull_min,"1.4284, 0.0000, 0.4327",0.062019,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+tool_web_failure,nebius,normalized,lognorm,"0.9955, 0.0000, 0.2793",0.117701,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+tool_web_failure,nebius,normalized,beta,"0.9915, 1.5028, 0.0032, 0.9905",0.018455,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+tool_web_failure,nebius,normalized,uniform,"0.0032, 0.9900",0.156273,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+resource_not_found,nebius,absolute,exponential,"2.0000, 11.1856",0.089335,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+resource_not_found,nebius,absolute,weibull_min,"1.2664, 0.0000, 14.3155",0.106022,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+resource_not_found,nebius,absolute,lognorm,"0.8072, 0.0000, 9.5762",0.105315,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+resource_not_found,nebius,normalized,exponential,"0.0025, 0.2909",0.05922,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+resource_not_found,nebius,normalized,weibull_min,"1.2347, 0.0000, 0.3147",0.039294,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+resource_not_found,nebius,normalized,lognorm,"0.9756, 0.0000, 0.1985",0.049941,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+resource_not_found,nebius,normalized,beta,"0.9316, 2.4917, 0.0025, 1.1033",0.058433,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+resource_not_found,nebius,normalized,uniform,"0.0025, 0.9878",0.333657,0.0,False,True,"KS-тест информативен (n>>3000): H0 отвергнута, распределение не подходит."
+tool_timeout,itbench,absolute,exponential,"9.0000, 36.1625",0.178183,0.010796,True,False,⚠️ n=80<<3000. Низкая мощность KS-теста.
+tool_timeout,itbench,absolute,weibull_min,"1.5640, 0.0000, 50.2876",0.128821,0.12862,True,False,⚠️ n=80<<3000. Низкая мощность KS-теста.
+tool_timeout,itbench,absolute,lognorm,"0.7976, 0.0000, 34.5962",0.177871,0.010994,True,False,⚠️ n=80<<3000. Низкая мощность KS-теста.
+tool_timeout,itbench,normalized,exponential,"0.0266, 0.2053",0.109451,0.272836,True,False,⚠️ n=80<<3000. Низкая мощность KS-теста.
+tool_timeout,itbench,normalized,weibull_min,"1.4217, 0.0000, 0.2567",0.08627,0.561398,True,False,⚠️ n=80<<3000. Низкая мощность KS-теста.
+tool_timeout,itbench,normalized,lognorm,"0.7636, 0.0000, 0.1768",0.079429,0.664069,True,False,⚠️ n=80<<3000. Низкая мощность KS-теста.
+tool_timeout,itbench,normalized,beta,"1.3434, 109.1127, 0.0247, 17.0317",0.058446,0.932582,True,False,⚠️ n=80<<3000. Низкая мощность KS-теста.
+tool_timeout,itbench,normalized,uniform,"0.0266, 0.8629",0.469611,0.0,True,False,⚠️ n=80<<3000. Низкая мощность KS-теста.
+permission_error,terminalbench,absolute,exponential,"3.0000, 15.5243",0.161813,1e-06,False,False,
+permission_error,terminalbench,absolute,weibull_min,"1.1405, 0.0000, 19.6198",0.17194,0.0,False,False,
+permission_error,terminalbench,absolute,lognorm,"0.7507, 0.0000, 13.0739",0.14155,3.9e-05,False,False,
+permission_error,terminalbench,normalized,exponential,"0.0494, 0.3832",0.17912,0.0,False,False,
+permission_error,terminalbench,normalized,weibull_min,"1.8824, 0.0000, 0.4875",0.037622,0.830162,False,False,
+permission_error,terminalbench,normalized,lognorm,"0.6823, 0.0000, 0.3568",0.11052,0.002697,False,False,
+permission_error,terminalbench,normalized,beta,"1.1352, 1.8285, 0.0484, 1.0058",0.055744,0.364496,False,False,
+permission_error,terminalbench,normalized,uniform,"0.0494, 0.9506",0.207459,0.0,False,False,
+memory_error,terminalbench,absolute,exponential,"1.0000, 19.3794",0.266279,0.0,False,False,
+memory_error,terminalbench,absolute,weibull_min,"0.7714, 0.0000, 17.1342",0.142939,0.0,False,False,
+memory_error,terminalbench,absolute,lognorm,"1.3632, 0.0000, 8.6379",0.174989,0.0,False,False,
+memory_error,terminalbench,normalized,exponential,"0.0011, 0.3627",0.126946,0.0,False,False,
+memory_error,terminalbench,normalized,weibull_min,"0.9211, 0.0000, 0.3517",0.122651,0.0,False,False,
+memory_error,terminalbench,normalized,lognorm,"1.4775, 0.0000, 0.1788",0.159944,0.0,False,False,
+memory_error,terminalbench,normalized,beta,"0.6733, 1.5133, 0.0011, 1.1148",0.088815,0.0,False,False,
+memory_error,terminalbench,normalized,uniform,"0.0011, 0.9989",0.246427,0.0,False,False,

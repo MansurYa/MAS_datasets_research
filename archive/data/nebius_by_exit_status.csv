@@ -1,0 +1,64 @@
+exit_status,category,n_trajectories_with_error,n_trajectories_total,p_trajectory
+submitted (exit_context),tool_timeout,3738,21026,0.17778
+submitted (exit_context),tool_web_failure,8706,21026,0.414059
+submitted (exit_context),resource_not_found,10416,21026,0.495387
+submitted (exit_context),permission_error,517,21026,0.024589
+submitted (exit_context),memory_error,682,21026,0.032436
+submitted (exit_context),code_execution_error,18811,21026,0.894654
+submitted (exit_context),tool_execution_error,20059,21026,0.954009
+submitted,tool_timeout,6102,51087,0.119443
+submitted,tool_web_failure,15136,51087,0.296279
+submitted,resource_not_found,19580,51087,0.383268
+submitted,permission_error,749,51087,0.014661
+submitted,memory_error,1303,51087,0.025506
+submitted,code_execution_error,38974,51087,0.762895
+submitted,tool_execution_error,41570,51087,0.81371
+exit_context,tool_timeout,694,3568,0.194507
+exit_context,tool_web_failure,1317,3568,0.369114
+exit_context,resource_not_found,1845,3568,0.517096
+exit_context,permission_error,67,3568,0.018778
+exit_context,memory_error,127,3568,0.035594
+exit_context,code_execution_error,2264,3568,0.634529
+exit_context,tool_execution_error,2730,3568,0.765135
+submitted_no_patch,tool_timeout,67,1066,0.062852
+submitted_no_patch,tool_web_failure,230,1066,0.21576
+submitted_no_patch,resource_not_found,331,1066,0.310507
+submitted_no_patch,permission_error,11,1066,0.010319
+submitted_no_patch,memory_error,20,1066,0.018762
+submitted_no_patch,code_execution_error,699,1066,0.655722
+submitted_no_patch,tool_execution_error,770,1066,0.722326
+early_exit,tool_timeout,463,3176,0.145781
+early_exit,tool_web_failure,965,3176,0.303841
+early_exit,resource_not_found,1349,3176,0.424748
+early_exit,permission_error,81,3176,0.025504
+early_exit,memory_error,66,3176,0.020781
+early_exit,code_execution_error,2237,3176,0.704345
+early_exit,tool_execution_error,2652,3176,0.835013
+submitted (exit_format),tool_timeout,7,80,0.0875
+submitted (exit_format),tool_web_failure,16,80,0.2
+submitted (exit_format),resource_not_found,27,80,0.3375
+submitted (exit_format),permission_error,1,80,0.0125
+submitted (exit_format),memory_error,3,80,0.0375
+submitted (exit_format),code_execution_error,45,80,0.5625
+submitted (exit_format),tool_execution_error,53,80,0.6625
+exit_format,tool_timeout,5,20,0.25
+exit_format,tool_web_failure,5,20,0.25
+exit_format,resource_not_found,9,20,0.45
+exit_format,permission_error,0,20,0.0
+exit_format,memory_error,1,20,0.05
+exit_format,code_execution_error,8,20,0.4
+exit_format,tool_execution_error,13,20,0.65
+submitted (exit_cost),tool_timeout,4,10,0.4
+submitted (exit_cost),tool_web_failure,4,10,0.4
+submitted (exit_cost),resource_not_found,7,10,0.7
+submitted (exit_cost),permission_error,0,10,0.0
+submitted (exit_cost),memory_error,1,10,0.1
+submitted (exit_cost),code_execution_error,8,10,0.8
+submitted (exit_cost),tool_execution_error,10,10,1.0
+exit_cost,tool_timeout,0,3,0.0
+exit_cost,tool_web_failure,0,3,0.0
+exit_cost,resource_not_found,1,3,0.333333
+exit_cost,permission_error,0,3,0.0
+exit_cost,memory_error,0,3,0.0
+exit_cost,code_execution_error,1,3,0.333333
+exit_cost,tool_execution_error,3,3,1.0

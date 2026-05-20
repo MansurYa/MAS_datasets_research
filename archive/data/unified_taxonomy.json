@@ -1,0 +1,13 @@
+{
+  "Instruction/Plan Adherence Failure": "instruction_adherence_failure",
+  "Instruction Adherence Failure": "instruction_adherence_failure",
+  "Intent not supported": "intent_not_supported",
+  "Intent Not Supported": "intent_not_supported",
+  "Intent Plan Misalignment": "intent_plan_misalignment",
+  "Misinterpretation of Tool Output": "misinterpretation_of_tool_output",
+  "Invention of new information": "invention_of_new_information",
+  "Underspecified User Intent": "underspecified_user_intent",
+  "Guardrails Triggered": "guardrails_triggered",
+  "Invalid Invocation": "invalid_invocation",
+  "System Failure": "system_failure"
+}
