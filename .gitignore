@@ -5,6 +5,7 @@ __pycache__/
 ._.DS_Store
 ._*
 /data/
+work/data/
 .claude/
 datasets/TRAIL/
 datasets/AI45Research-ATBench-Claw/
