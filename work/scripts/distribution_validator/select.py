@@ -148,36 +148,11 @@ def compute_N_min(
         except Exception:
             pass
 
-    # Практическое ограничение: N_min не более 10000
-    # Это покрывает типичные датасеты (N < 5000 → SPLIT_EXACT или BOOTSTRAP)
-    N_min = min(N_min, 10000)
-
-    # Fallback cache: in-memory dict
-    in_memory_cache: dict[str, int] = {}
-
-    if not force_recompute and cache_key in in_memory_cache:
-        return in_memory_cache[cache_key]
-
-    # Monte-Carlo для N_test ∈ [50, 3000]
-    # Используем асимптотическую формулу как начальное приближение
-    # K_{1-β} для power=0.80 ≈ 0.842
+    # Асимптотическая формула: N_min ≈ 2*(K_{1-α}+K_{1-β})²/ε²
     K_beta = 0.842
     K_alpha_approx = K_095 if abs(alpha - 0.05) < 1e-6 else 1.224
     N_min_approx = int(2 * ((K_alpha_approx + K_beta) / epsilon) ** 2)
-
-    # Clamp
-    N_min_approx = max(50, min(N_min_approx, 3000))
-
-    # Для больших N используем асимптотику напрямую
-    if N_min_approx > 3000:
-        N_min = N_min_approx
-    else:
-        # Упрощённый расчёт: используем асимптотическую формулу
-        # Полный MC требует ~1000*60=60000 симуляций — слишком долго
-        # Используем асимптотическую формулу (уже с ограничением до 3000)
-        N_min = N_min_approx
-
-    N_min = max(50, N_min)
+    N_min = max(50, min(N_min_approx, 10000))
 
     # Сохраняем в кэш
     try:

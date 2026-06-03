@@ -96,7 +96,7 @@ def km_survival_function(
     e_sorted = event[sorted_idx]
 
     # Уникальные времена событий (event=1)
-    t_event, d = np.unique(t[t_sorted == 1], return_counts=True)
+    t_event, d = np.unique(t_sorted[e_sorted == 1], return_counts=True)
     n = len(t_sorted)
 
     # Kaplan-Meier S(t)

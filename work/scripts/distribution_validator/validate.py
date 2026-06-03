@@ -73,6 +73,7 @@ def _jitter_X(
     X: np.ndarray,
     dist_type: DistType,
     gamma: float = 0.0,
+    seed: Optional[int] = None,
 ) -> np.ndarray:
     """Jittering с защитой области определения (секция 5.6).
 
@@ -89,12 +90,12 @@ def _jitter_X(
     """
     delta = max(1e-4 * np.mean(np.abs(X)), 1e-10)
     support_lower_bound = support_lower(dist_type, gamma)
+    rng = np.random.default_rng(seed)
 
     if np.isinf(support_lower_bound):
-        # Normal, Gumbel — без ограничений
-        jittered = X + np.random.uniform(-delta, delta, size=X.shape)
+        jittered = X + rng.uniform(-delta, delta, size=X.shape)
     else:
-        noise = np.random.uniform(-delta, delta, size=X.shape)
+        noise = rng.uniform(-delta, delta, size=X.shape)
         jittered = X + noise
         jittered = np.maximum(support_lower_bound + delta, jittered)
 
@@ -189,7 +190,7 @@ def validate(
     n_test = len(X_test)
 
     # Jittering
-    X_j = _jitter_X(X_test, dist_type or "W2", gamma)
+    X_j = _jitter_X(X_test, dist_type or "W2", gamma, seed=seed)
 
     result = ValidationResult(
         verdict="",

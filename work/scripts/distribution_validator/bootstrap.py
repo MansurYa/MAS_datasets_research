@@ -104,33 +104,27 @@ def parametric_bootstrap(
                 D_boot[b] = 0.0
                 continue
 
-            params_star = mle_2p(X_star_positive, dist_type, context="for_grid")
+            # Определяем 2P-тип для MLE (3P → соответствующий 2P)
+            _to_2p = {"W3": "W2", "LN3": "LN2", "G3": "G2", "LL3": "LL2", "E2": "E1"}
+            dist_2p = _to_2p.get(dist_type, dist_type)
+            params_star = mle_2p(X_star_positive, dist_2p, context="for_grid")
+            params_star.gamma = gamma
 
             # Создаём распределение для X_star
-            if dist_type == "W2":
-                F_star = stats.weibull_min(c=params_star.beta, scale=params_star.alpha)
-            elif dist_type == "W3":
-                F_star = stats.weibull_min(
-                    c=params_star.beta, scale=params_star.alpha, loc=gamma
-                )
-            elif dist_type == "LN2":
-                F_star = stats.lognorm(s=params_star.sigma, scale=np.exp(params_star.mu))
+            if dist_type in ("W2", "W3"):
+                F_star = stats.weibull_min(c=params_star.beta, scale=params_star.alpha, loc=gamma)
+            elif dist_type in ("LN2", "LN3"):
+                F_star = stats.lognorm(s=params_star.sigma, scale=np.exp(params_star.mu), loc=gamma)
+            elif dist_type in ("G2", "G3"):
+                F_star = stats.gamma(a=params_star.k, scale=params_star.theta, loc=gamma)
             elif dist_type == "N":
                 F_star = stats.norm(loc=params_star.mu, scale=params_star.sigma)
-            elif dist_type == "G2":
-                F_star = stats.gamma(a=params_star.k, scale=params_star.theta)
             elif dist_type == "GU":
                 F_star = stats.gumbel_r(loc=params_star.mu, scale=params_star.beta)
-            elif dist_type == "E1":
-                F_star = stats.expon(scale=1 / params_star.lam)
-            elif dist_type == "E2":
+            elif dist_type in ("E1", "E2"):
                 F_star = stats.expon(scale=1 / params_star.lam, loc=gamma)
             elif dist_type in ("LL2", "LL3"):
-                # Loglogistic
-                ll = custom_loglogistic_3p(
-                    alpha=params_star.alpha, beta=params_star.beta, gamma=gamma
-                )
-                # D* для X_star
+                ll = custom_loglogistic_3p(alpha=params_star.alpha, beta=params_star.beta, gamma=gamma)
                 X_star_sorted = np.sort(X_star)
                 F0_star_vals = ll.cdf(X_star_sorted)
                 D_plus_star = np.max((np.arange(1, n + 1)) / n - F0_star_vals)
@@ -201,27 +195,25 @@ def multi_split_K100(
 
         try:
             # MLE на fit-части
-            params_k = mle_2p(X_fit, dist_type, context="final")
+            _to_2p = {"W3": "W2", "LN3": "LN2", "G3": "G2", "LL3": "LL2", "E2": "E1"}
+            dist_2p = _to_2p.get(dist_type, dist_type)
+            params_k = mle_2p(X_fit, dist_2p, context="final")
 
             # Создаём распределение
-            if dist_type == "W2":
-                F_k = stats.weibull_min(c=params_k.beta, scale=params_k.alpha)
-            elif dist_type == "W3":
-                F_k = stats.weibull_min(
-                    c=params_k.beta, scale=params_k.alpha, loc=params_k.gamma
-                )
-            elif dist_type == "LN2":
-                F_k = stats.lognorm(s=params_k.sigma, scale=np.exp(params_k.mu))
+            if dist_type in ("W2", "W3"):
+                F_k = stats.weibull_min(c=params_k.beta, scale=params_k.alpha, loc=params_k.gamma or 0.0)
+            elif dist_type in ("LN2", "LN3"):
+                F_k = stats.lognorm(s=params_k.sigma, scale=np.exp(params_k.mu), loc=params_k.gamma or 0.0)
+            elif dist_type in ("G2", "G3"):
+                F_k = stats.gamma(a=params_k.k, scale=params_k.theta, loc=params_k.gamma or 0.0)
             elif dist_type == "N":
                 F_k = stats.norm(loc=params_k.mu, scale=params_k.sigma)
-            elif dist_type == "G2":
-                F_k = stats.gamma(a=params_k.k, scale=params_k.theta)
             elif dist_type == "GU":
                 F_k = stats.gumbel_r(loc=params_k.mu, scale=params_k.beta)
-            elif dist_type == "E1":
-                F_k = stats.expon(scale=1 / params_k.lam)
-            elif dist_type == "LL2":
-                F_k = custom_loglogistic(alpha=params_k.alpha, beta=params_k.beta)
+            elif dist_type in ("E1", "E2"):
+                F_k = stats.expon(scale=1 / params_k.lam, loc=params_k.gamma or 0.0)
+            elif dist_type in ("LL2", "LL3"):
+                F_k = custom_loglogistic_3p(alpha=params_k.alpha, beta=params_k.beta, gamma=params_k.gamma or 0.0)
             else:
                 continue
 
