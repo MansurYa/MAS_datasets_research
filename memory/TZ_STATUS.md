@@ -29,7 +29,15 @@ Huawei Joint Lab, СПбГУ × Huawei. Начало 2025.
 
 ## Текущая задача
 
-TZ_6 завершён. Следующей будет TZ_7 (параметры для симулятора).
+TZ_6 завершён. TZ_7 завершён (2026-06-03).
+
+**TZ_7: Реализация МЕТОДОЛОГИЯ-2.0 (2026-06-03)**
+- Модуль: `work/scripts/distribution_validator/` (12 Python-файлов + 5 тестов, 54 теста, 0 failures)
+- Отчёт: `work/reports/TZ_7_report.md`
+- Функциональность: проверка согласия данных с 12 теоретическими распределениями (W2/W3/LN2/LN3/G2/G3/LL2/LL3/N/GU/E1/E2)
+- Ключевые алгоритмы: Profile MLE (Subtasks A–E), параметрический bootstrap (B=10000), Multi-split K=100, TOST (Branch C), Kaplan-Meier для цензурированных данных
+- Демо: Weibull_3P(α=4247, β=1.31, γ=1240), N=847 → ACCEPT (Branch B_SPLIT)
+- Отклонение от спецификации: Subtask A (Weibull probability paper) пропущен — ненадёжен для 3P-данных со сдвигом; LRT сам определяет 2P vs 3P
 
 **TZ_5: Data Integrity Check (2026-05-29)**
 - Скрипт: `work/scripts/verify_tz5.py` — проверка 4 инвариантов
