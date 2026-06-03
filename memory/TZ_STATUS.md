@@ -21,10 +21,23 @@ Huawei Joint Lab, СПбГУ × Huawei. Начало 2025.
 **Новый цикл:**
 - TZ_0 (реструктуризация репозитория) — удалён (2026-05-20), потерял актуальность
 - TZ_1 (анализ типов ошибок tool call по сырым данным) — **завершён**
+- TZ_2 v1 + v2 (парсер `invalid_invocation` из nebius) — **завершён**
+- TZ_3 (Baseline EDA по nebius/SWE-agent-trajectories) — **завершён** (2026-05-29)
+- TZ_4 (Реформа дедупликации) — **завершён** (2026-05-29)
+- TZ_5 (Data Integrity Check) — **завершён** (2026-05-29)
+- TZ_6 (Survival Analysis: Weibull Mixture, Context Rot) — **завершён** (2026-05-29)
 
 ## Текущая задача
 
-Нет активной TZ. TZ_1 и TZ_2 (v1 + v2) завершены.
+TZ_6 завершён. Следующей будет TZ_7 (параметры для симулятора).
+
+**TZ_5: Data Integrity Check (2026-05-29)**
+- Скрипт: `work/scripts/verify_tz5.py` — проверка 4 инвариантов
+- Инварианты: [1] ключи, [2] монотонность аккумуляторов, [3] границы индексов, [4] local_traj_idx монотонен без пропусков
+- Баг: local_counters сбрасывались между шардами parquet → 337K нарушений
+- Фикс: формула `local = global - first_occurrence[inst]` (two-pass)
+- Финальный результат: 317 349 пар проверено, 10 993 instance_id, **все 4 PASS**
+- Данные: A=31 193, B=69 023, E1=133 088, E2=84 045 записей в `errors_invalid_invocation.json` (381MB)
 
 **Уборка репозитория (2026-05-29):**
 - Удалены промежуточные скрипты TZ_2 v1 (TZ_2_filter_*.py, TZ_2_setup.py, TZ_2_aggregate.py)
@@ -33,20 +46,14 @@ Huawei Joint Lab, СПбГУ × Huawei. Начало 2025.
 - Удалены IDE-конфиги (.idea/, work/.idea/)
 - Финальная архитектура: nebius_all_errors.py + nebius_errors_cli.py (категории A/B/E1/E2)
 
-**Новое: Унифицированный парсер (2026-05-23)**
-- Скрипт: `work/scripts/nebius_invalid_invocation_errors.py`
-- Исправлен баг с traj_idx: теперь всегда локальный (относительно instance_id)
-- Все категории в одном формате: category, locations[], traj_idxs[], step_idxs[]
-- Файлы: `work/data/nebius_invalid_invocation_errors_{A,B,C,D,E1,E2}.json`
-- Ноутбук: `work/nebius_review.ipynb` (обновлён для унифицированного формата)
-
-**Актуальный парсер: nebius_all_errors.py (2026-05-29)**
-- Скрипт: `work/scripts/nebius_all_errors.py` — унифицированный парсер A/B/C/D/E1/E2
-- Категории A, B, E1, E2 — активны
-- Категории C, D — **отключены** (закомментированы, код сохранён):
-  - C (TypeError): 100% FP rate — runtime ошибки кодогенерации, не invalid_invocation (2026-05-28)
-  - D (missing args): 100% INVALID — CoT reasoning, паттерн не совпадает с форматом nebius (2026-05-29)
-- CLI: `work/scripts/nebius_errors_cli.py` (categories: A, B, E1, E2)
+**TZ_4: Реформа дедупликации (2026-05-29)**
+- Скрипт: `work/scripts/nebius_all_errors.py` — унифицированный парсер A/B/E1/E2
+- Выход: плоский `errors_invalid_invocation.json` с ключами A/B/E1/E2
+- traj_idx — абсолютный индекс (0–80035), не локальный
+- Новые поля: `occurrence_in_traj`, `is_first_occurrence_in_traj`
+- Старые файлы `nebius_invalid_invocation_errors_*.json` удалены при запуске парсера
+- CLI: `work/scripts/nebius_errors_cli.py` (обновлён под плоский формат)
+- Документация: `invalid_invocation_concept.md` (добавлен раздел эволюции), `структура_датасетов_ошибок.md` (обновлён)
 
 **Завершённые задачи:**
 - TZ_1: `work/specs/TZ_1.md` + `work/reports/TZ_1_report.md`
@@ -70,6 +77,42 @@ Huawei Joint Lab, СПбГУ × Huawei. Начало 2025.
   - **Надёжные категории (A+B+E1):** 4 137 истинных событий, P_step ≈ 0.0116, P_traj ≈ 0.297
   - **С учётом E2:** P_step ≈ 0.0153, P_traj ≈ 0.383
   - Экстраполяция на 80 036 траекторий: ≈ 30 622 траекторий с ошибкой
+
+- TZ_3: `work/specs/TZ_3.md` + `work/reports/TZ_3_baseline_eda_report.md` (обновлён 2026-05-29)
+  - Baseline EDA по 80 036 траекториям nebius/SWE-agent-trajectories
+  - Метрики: n_steps, n_chars (символы, не токены — tiktoken недоступен); n_ai_steps удалён
+  - Группы: success (51 087, 63.83%), limit_hit (24 707, 30.87%), failed (4 242, 5.30%)
+  - **Главный инсайт:** среда убивает агента **по объёму контекста, не по числу шагов**
+    - 90% limit_hit лежит в диапазоне 85k–130k символов
+    - После 100k символов вероятность success падает с ~85% до ~3%
+    - Жёсткой стенки на конкретном n_steps нет (распределение гладкое)
+  - **Новый инсайт (target):** submitted ≠ задача решена; только 24.8% submitted имеют target=True
+    - target=True траектории короче: медиана 24 шага / 29k символов vs 27 / 35k у target=False
+  - Knowledge base: `work/docs/baseline_trajectory_physics.md` (8 аксиом, добавлена A8)
+  - Скрипт: `work/scripts/baseline_eda.py` (полный проход ~23s)
+  - Артефакты: `TZ_3_trajectory_lengths.csv` (теперь с колонкой target), `TZ_3_descriptive_stats.csv`, 8 PNG в `work/data/plots/`
+
+- TZ_4: `work/specs/TZ_4.md` (2026-05-29)
+  - Реформа дедупликации: плоский формат вместо вложенного
+  - **Было:** группировка по (instance_id, pattern_hash), traj_idx локальный, 4 файла *_A.json и т.д.
+  - **Стало:** плоский список, traj_idx глобальный (0–80035), 1 файл `errors_invalid_invocation.json`
+  - Новые поля: `occurrence_in_traj`, `is_first_occurrence_in_traj` — для анализа Time-to-First-Failure и Thrashing
+  - Обновлены: `nebius_all_errors.py`, `nebius_errors_cli.py`, `invalid_invocation_concept.md`, `структура_датасетов_ошибок.md`
+
+- TZ_5: `work/specs/TZ_5.md` + `work/scripts/verify_tz5.py` (2026-05-29)
+  - Data Integrity Check: 4 инварианта в `errors_invalid_invocation.json`
+  - **Инвариант [4] (local_traj_idx):** главный баг — счётчик сбрасывался между 12 шардами parquet
+  - Фикс: two-pass с `first_occurrence[inst]` и формулой `local = global - first_occurrence`
+  - Проблема multi-error: один шаг содержит 2 разных E999 → добавлен `error_type` в ключ дедупликации
+  - Проверено 317 349 пар, 10 993 instance_id → **все 4 PASS**
+
+- TZ_6: `work/specs/TZ_6.md` + `work/scripts/survival_analysis.py` + `work/reports/TZ_6_survival_analysis_report.md` (2026-05-29)
+  - Survival Analysis по 10 000 стратифицированным траекториям (seed=42)
+  - **Эксперимент 1 (Right-Wall):** limit_hit → Weibull_Mixture (BIC=67869), α₁=114846, β₁=11.7, proportion=0.865
+  - **Эксперимент 2 (Context Rot):** β для Weibull — E1=1.177 (>1, деградация!), A=0.994, B=0.837, E2=0.900
+    - **Главный инсайт:** только E1 (edit syntax) показывает Context Rot; остальные — нет
+  - **Эксперимент 3 (Mixture vs CR):** Weibull_Mixture (BIC=82391) vs Weibull_CR (BIC=85717) — смесь лучше
+  - Параметры: `work/data/TZ_6_fit_params.csv`, 7 Probability Plots в `work/data/reliability_plots/`
 
 ## Структура репозитория
 

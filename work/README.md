@@ -4,10 +4,10 @@
 
 | Папка | Содержимое |
 |-------|-----------|
-| `specs/` | TZ-спецификации: TZ_0.md, TZ_1.md, TZ_2.md |
+| `specs/` | TZ-спецификации: TZ_1.md, TZ_2.md, TZ_3.md |
 | `scripts/` | Скрипты парсинга и анализа |
-| `reports/` | Отчёты: TZ_1_report.md, TZ_2_report.md |
-| `data/` | Выходные JSON и графики |
+| `reports/` | Отчёты: TZ_1_report.md, TZ_2_v2_report.md, TZ_3_baseline_eda_report.md |
+| `data/` | Выходные JSON, CSV и графики |
 
 ---
 

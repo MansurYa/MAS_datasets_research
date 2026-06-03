@@ -2,46 +2,30 @@
 """
 Унифицированный парсер для всех категорий ошибок nebius/SWE-agent-trajectories.
 
-Использует ds.dataset() для чтения ВСЕХ шардов сразу.
-traj_idx = локальный индекс траектории в traj_list для ДАННОГО instance_id (0, 1, 2...).
-
-Категории:
-  A: FileNotFoundError, No such file or directory
-  B: command not found, cannot access, cannot stat (исключая ls: cannot access)
-  C: unexpected keyword argument, takes X positional arguments but Y were given
-  D: missing required argument
-  E1: Edit tool E999 (SyntaxError, IndentationError)
-  E2: Edit tool F821 (undefined name)
-
-Выходной JSON (унифицированный формат):
+Выходной формат — плоский список (одна запись = один факт ошибки):
 {
-  "instance_id": "...",
-  "category": "A",
-  "count": 5,
-  "locations": [
-    {"traj_idx": 0, "step_idx": 9, "text": "...", "exit_status": "..."},
-    {"traj_idx": 2, "step_idx": 11, "text": "...", "exit_status": "..."}
-  ],
-  "traj_idxs": [0, 2],
-  "step_idxs": [9, 11],
-  "traj_idx": 0,
-  "step_idx": 9,
-  "normalized_pattern": "...",
-  "text": "..."
+  "A": [{...}, ...],
+  "B": [{...}, ...],
+  "E1": [{...}, ...],
+  "E2": [{...}, ...]
 }
+
+traj_idx — абсолютный индекс траектории в датасете (0–80035).
+
+Поля для анализа Time-to-First-Failure и Thrashing:
+- occurrence_in_traj: порядковый номер ошибки в траектории
+- is_first_occurrence_in_traj: True для первого вхождения
 """
 
 import pyarrow.dataset as ds
 from pathlib import Path
 import re
 import json
-import hashlib
 from collections import defaultdict
 
 PROJECT_ROOT = Path("/Volumes/MansurSSD/MAS_datasets_research")
 PARQUET_DIR = PROJECT_ROOT / "datasets" / "nebius-SWE-agent-trajectories" / "data"
 DATA_PATH = PROJECT_ROOT / "work" / "data"
-DOCS_PATH = PROJECT_ROOT / "work" / "docs"
 
 # === Edit tool patterns (E1, E2) ===
 EDIT_HEADER = "Your proposed edit has introduced new syntax error"
@@ -52,21 +36,9 @@ EDIT_BLOCK_RE = re.compile(
     re.DOTALL,
 )
 
-# === User script patterns (C, D) ===
-USER_SCRIPT_PATTERNS = [
-    r'/reproduce\.py',
-    r'/test_[\w]+\.py',
-    r'/print_args\.py',
-    r'/run_[\w]+\.py',
-]
-USER_SCRIPT_RE = re.compile('|'.join(USER_SCRIPT_PATTERNS))
-
-# === D: интерактивный режим — отсекаем ===
-INTERACTIVE_RE = re.compile(r'(bash-\$\s*$|\(Current directory:)', re.MULTILINE)
-
 
 def normalize_error_pattern(text: str) -> str:
-    """Нормализация ошибки для дедипликации."""
+    """Нормализация ошибки для дедупликации."""
     t = text
     t = re.split(r'\(Open file:|\(Current directory:|bash-\$', t)[0]
     t = re.sub(r"'[^']{0,200}'", "'X'", t)
@@ -104,60 +76,9 @@ def matches_B(text: str) -> bool:
         return False
     if 'python' in text.lower() and 'not found' in text:
         return False
-    # --- НОВЫЙ ФИЛЬТР (2026-05-29) ---
-    # FP: markdown-блок из рассуждений агента (``` невозможен в реальном bash stderr)
     if '```' in text:
         return False
     return True
-
-
-# === Категория C: TypeError (ОТКЛЮЧЕНА 2026-05-29) ===
-# Категория C отключена, так как она ловит рантайм-ошибки кодогенерации (100% FP rate),
-# а не отказы pre-execution валидации инструментов.
-# Код сохранён для будущих задач по анализу Категории 1 (runtime errors).
-#
-# def matches_C(text: str) -> bool:
-#     if not ('unexpected keyword argument' in text or
-#             ('takes' in text and 'positional argument' in text)):
-#         return False
-#     if text.lstrip().startswith('[File:'):
-#         return False
-#     if 'FutureWarning' in text and 'TypeError' not in text:
-#         return False
-#     if 'unsupported operand' in text:
-#         return False
-#     if 'NoneType' in text and 'object' in text:
-#         return False
-#     if 'Traceback' in text and USER_SCRIPT_RE.search(text):
-#         return False
-#     return True
-
-
-# === Категория D: missing arguments (ОТКЛЮЧЕНА 2026-05-29) ===
-# Категория D отключена, так как после добавления Traceback-фильтра выяснилось,
-# что паттерн "missing"+"required"+"argument" ловит ТОЛЬКО CoT-рассуждения агента
-# о недостающих параметрах (100% INVALID). Фраза не является маркером
-# invalid_invocation — она означает либо рантайм (argparse), либо рассуждения LLM.
-# Код сохранён для истории.
-#
-# def matches_D(text: str) -> bool:
-#     if not ('missing' in text and 'required' in text and 'argument' in text):
-#         return False
-#     if text.lstrip().startswith('[File:'):
-#         return False
-#     if '__init__()' in text:
-#         return False
-#     if "'self'" in text:
-#         return False
-#     if 'config' in text.lower() and 'parameter' in text.lower():
-#         return False
-#     if 'dependency' in text or 'dependencies' in text:
-#         return False
-#     if 'Traceback' in text:
-#         return False
-#     if INTERACTIVE_RE.search(text):
-#         return False
-#     return True
 
 
 # === Категории E1, E2: Edit tool ===
@@ -197,11 +118,22 @@ def matches_E(text: str) -> bool:
     return EDIT_HEADER in text
 
 
+def annotate_occurrences(candidates: list) -> list:
+    """Добавить occurrence_in_traj и is_first_occurrence_in_traj."""
+    seen = defaultdict(int)
+    for c in candidates:
+        key = (c['instance_id'], c['global_traj_idx'], c['normalized_pattern'])
+        seen[key] += 1
+        c['occurrence_in_traj'] = seen[key]
+        c['is_first_occurrence_in_traj'] = (seen[key] == 1)
+    return candidates
+
+
 def process_trajectories():
     """
     Обработать все траектории, собрать ошибки по категориям.
 
-    traj_idx = локальный индекс в traj_list для данного instance_id.
+    traj_idx = абсолютный индекс строки в parquet (0–80035).
     """
     print("Загружаю датасет (все шарды)...")
     dataset = ds.dataset(str(PARQUET_DIR), format="parquet")
@@ -214,83 +146,99 @@ def process_trajectories():
 
     print(f"Найдено строк (все шарды): {len(instance_ids)}")
 
-    # Группируем по instance_id
-    instance_rows = defaultdict(list)
-    for row_idx in range(len(instance_ids)):
-        inst = instance_ids[row_idx]
-        instance_rows[inst].append(row_idx)
+    # Паркет разбит на 12 шардов — local_counters сбрасывается между шардами.
+    # Правильная формула: local = global - first_occurrence_global[instance_id]
+    # Строим one-pass: first_occurrence[inst] фиксируется при первом виде instance_id
+    # Первый проход: фиксируем first_occurrence[inst] и local_counters[inst].
+    first_occurrence = {}
+    local_counts = {}
 
-    print(f"Уникальных instance_id: {len(instance_rows)}")
+    for row_idx, inst in enumerate(instance_ids):
+        if inst not in first_occurrence:
+            first_occurrence[inst] = row_idx
+            local_counts[inst] = 0
+        else:
+            local_counts[inst] += 1
 
-    # Инициализация
+    # Второй проход: обработка траекторий с правильным local_traj_idx.
+    # Формула: local = global - first_occurrence[inst]
+
     A_candidates = []
     B_candidates = []
-    # C_candidates = []  # ОТКЛЮЧЕНА 2026-05-29 (100% FP)
-    # D_candidates = []  # ОТКЛЮЧЕНА 2026-05-29 (100% INVALID)
     E1_candidates = []
     E2_candidates = []
 
-    total_trajs = sum(len(v) for v in instance_rows.values())
-    processed = 0
+    total_trajs = len(instance_ids)
 
-    for inst, row_indices in instance_rows.items():
-        for local_traj_idx, row_idx in enumerate(row_indices):
-            traj = trajectories[row_idx]
-            exit_s = exit_statuses[row_idx] if row_idx < len(exit_statuses) else None
-            traj_idx = local_traj_idx  # локальный индекс
+    for row_idx in range(len(instance_ids)):
+        inst = instance_ids[row_idx]
+        traj = trajectories[row_idx]
+        exit_s = exit_statuses[row_idx] if row_idx < len(exit_statuses) else None
 
-            for step_idx, step in enumerate(traj):
-                if not isinstance(step, dict) or 'text' not in step:
-                    continue
+        global_traj_idx = row_idx
+        local_traj_idx = global_traj_idx - first_occurrence[inst]
 
-                text = step.get('text')
-                if text is None:
-                    continue
+        running_chars = 0
+        running_ai_steps = 0
 
-                base = {
-                    'instance_id': inst,
-                    'traj_idx': traj_idx,
-                    'step_idx': step_idx,
-                    'exit_status': exit_s,
-                    'text': text,
-                }
+        for step_idx, step in enumerate(traj):
+            step_seen = set()
 
-                # === A: FileNotFoundError ===
-                if matches_A(text):
-                    A_candidates.append({**base})
+            if not isinstance(step, dict) or 'text' not in step:
+                continue
 
-                # === B: bash commands ===
-                if matches_B(text):
-                    B_candidates.append({**base})
+            text = step.get('text')
+            if text is None:
+                continue
 
-                # # === C: TypeError (ОТКЛЮЧЕНА 2026-05-29) ===
-                # if matches_C(text):
-                #     C_candidates.append({**base})
+            base = {
+                'instance_id': inst,
+                'global_traj_idx': global_traj_idx,
+                'local_traj_idx': local_traj_idx,
+                'step_idx': step_idx,
+                'exit_status': exit_s,
+                'text': text,
+                'chars_up_to_error': running_chars,
+                'ai_steps_up_to_error': running_ai_steps,
+            }
 
-                # # === D: missing args (ОТКЛЮЧЕНА 2026-05-29: 100% INVALID) ===
-                # # after Traceback filter, the only remaining "missing"+"required"+"argument"
-                # # were agent CoT reasoning — NOT pre-execution validator rejections
-                # if matches_D(text):
-                #     D_candidates.append({**base})
+            # === A: FileNotFoundError ===
+            if matches_A(text):
+                A_candidates.append({**base})
 
-                # === E: Edit tool errors ===
-                if matches_E(text):
-                    errors = parse_edit_errors(text)
-                    if errors:
-                        edit_block = extract_edit_block(text)
+            # === B: bash commands ===
+            if matches_B(text):
+                B_candidates.append({**base})
 
-                        e999_errors = [(c, m) for c, m in errors if c == 'E999']
-                        if e999_errors:
-                            for c, m in e999_errors:
+            # === E: Edit tool errors ===
+            if matches_E(text):
+                errors = parse_edit_errors(text)
+                if errors:
+                    edit_block = extract_edit_block(text)
+
+                    e999_errors = [(c, m) for c, m in errors if c == 'E999']
+                    if e999_errors:
+                        for c, m in e999_errors:
+                            # Ключ дедупликации включает тип ошибки: "IndentationError: unexpected indent"
+                            # и "IndentationError: unexpected unindent" — разные ошибки, нормализация
+                            # убирает аргумент после ":", поэтому различаем через error_type.
+                            error_type = m.split(':')[0]
+                            key = (c, error_type, normalize_error_pattern(m))
+                            if key not in step_seen:
+                                step_seen.add(key)
                                 E1_candidates.append({
                                     **base,
                                     'error_code': c,
                                     'error_msg': m,
+                                    'error_type': error_type,
                                 })
 
-                        f821_errors = [(c, m) for c, m in errors if c == 'F821']
-                        if f821_errors:
-                            for c, m in f821_errors:
+                    f821_errors = [(c, m) for c, m in errors if c == 'F821']
+                    if f821_errors:
+                        for c, m in f821_errors:
+                            key = (c, normalize_error_pattern(m))
+                            if key not in step_seen:
+                                step_seen.add(key)
                                 name_match = re.search(r"undefined name '([^']+)'", m)
                                 name = name_match.group(1) if name_match else None
                                 import_present = has_import(edit_block, name) if name else None
@@ -302,204 +250,83 @@ def process_trajectories():
                                     'import_present_in_edit': import_present,
                                 })
 
-            processed += 1
-            if processed % 10000 == 0:
-                print(f"  Обработано траекторий: {processed}/{total_trajs}")
+            running_chars += len(step.get('text') or '') + len(step.get('system_prompt') or '')
+            if step.get('role') == 'ai':
+                running_ai_steps += 1
 
-    print(f"Траекторий обработано: {processed}")
+        if (row_idx + 1) % 10000 == 0:
+            print(f"  Обработано траекторий: {row_idx + 1}/{total_trajs}")
+
+    print(f"Траекторий обработано: {total_trajs}")
 
     return {
         'A': A_candidates,
         'B': B_candidates,
-        # 'C': C_candidates,  # ОТКЛЮЧЕНА 2026-05-29 (100% FP)
-        # 'D': D_candidates,  # ОТКЛЮЧЕНА 2026-05-29 (100% INVALID)
         'E1': E1_candidates,
         'E2': E2_candidates,
     }
 
 
-def deduplicate(candidates, extra_keys=(), error_msg_field='text', category=''):
-    """
-    Дедипликация по (instance_id, error_pattern_hash + extra_keys).
-
-    Формат выхода:
-    {
-      "instance_id": "...",
-      "category": "A",
-      "count": 5,
-      "locations": [
-        {"traj_idx": 0, "step_idx": 9, "text": "...", "exit_status": "..."},
-        ...
-      ],
-      "traj_step_pairs": [[0, 9], [2, 11]],
-      "traj_idx": 0,
-      "step_idx": 9,
-      "normalized_pattern": "...",
-      "text": "..."
-    }
-    """
-    groups = defaultdict(list)
-    for c in candidates:
-        pattern_input = c.get('error_msg', c.get(error_msg_field, ''))
-        pattern = normalize_error_pattern(pattern_input)
-        h = hashlib.md5(pattern.encode()).hexdigest()[:12]
-        extra = tuple(c.get(k) for k in extra_keys)
-        key = (c['instance_id'], h, extra)
-        groups[key].append(c)
-
-    unique = []
-    for key, items in groups.items():
-        first = items[0]
-
-        locations = []
-        for c in items:
-            loc = {
-                'instance_id': c['instance_id'],
-                'traj_idx': c['traj_idx'],
-                'step_idx': c['step_idx'],
-                'exit_status': c.get('exit_status'),
-                'text': c.get('text'),
-            }
-            for k in extra_keys:
-                loc[k] = c.get(k)
-            locations.append(loc)
-
-        all_pairs = sorted(set((c['traj_idx'], c['step_idx']) for c in items))
-
-        record = {
-            'instance_id': first['instance_id'],
-            'category': category,
-            'count': len(items),
-            'locations': locations,
-            'traj_step_pairs': [list(p) for p in all_pairs],
-            'traj_idx': first['traj_idx'],
-            'step_idx': first['step_idx'],
-            'exit_status': first.get('exit_status'),
-            'normalized_pattern': normalize_error_pattern(
-                first.get('error_msg', first.get(error_msg_field, ''))
-            ),
-            'text': first['text'],
-        }
-        for k in extra_keys:
-            record[k] = first.get(k)
-        unique.append(record)
-
-    unique.sort(key=lambda x: -x['count'])
-    return unique
-
-
-def estimate_sample_size(n_candidates):
-    if n_candidates < 20:
-        return n_candidates
-    elif n_candidates < 200:
-        return 20
-    elif n_candidates < 1000:
-        return 50
-    elif n_candidates < 5000:
-        return 100
-    else:
-        return 150
-
-
 def main():
     print("=" * 60)
-    print("nebius_invalid_invocation_errors: Унифицированный парсер")
+    print("nebius_invalid_invocation_errors: Парсер (плоский формат)")
     print("=" * 60)
 
     candidates_by_cat = process_trajectories()
 
     DATA_PATH.mkdir(parents=True, exist_ok=True)
 
-    # Категория A
-    print("\n--- Категория A (FileNotFoundError) ---")
-    print(f"Сырых кандидатов: {len(candidates_by_cat['A'])}")
-    A_unique = deduplicate(candidates_by_cat['A'], category='A')
-    print(f"Уникальных событий: {len(A_unique)}")
+    # Добавить normalized_pattern и annotate_occurrences для каждой категории
+    for cat in ['A', 'B']:
+        for c in candidates_by_cat[cat]:
+            c['normalized_pattern'] = normalize_error_pattern(c['text'])
+            c['category'] = cat
 
-    with open(DATA_PATH / "nebius_invalid_invocation_errors_A.json", 'w') as f:
-        json.dump(A_unique, f, indent=2, ensure_ascii=False)
-    print(f"Сохранено: {DATA_PATH / 'nebius_invalid_invocation_errors_A.json'}")
+    for c in candidates_by_cat['E1']:
+        c['normalized_pattern'] = normalize_error_pattern(c['error_msg'])
+        c['category'] = 'E1'
 
-    # Категория B
-    print("\n--- Категория B (bash commands) ---")
-    print(f"Сырых кандидатов: {len(candidates_by_cat['B'])}")
-    B_unique = deduplicate(candidates_by_cat['B'], category='B')
-    print(f"Уникальных событий: {len(B_unique)}")
+    for c in candidates_by_cat['E2']:
+        c['normalized_pattern'] = normalize_error_pattern(c['error_msg'])
+        c['category'] = 'E2'
 
-    with open(DATA_PATH / "nebius_invalid_invocation_errors_B.json", 'w') as f:
-        json.dump(B_unique, f, indent=2, ensure_ascii=False)
-    print(f"Сохранено: {DATA_PATH / 'nebius_invalid_invocation_errors_B.json'}")
+    # Annotate occurrences
+    for cat in ['A', 'B', 'E1', 'E2']:
+        candidates_by_cat[cat] = annotate_occurrences(candidates_by_cat[cat])
 
-    # === Категория C (ОТКЛЮЧЕНА 2026-05-29) ===
-    # print("\n--- Категория C (TypeError) ---")
-    # print(f"Сырых кандидатов: {len(candidates_by_cat['C'])}")
-    # C_unique = deduplicate(candidates_by_cat['C'], category='C')
-    # print(f"Уникальных событий: {len(C_unique)}")
-    # with open(DATA_PATH / "nebius_invalid_invocation_errors_C.json", 'w') as f:
-    #     json.dump(C_unique, f, indent=2, ensure_ascii=False)
-    # print(f"Сохранено: {DATA_PATH / 'nebius_invalid_invocation_errors_C.json'}")
+    # Удалить поле text из E1/E2 (слишком длинное, уже есть в error_msg)
+    for c in candidates_by_cat['E1'] + candidates_by_cat['E2']:
+        c.pop('text', None)
+        c.pop('exit_status', None)
 
-    # # Категория D (ОТКЛЮЧЕНА 2026-05-29: 100% INVALID)
-    # # паттерн "missing"+"required"+"argument" ловит CoT-рассуждения агента, не invalid_invocation
-    # print("\n--- Категория D (missing args) ---")
-    # print(f"Сырых кандидатов: {len(candidates_by_cat['D'])}")
-    # D_unique = deduplicate(candidates_by_cat['D'], category='D')
-    # print(f"Уникальных событий: {len(D_unique)}")
-    # with open(DATA_PATH / "nebius_invalid_invocation_errors_D.json", 'w') as f:
-    #     json.dump(D_unique, f, indent=2, ensure_ascii=False)
-    # print(f"Сохранено: {DATA_PATH / 'nebius_invalid_invocation_errors_D.json'}")
+    # Сохранить в один файл
+    output_path = DATA_PATH / "errors_invalid_invocation.json"
+    with open(output_path, 'w') as f:
+        json.dump(candidates_by_cat, f, indent=2, ensure_ascii=False)
+    print(f"\nСохранено: {output_path}")
 
-    # Категория E1
-    print("\n--- Категория E1 (Edit E999) ---")
-    print(f"Сырых кандидатов: {len(candidates_by_cat['E1'])}")
-    E1_unique = deduplicate(candidates_by_cat['E1'], extra_keys=('error_code',), category='E1')
-    print(f"Уникальных событий: {len(E1_unique)}")
-
-    with open(DATA_PATH / "nebius_invalid_invocation_errors_E1.json", 'w') as f:
-        json.dump(E1_unique, f, indent=2, ensure_ascii=False)
-    print(f"Сохранено: {DATA_PATH / 'nebius_invalid_invocation_errors_E1.json'}")
-
-    # Категория E2
-    print("\n--- Категория E2 (Edit F821) ---")
-    print(f"Сырых кандидатов: {len(candidates_by_cat['E2'])}")
-    if candidates_by_cat['E2']:
-        with_import = sum(1 for c in candidates_by_cat['E2']
-                         if c.get('import_present_in_edit') is True)
-        without_import = sum(1 for c in candidates_by_cat['E2']
-                           if c.get('import_present_in_edit') is False)
-        unknown = sum(1 for c in candidates_by_cat['E2']
-                     if c.get('import_present_in_edit') is None)
-        print(f"  с import в edit-блоке: {with_import}")
-        print(f"  без import в edit-блоке: {without_import}")
-        print(f"  не удалось определить: {unknown}")
-
-    E2_unique = deduplicate(
-        candidates_by_cat['E2'],
-        extra_keys=('undefined_name', 'import_present_in_edit'),
-        category='E2'
-    )
-    print(f"Уникальных событий: {len(E2_unique)}")
-
-    with open(DATA_PATH / "nebius_invalid_invocation_errors_E2.json", 'w') as f:
-        json.dump(E2_unique, f, indent=2, ensure_ascii=False)
-    print(f"Сохранено: {DATA_PATH / 'nebius_invalid_invocation_errors_E2.json'}")
+    # Удалить старые файлы
+    old_files = [
+        "nebius_invalid_invocation_errors_A.json",
+        "nebius_invalid_invocation_errors_B.json",
+        "nebius_invalid_invocation_errors_E1.json",
+        "nebius_invalid_invocation_errors_E2.json",
+    ]
+    for fname in old_files:
+        old_path = DATA_PATH / fname
+        if old_path.exists():
+            old_path.unlink()
+            print(f"Удалён старый файл: {old_path}")
 
     # Сводка
     print("\n" + "=" * 60)
     print("СВОДКА")
     print("=" * 60)
-    print(f"{'Категория':<12} {'Сырых':>10} {'Уникальных':>12}")
-    print("-" * 36)
-    for cat, raw_key, uniq_var in [
-        ('A', 'A', A_unique), ('B', 'B', B_unique),
-        ('E1', 'E1', E1_unique), ('E2', 'E2', E2_unique)
-    ]:
-        raw = len(candidates_by_cat[raw_key])
-        uniq = len(uniq_var)
-        print(f"{cat:<12} {raw:>10} {uniq:>12}")
-    print("-" * 36)
-    print("C (TypeError)  ОТКЛЮЧЕНА 2026-05-29: 100% FP rate (runtime errors, not tool invocation)")
-    print("D (missing args) ОТКЛЮЧЕНА 2026-05-29: 100% INVALID (CoT reasoning text)")
+    print(f"{'Категория':<12} {'Записей':>10}")
+    print("-" * 26)
+    for cat in ['A', 'B', 'E1', 'E2']:
+        print(f"{cat:<12} {len(candidates_by_cat[cat]):>10}")
+    print("-" * 26)
 
     print("\n" + "=" * 60)
     print("Готово")

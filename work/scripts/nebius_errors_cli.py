@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-CLI для анализа ошибок nebius_invalid_invocation.
+CLI для анализа ошибок nebius_invalid_invocation (плоский формат).
 
 Команды:
   list      -- топ ошибок по категории
-  inspect   -- все ошибки для instance_id
+  inspect   -- все ошибки для instance_id с пометками NEW/DUPLICATE
   show      -- шаг из parquet с контекстом
   sample    -- случайная выборка для FP-проверки
-  fp-check  -- одна ошибка по pattern_hash с контекстом из parquet
+  fp-check  -- одна ошибка по (instance_id, traj_idx, step_idx)
 """
 
 import argparse
@@ -24,10 +24,14 @@ DATA_DIR = PROJECT_ROOT / "work" / "data"
 CATEGORIES = ["A", "B", "E1", "E2"]
 
 
-def load_errors(category):
-    path = DATA_DIR / f"nebius_invalid_invocation_errors_{category}.json"
+def load_errors(category=None):
+    """Load errors. If category is None, load all categories."""
+    path = DATA_DIR / "errors_invalid_invocation.json"
     with open(path) as f:
-        return json.load(f)
+        data = json.load(f)
+    if category:
+        return data.get(category, [])
+    return data
 
 
 def load_trajectories(instance_id):
@@ -52,22 +56,35 @@ def show_step(traj, step_idx, context=1):
 
 def cmd_list(args):
     errors = load_errors(args.category)
+    if not errors:
+        print(f"Нет данных для категории {args.category}")
+        return
     df = pd.DataFrame(errors)
-    df["num_trajs"] = df["locations"].apply(lambda locs: len(set(l["traj_idx"] for l in locs)))
-    df = df[df["count"] >= args.min_count].sort_values("count", ascending=False).head(args.top)
-    for _, r in df.iterrows():
-        print(f"{r['instance_id']:<45} count={r['count']:>4}  trajs={r['num_trajs']:>3}  {r['normalized_pattern'][:60]}")
+    grouped = df.groupby('normalized_pattern').size().reset_index(name='count')
+    grouped = grouped[grouped['count'] >= args.min_count]
+    grouped = grouped.sort_values('count', ascending=False).head(args.top)
+    for _, r in grouped.iterrows():
+        print(f"{r['normalized_pattern'][:70]:<70} n={r['count']:>5}")
 
 
 def cmd_inspect(args):
     categories = CATEGORIES if args.category == "all" else [args.category]
     for cat in categories:
         errors = load_errors(cat)
+        shown_header = False
         for r in errors:
             if r["instance_id"] != args.instance_id:
                 continue
-            for traj, step in r["traj_step_pairs"]:
-                print(f"[{r['category']}] traj={traj:>3}  step={step:>3}  count={r['count']:>4}  {r['normalized_pattern'][:60]}")
+            if not shown_header:
+                print(f"\n--- {args.instance_id} (категория {cat}) ---")
+                shown_header = True
+            if r["is_first_occurrence_in_traj"]:
+                marker = "[NEW]"
+            else:
+                marker = f"[DUPLICATE {r['occurrence_in_traj']}]"
+            print(f"{marker} traj_global={r['global_traj_idx']:>5} traj_local={r['local_traj_idx']:>3} "
+                  f"chars={r['chars_up_to_error']:>7} ai_steps={r['ai_steps_up_to_error']:>3} "
+                  f"step={r['step_idx']:>3}  {r['normalized_pattern'][:45]}")
 
 
 def cmd_show(args):
@@ -79,7 +96,7 @@ def cmd_show(args):
     if args.step >= len(traj):
         print(f"Ошибка: step={args.step}, шагов в траектории={len(traj)}")
         return
-    print(f"instance_id={args.instance_id}  traj={args.traj}  exit={exits[args.traj] if args.traj < len(exits) else '?'}")
+    print(f"instance_id={args.instance_id}  traj=local:{args.traj}  exit={exits[args.traj] if args.traj < len(exits) else '?'}")
     print("=" * 50)
     show_step(traj, args.step, context=args.context)
 
@@ -105,28 +122,33 @@ def cmd_sample(args):
 
     for i, r in enumerate(sample, 1):
         print(f"\n{'='*60}")
-        print(f"[{i}/{len(sample)}] instance_id={r['instance_id']}  category={r['category']}  count={r['count']}")
+        marker = "[NEW]" if r["is_first_occurrence_in_traj"] else f"[DUP {r['occurrence_in_traj']}]"
+        print(f"[{i}/{len(sample)}] {marker} instance_id={r['instance_id']}  category={r['category']}")
         print(f"pattern: {r['normalized_pattern']}")
         print(f"text:\n{r['text'][:1000]}")
 
 
 def cmd_fp_check(args):
-    errors = load_errors(args.category)
-    match = [r for r in errors if r["instance_id"] == args.instance_id and r.get("pattern_hash") == args.pattern_hash]
+    all_errors = load_errors(args.category)
+    match = [r for r in all_errors
+             if r["instance_id"] == args.instance_id
+             and r["global_traj_idx"] == args.traj_idx
+             and r["step_idx"] == args.step_idx]
     if not match:
-        print(f"Не найдено: instance_id={args.instance_id} pattern_hash={args.pattern_hash}")
+        print(f"Не найдено: instance_id={args.instance_id} traj={args.traj_idx} step={args.step_idx}")
         return
     r = match[0]
-    print(f"instance_id={r['instance_id']}  category={r['category']}  count={r['count']}")
+    print(f"instance_id={r['instance_id']}  category={r['category']}")
+    print(f"traj_global={r['global_traj_idx']}  traj_local={r['local_traj_idx']}")
+    print(f"chars_up_to_error={r['chars_up_to_error']}  ai_steps_up_to_error={r['ai_steps_up_to_error']}")
     print(f"pattern: {r['normalized_pattern']}")
-    print(f"\nПервое вхождение: traj={r['traj_idx']} step={r['step_idx']}")
-    print("=" * 50)
+    print(f"occurrence_in_traj={r['occurrence_in_traj']}  is_first={r['is_first_occurrence_in_traj']}")
     trajs, exits = load_trajectories(r["instance_id"])
-    show_step(trajs[r["traj_idx"]], r["step_idx"], context=1)
+    show_step(trajs[r["local_traj_idx"]], r["step_idx"], context=1)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CLI для анализа ошибок nebius_invalid_invocation")
+    parser = argparse.ArgumentParser(description="CLI для анализа ошибок nebius_invalid_invocation (плоский формат)")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     p = sub.add_parser("list", help="Топ ошибок по категории")
@@ -134,7 +156,7 @@ def main():
     p.add_argument("--top", type=int, default=20)
     p.add_argument("--min-count", type=int, default=1)
 
-    p = sub.add_parser("inspect", help="Все ошибки для instance_id")
+    p = sub.add_parser("inspect", help="Все ошибки для instance_id с пометками NEW/DUPLICATE")
     p.add_argument("--instance-id", required=True)
     p.add_argument("--category", default="all", choices=CATEGORIES + ["all"])
 
@@ -149,10 +171,11 @@ def main():
     p.add_argument("--n", type=int, default=20)
     p.add_argument("--seed", type=int, default=42)
 
-    p = sub.add_parser("fp-check", help="Одна ошибка с контекстом для FP-оценки")
+    p = sub.add_parser("fp-check", help="Одна ошибка по (instance_id, traj_idx, step_idx)")
     p.add_argument("--category", required=True, choices=CATEGORIES)
     p.add_argument("--instance-id", required=True)
-    p.add_argument("--pattern-hash", required=True)
+    p.add_argument("--traj-idx", type=int, required=True)
+    p.add_argument("--step-idx", type=int, required=True)
 
     args = parser.parse_args()
     {"list": cmd_list, "inspect": cmd_inspect, "show": cmd_show,
