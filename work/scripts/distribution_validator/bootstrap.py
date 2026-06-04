@@ -13,6 +13,7 @@ from scipy import stats
 from distribution_validator.distributions import (
     DistParams,
     DistType,
+    THREE_TO_TWO_MAPPING,
     custom_loglogistic,
     custom_loglogistic_3p,
     get_dist_instance,
@@ -105,8 +106,7 @@ def parametric_bootstrap(
                 continue
 
             # Определяем 2P-тип для MLE (3P → соответствующий 2P)
-            _to_2p = {"W3": "W2", "LN3": "LN2", "G3": "G2", "LL3": "LL2", "E2": "E1"}
-            dist_2p = _to_2p.get(dist_type, dist_type)
+            dist_2p = THREE_TO_TWO_MAPPING.get(dist_type, dist_type)
             params_star = mle_2p(X_star_positive, dist_2p, context="for_grid")
             params_star.gamma = gamma
 
@@ -195,8 +195,7 @@ def multi_split_K100(
 
         try:
             # MLE на fit-части
-            _to_2p = {"W3": "W2", "LN3": "LN2", "G3": "G2", "LL3": "LL2", "E2": "E1"}
-            dist_2p = _to_2p.get(dist_type, dist_type)
+            dist_2p = THREE_TO_TWO_MAPPING.get(dist_type, dist_type)
             params_k = mle_2p(X_fit, dist_2p, context="final")
 
             # Создаём распределение

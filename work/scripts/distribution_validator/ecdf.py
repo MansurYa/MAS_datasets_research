@@ -33,14 +33,15 @@ def ecdf_censored(
 ) -> stats.ECDF:
     """ECDF для цензурированных данных (оценка Каплана-Майера).
 
-    scipy.stats.CensoredData автоматически вычисляет KM-ECDF.
+    scipy 1.16+ не имеет CensoredData.ecdf(), используем ручную реализацию.
+    Возвращает объект с интерфейсом stats.ECDF (.cdf.x, .cdf.p).
 
     Args:
         times: массив времени (censored + uncensored).
         event: массив статуса (1 = событие, 0 = цензурировано).
 
     Returns:
-        Объект ECDF с Kaplan-Meier оценкой.
+        Объект-обёртка с Kaplan-Meier оценкой.
     """
     times = np.asarray(times).flatten()
     event = np.asarray(event).flatten()
@@ -48,11 +49,36 @@ def ecdf_censored(
     if not np.all(np.isin(event, [0, 1])):
         raise ValueError("event_mask должен содержать только 0 и 1")
 
-    uncensored = times[event == 1]
-    censored = times[event == 0]
+    # Сортируем
+    sorted_idx = np.argsort(times)
+    t_sorted = times[sorted_idx]
+    e_sorted = event[sorted_idx]
 
-    censored_data = stats.CensoredData(uncensored=uncensored, censored_right=censored)
-    return censored_data.ecdf()
+    # Уникальные времена событий
+    t_unique = np.unique(t_sorted[e_sorted == 1])
+
+    n = len(t_sorted)
+
+    # Kaplan-Meier: F(t) = 1 - S(t)
+    # S(t) = Π (n_i - d_i) / n_i
+    F_km = np.zeros(len(t_unique))
+    S_prev = 1.0
+
+    for i, t_i in enumerate(t_unique):
+        n_i = np.sum(t_sorted >= t_i)
+        d_i = np.sum((t_sorted == t_i) & (e_sorted == 1))
+
+        if n_i > 0:
+            S_prev *= (n_i - d_i) / n_i
+        F_km[i] = 1 - S_prev
+
+    # Обёртка с интерфейсом ECDF
+    class KMMixin:
+        class cdf:
+            x = t_unique
+            p = F_km
+
+    return KMMixin()
 
 
 def dkw_confidence_interval(

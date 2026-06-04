@@ -120,6 +120,8 @@ def compute_sup_distance_KM(
     2. t_i⁻ (левая граница ступеньки): |F_n(t_i) - d_i/n_i - F_0(t_i)|
     3. τ (последняя точка горизонта): |F_n(τ) - F_0(τ)|
 
+    O(n) вместо O(n²): KM ECDF вычисляется один раз.
+
     Args:
         T: времена (censored + uncensored).
         event: статусы (1 = событие, 0 = цензурировано).
@@ -143,7 +145,17 @@ def compute_sup_distance_KM(
         return 0.0
 
     n = len(T_sorted)
-    distances = []
+
+    # KM ECDF вычисляется ОДИН раз — O(n log n) вместо O(n²)
+    km_ecdf = ecdf_censored(T, event)
+    t_support = km_ecdf.cdf.x
+    F_km_map = {t: p for t, p in zip(t_support, km_ecdf.cdf.p)}
+
+    # τ — последняя точка горизонта
+    tau = np.max(T_sorted)
+    F0_tau = F0(tau)
+    F_km_at_tau = F_km_map.get(tau, F_km_map.get(t_support[np.argmin(np.abs(t_support - tau))], 0.0))
+    distances = [abs(F_km_at_tau - F0_tau)]
 
     for t_i in t_unique:
         # Число наблюдений ≥ t_i (risk set)
@@ -157,33 +169,16 @@ def compute_sup_distance_KM(
         # F_0(t_i)
         F0_val = F0(t_i)
 
+        # F_km(t_i) из precomputed map
+        F_km_at_ti = F_km_map.get(t_i, 0.0)
+
         # Точка t_i: |F_n(t_i) - F_0(t_i)|
-        # F_n(t) = 1 - S(t), где S — Kaplan-Meier
-        # Для простоты используем ecdf_censored
-        km_ecdf = ecdf_censored(T, event)
-        F_km_at_ti_list = km_ecdf.cdf.p
-        t_support_list = km_ecdf.cdf.x
-
-        # Находим F_km(t_i)
-        idx_closest = np.argmin(np.abs(t_support_list - t_i))
-        F_km_at_ti = F_km_at_ti_list[idx_closest]
-
-        dist1 = abs(F_km_at_ti - F0_val)
-        distances.append(dist1)
+        distances.append(abs(F_km_at_ti - F0_val))
 
         # t_i⁻: левая граница ступеньки
         # F_n(t_i⁻) ≈ F_n(t_i) - d_i/n_i
         F_n_minus = F_km_at_ti - d_i / n_i
-        dist2 = abs(F_n_minus - F0_val)
-        distances.append(dist2)
-
-    # τ — последняя точка горизонта
-    tau = np.max(T_sorted)
-    F0_tau = F0(tau)
-    km_ecdf = ecdf_censored(T, event)
-    F_km_at_tau = km_ecdf.cdf.p[np.argmin(np.abs(km_ecdf.cdf.x - tau))]
-    dist3 = abs(F_km_at_tau - F0_tau)
-    distances.append(dist3)
+        distances.append(abs(F_n_minus - F0_val))
 
     return max(distances) if distances else 0.0
 

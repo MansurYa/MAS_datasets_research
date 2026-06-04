@@ -22,6 +22,15 @@ DistType = Literal[
 # Контексты для MLE (，影响 точности)
 MLEContext = Literal["for_grid", "for_brent", "final"]
 
+# Маппинг 3P → 2P для MLE (используется в bootstrap.py и multi_split)
+THREE_TO_TWO_MAPPING: dict[DistType, DistType] = {
+    "W3": "W2",
+    "LN3": "LN2",
+    "G3": "G2",
+    "LL3": "LL2",
+    "E2": "E1",
+}
+
 
 @dataclass
 class DistParams:

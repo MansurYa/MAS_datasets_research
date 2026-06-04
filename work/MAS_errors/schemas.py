@@ -32,6 +32,10 @@ class ErrorRecord:
     undefined_name: Optional[str] = field(default=None)
     import_present_in_edit: Optional[bool] = field(default=None)
 
+    def __post_init__(self) -> None:
+        if self.step_idx < 0:
+            raise ValueError(f"step_idx must be >= 0, got {self.step_idx}")
+
 
 @dataclass(frozen=True)
 class ErrorStats:
