@@ -1,0 +1,76 @@
+{
+  "study_id": "agentRx_magentic_one_guardrails_triggered_dedup_all_step_idx",
+  "verdict": "UNDERPOWERED",
+  "best_dist": "GU",
+  "p_final": null,
+  "D_obs": 0.0,
+  "n_errors": 24,
+  "n_attempts": 9,
+  "attempts": [
+    {
+      "dist": "W2",
+      "verdict": "UNDERPOWERED",
+      "p": null,
+      "D_obs": 0.0,
+      "branch": "UNDERPOWERED"
+    },
+    {
+      "dist": "W3",
+      "verdict": "UNDERPOWERED",
+      "p": null,
+      "D_obs": 0.0,
+      "branch": "UNDERPOWERED"
+    },
+    {
+      "dist": "LN2",
+      "verdict": "UNDERPOWERED",
+      "p": null,
+      "D_obs": 0.0,
+      "branch": "UNDERPOWERED"
+    },
+    {
+      "dist": "G2",
+      "verdict": "UNDERPOWERED",
+      "p": null,
+      "D_obs": 0.0,
+      "branch": "UNDERPOWERED"
+    },
+    {
+      "dist": "LL2",
+      "verdict": "UNDERPOWERED",
+      "p": null,
+      "D_obs": 0.0,
+      "branch": "UNDERPOWERED"
+    },
+    {
+      "dist": "E1",
+      "verdict": "UNDERPOWERED",
+      "p": null,
+      "D_obs": 0.0,
+      "branch": "UNDERPOWERED"
+    },
+    {
+      "dist": "E2",
+      "verdict": "UNDERPOWERED",
+      "p": null,
+      "D_obs": 0.0,
+      "branch": "UNDERPOWERED"
+    },
+    {
+      "dist": "N",
+      "verdict": "UNDERPOWERED",
+      "p": null,
+      "D_obs": 0.0,
+      "branch": "UNDERPOWERED"
+    },
+    {
+      "dist": "GU",
+      "verdict": "UNDERPOWERED",
+      "p": null,
+      "D_obs": 0.0,
+      "branch": "UNDERPOWERED"
+    }
+  ],
+  "duration_s": 0.016279290997772478,
+  "data_hash": "51b40f351662d6c42f16f58f2d0650dae6fe779370668a85f06cd41d07f63d77"
+}

@@ -1,0 +1,20 @@
+{
+  "study_id": "agentRx_magentic_one_instruction_adherence_failure_dedup_all_step_idx",
+  "verdict": "ACCEPT",
+  "best_dist": "W2",
+  "p_final": 0.48986856706335913,
+  "D_obs": 0.14484855119015294,
+  "n_errors": 197,
+  "n_attempts": 1,
+  "attempts": [
+    {
+      "dist": "W2",
+      "verdict": "ACCEPT",
+      "p": 0.48986856706335913,
+      "D_obs": 0.14484855119015294,
+      "branch": "B_SPLIT"
+    }
+  ],
+  "duration_s": 0.30644341700099176,
+  "data_hash": "14a9ed784ce243de40704bc4e7c6c218dd1fc98cf34d5a3fc8a6bf10fdc9824c"
+}

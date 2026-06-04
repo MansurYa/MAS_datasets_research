@@ -26,18 +26,45 @@ Huawei Joint Lab, СПбГУ × Huawei. Начало 2025.
 - TZ_4 (Реформа дедупликации) — **завершён** (2026-05-29)
 - TZ_5 (Data Integrity Check) — **завершён** (2026-05-29)
 - TZ_6 (Survival Analysis: Weibull Mixture, Context Rot) — **завершён** (2026-05-29)
+- TZ_7 (distribution_validator, МЕТОДОЛОГИЯ-2.0) — **завершён** (2026-06-03)
+- TZ_8.1 (схемы данных, утилиты, логирование) — **завершён** (2026-06-04)
+- TZ_8.2 (парсер nebius invalid_invocation из raw parquet) — **завершён** (2026-06-04)
+- TZ_8.3 (парсеры TRAIL, AgentRx, Who_and_When) — **завершён** (2026-06-04)
+- TZ_8.4 (Study Runner: запуск исследований) — **завершён** (2026-06-04)
+- TZ_8.5 (Агрегация и анализ результатов) — **завершён** (2026-06-04)
 
 ## Текущая задача
 
-TZ_6 завершён. TZ_7 завершён (2026-06-03).
+**TZ_8.4: Study Runner (2026-06-04)**
 
-**TZ_7: Реализация МЕТОДОЛОГИЯ-2.0 (2026-06-03)**
-- Модуль: `work/scripts/distribution_validator/` (12 Python-файлов + 5 тестов, 54 теста, 0 failures)
-- Отчёт: `work/reports/TZ_7_report.md`
-- Функциональность: проверка согласия данных с 12 теоретическими распределениями (W2/W3/LN2/LN3/G2/G3/LL2/LL3/N/GU/E1/E2)
-- Ключевые алгоритмы: Profile MLE (Subtasks A–E), параметрический bootstrap (B=10000), Multi-split K=100, TOST (Branch C), Kaplan-Meier для цензурированных данных
-- Демо: Weibull_3P(α=4247, β=1.31, γ=1240), N=847 → ACCEPT (Branch B_SPLIT)
-- Отклонение от спецификации: Subtask A (Weibull probability paper) пропущен — ненадёжен для 3P-данных со сдвигом; LRT сам определяет 2P vs 3P
+Автоматический запуск исследований на выходах парсеров. Реализация:
+
+- `study_runner/generate_study_list.py` — сканирование парсеров → список StudySpec (170 исследований)
+- `study_runner/run_study.py` — Fit_Everything по 9 распределениям → первый ACCEPT или REJECT
+- `study_runner/run_all.py` — оркестрация с tqdm прогресс-баром
+- `results.csv` — единый CSV со всеми результатами
+- Артефакты: `fit_log.json`, `audit_report.md` для каждого исследования
+
+**Запуск:**
+```bash
+PYTHONPATH=. python work/MAS_errors/study_runner/run_all.py --fast  # 170 исследований
+```
+
+**Результаты демо (5 studies, agentRx):**
+- 2 ACCEPT (W2, p=0.49)
+- 3 UNDERPOWERED (мало данных)
+
+**Исправлен баг:** import path в `distribution_validator/` переведён с `from distribution_validator.X` на `from work.scripts.distribution_validator.X`.
+
+TRAIL: 117 траекторий, 20 категорий, 573 записи ошибок (без dedup). TRAIL не имеет step_idx (location = span_id, не номер шага) — step_idx=0 для всех.
+
+AgentRx magentic_one: 44 траектории, 7 категорий, 294 записи. Пропущены: Invalid Invocation (tool invocation, не orchestration).
+
+AgentRx tau_retail: 29 траекторий, 5 категорий, 35 записей. Underspecified User Intent → intent_not_supported.
+
+Who_and_When Hand-Crafted: 4 траектории, 3 категории (processing_error, tool_failure, wrong_reasoning), 4 записи. mistake_type=NULL пропущены.
+
+Все тесты: 43 passed. Парсеры: `work/MAS_errors/parsers/trail/`, `agentRx/`, `who_and_when/`. Интеграция: `work/MAS_errors/parsers/run_all.py`.
 
 **TZ_5: Data Integrity Check (2026-05-29)**
 - Скрипт: `work/scripts/verify_tz5.py` — проверка 4 инвариантов
