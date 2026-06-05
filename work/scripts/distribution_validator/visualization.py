@@ -10,7 +10,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import stats
 
-from distribution_validator.utils import PLOTS_DIR
+from .utils import PLOTS_DIR
+
+DIST_FULL_NAME = {
+    "W2": "Weibull (2P)", "W3": "Weibull (3P)",
+    "LN2": "Log-Normal (2P)", "LN3": "Log-Normal (3P)",
+    "G2": "Gamma (2P)", "G3": "Gamma (3P)",
+    "LL2": "Log-Logistic (2P)", "LL3": "Log-Logistic (3P)",
+    "E1": "Exponential (1P)", "E2": "Exponential (2P)",
+    "N": "Normal", "GU": "Gumbel",
+}
 
 
 def plot_fit(
@@ -18,6 +27,7 @@ def plot_fit(
     F_frozen: object,
     X_test: np.ndarray,
     output_path: str | None = None,
+    study_label: str | None = None,
 ) -> str:
     """Генерация визуализации согласия.
 
@@ -144,7 +154,7 @@ def plot_fit(
 
     # === TOST: ε-band ===
     if report.branch == 'C_TOST':
-        from distribution_validator.select import compute_N_max, adaptive_xi
+        from .select import compute_N_max, adaptive_xi
         xi = adaptive_xi(X_test)
         N_max = compute_N_max(xi)
         epsilon = 0.03  # Из report или по умолчанию
@@ -159,10 +169,21 @@ def plot_fit(
     # === Оси и легенда ===
     ax.set_xlabel('x', fontsize=11)
     ax.set_ylabel('Cumulative probability', fontsize=11)
-    ax.set_title(
-        f'{report.dist_type} · N={report.n_test} · {report.verdict}',
-        fontsize=12, fontweight='bold'
+
+    dist_full = DIST_FULL_NAME.get(report.dist_type, report.dist_type)
+    params = report.parameters or {}
+    param_str = "  ".join(
+        f"{k}={v:.3g}" for k, v in params.items()
+        if v is not None and k not in ("gamma",)
     )
+    if params.get("gamma"):
+        param_str += f"  γ={params['gamma']:.3g}"
+
+    title_line1 = study_label if study_label else ""
+    title_line2 = f"{dist_full}  [{param_str}]  ·  N={report.n_test}  ·  {report.verdict}"
+    full_title = f"{title_line1}\n{title_line2}" if title_line1 else title_line2
+
+    ax.set_title(full_title, fontsize=11, fontweight='bold', linespacing=1.5)
     ax.legend(fontsize=9, loc='upper left')
 
     # === Сохранение ===

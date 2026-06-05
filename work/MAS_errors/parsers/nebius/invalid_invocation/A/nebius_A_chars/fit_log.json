@@ -1,0 +1,76 @@
+{
+  "study_id": "nebius_A_chars",
+  "verdict": "REJECT",
+  "best_dist": "W2",
+  "p_final": 5.290744004294369e-33,
+  "D_obs": 0.06970921743046782,
+  "n_errors": 31193,
+  "n_attempts": 9,
+  "attempts": [
+    {
+      "dist": "W2",
+      "verdict": "REJECT",
+      "p": 5.290744004294369e-33,
+      "D_obs": 0.06970921743046782,
+      "branch": "B_SPLIT"
+    },
+    {
+      "dist": "W3",
+      "verdict": "REJECT",
+      "p": 5.290744004294369e-33,
+      "D_obs": 0.06970921743046782,
+      "branch": "B_SPLIT"
+    },
+    {
+      "dist": "LN2",
+      "verdict": "REJECT",
+      "p": 4.026075763035148e-40,
+      "D_obs": 0.07684662307440304,
+      "branch": "B_SPLIT"
+    },
+    {
+      "dist": "G2",
+      "verdict": "REJECT",
+      "p": 1.8732280294511336e-40,
+      "D_obs": 0.0771674833445436,
+      "branch": "B_SPLIT"
+    },
+    {
+      "dist": "LL2",
+      "verdict": "REJECT",
+      "p": 2.47337200676639e-118,
+      "D_obs": 0.1321425643954668,
+      "branch": "B_SPLIT"
+    },
+    {
+      "dist": "E1",
+      "verdict": "REJECT",
+      "p": 1.3660128397165422e-200,
+      "D_obs": 0.17202635594866222,
+      "branch": "B_SPLIT"
+    },
+    {
+      "dist": "E2",
+      "verdict": "REJECT",
+      "p": 1.3660128397165422e-200,
+      "D_obs": 0.17202635594866222,
+      "branch": "B_SPLIT"
+    },
+    {
+      "dist": "N",
+      "verdict": "REJECT",
+      "p": 1.6948414011885457e-92,
+      "D_obs": 0.11677408710513948,
+      "branch": "B_SPLIT"
+    },
+    {
+      "dist": "GU",
+      "verdict": "REJECT",
+      "p": 1.1871696976496162e-54,
+      "D_obs": 0.08982825640627295,
+      "branch": "B_SPLIT"
+    }
+  ],
+  "duration_s": 24.834898125001928,
+  "data_hash": "e68285538f00b33fb8697a8122d2146bc9a69ac45f18102e6308067d1a01140b"
+}

@@ -2,7 +2,7 @@
 
 МЕТОДОЛОГИЯ-2.0.
 """
-from distribution_validator import (
+from . import (
     bootstrap,
     diagnostics,
     distributions,
@@ -15,9 +15,9 @@ from distribution_validator import (
     validate,
     visualization,
 )
-from distribution_validator.report import AuditReport
-from distribution_validator.select import ScaleSelectorResult
-from distribution_validator.validate import ValidationResult
+from .report import AuditReport
+from .select import ScaleSelectorResult
+from .validate import ValidationResult
 
 __all__ = [
     "bootstrap",

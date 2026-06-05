@@ -8,8 +8,8 @@ import numpy as np
 import pytest
 from pathlib import Path
 
-from distribution_validator.main import main
-from distribution_validator import distributions
+from .main import main
+from . import distributions
 
 
 class TestIntegration:
@@ -75,19 +75,19 @@ class TestIntegration:
 
     def test_check_scipy_version(self):
         """check_scipy_version не должен падать."""
-        from distribution_validator import utils
+        from . import utils
         # Не должно выбросить
         utils.check_scipy_version()
 
     def test_check_dependency_constraints(self):
         """check_dependency_constraints не должен падать."""
-        from distribution_validator import utils
+        from . import utils
         # Не должно выбросить (запрещённые пакеты не установлены)
         utils.check_dependency_constraints()
 
     def test_scale_selector(self):
         """scale_selector возвращает корректный результат."""
-        from distribution_validator.select import scale_selector
+        from .select import scale_selector
 
         np.random.seed(42)
         X = 1000.0 * np.random.weibull(1.5, size=500)

@@ -11,7 +11,7 @@ from typing import Literal, Optional
 import numpy as np
 from scipy import stats
 
-from distribution_validator.ecdf import ecdf_censored, greenwood_variance
+from .ecdf import ecdf_censored, greenwood_variance
 
 logger = logging.getLogger(__name__)
 

@@ -32,10 +32,32 @@ Huawei Joint Lab, СПбГУ × Huawei. Начало 2025.
 - TZ_8.3 (парсеры TRAIL, AgentRx, Who_and_When) — **завершён** (2026-06-04)
 - TZ_8.4 (Study Runner: запуск исследований) — **завершён** (2026-06-04)
 - TZ_8.5 (Агрегация и анализ результатов) — **завершён** (2026-06-04)
+- TZ_9 (Claude Code Usage KV Cache Loss parser) — **завершён** (2026-06-05)
 
 ## Текущая задача
 
-**TZ_8.4: Study Runner (2026-06-04)**
+**TZ_9: Claude Code Usage KV Cache Loss (2026-06-05)**
+
+Парсер для исследования KV cache loss на основе Claude Code API-логов.
+Особенность: данные не имеют траекторий — сессии выделяются по перерывам >30 мин.
+
+**Статистика (только тёплые сессии, используют cache):**
+- 68 тёплых сессий, 6712 запросов
+- 23 события KV cache loss
+- P(loss|after_gap) = 34.3%
+
+**Важно:** 18 холодных сессий (849 запросов) не используют cache — для них анализ не применим.
+
+**Файлы:**
+- `work/MAS_errors/parsers/claude_code_usage/parser.py` — парсер
+- `work/specs/TZ_9.md` — спецификация
+- `work/docs/kv_cache_loss_concept.md` — концепция
+- `work/docs/claude_code_usage_dataset.md` — описание датасета
+
+**Запуск:**
+```bash
+PYTHONPATH=. python work/MAS_errors/parsers/claude_code_usage/parser.py
+```
 
 Автоматический запуск исследований на выходах парсеров. Реализация:
 

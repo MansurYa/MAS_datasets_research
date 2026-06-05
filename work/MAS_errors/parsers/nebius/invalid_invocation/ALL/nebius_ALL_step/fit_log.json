@@ -1,0 +1,76 @@
+{
+  "study_id": "nebius_ALL_step",
+  "verdict": "REJECT",
+  "best_dist": "W2",
+  "p_final": null,
+  "D_obs": 0.09949354163868901,
+  "n_errors": 153160,
+  "n_attempts": 9,
+  "attempts": [
+    {
+      "dist": "W2",
+      "verdict": "REJECT",
+      "p": null,
+      "D_obs": 0.09949354163868901,
+      "branch": "A_BOOTSTRAP"
+    },
+    {
+      "dist": "W3",
+      "verdict": "REJECT",
+      "p": null,
+      "D_obs": 0.08779402281513132,
+      "branch": "A_BOOTSTRAP"
+    },
+    {
+      "dist": "LN2",
+      "verdict": "REJECT",
+      "p": null,
+      "D_obs": 0.06078787914563011,
+      "branch": "A_BOOTSTRAP"
+    },
+    {
+      "dist": "G2",
+      "verdict": "REJECT",
+      "p": null,
+      "D_obs": 0.11997884481602344,
+      "branch": "A_BOOTSTRAP"
+    },
+    {
+      "dist": "LL2",
+      "verdict": "REJECT",
+      "p": null,
+      "D_obs": 0.06720354454944877,
+      "branch": "A_BOOTSTRAP"
+    },
+    {
+      "dist": "E1",
+      "verdict": "REJECT",
+      "p": null,
+      "D_obs": 0.1834246687380417,
+      "branch": "A_BOOTSTRAP"
+    },
+    {
+      "dist": "E2",
+      "verdict": "REJECT",
+      "p": null,
+      "D_obs": 0.19137858288207726,
+      "branch": "A_BOOTSTRAP"
+    },
+    {
+      "dist": "N",
+      "verdict": "REJECT",
+      "p": null,
+      "D_obs": 0.21852074988583992,
+      "branch": "A_BOOTSTRAP"
+    },
+    {
+      "dist": "GU",
+      "verdict": "REJECT",
+      "p": null,
+      "D_obs": 0.19491686649916096,
+      "branch": "A_BOOTSTRAP"
+    }
+  ],
+  "duration_s": 185.61507116700523,
+  "data_hash": "b194bad2f60077fa7d75331ae872f3e2f9d4ac25d6a008325668eeb47058b7e6"
+}

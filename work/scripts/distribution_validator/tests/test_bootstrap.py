@@ -7,7 +7,7 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from distribution_validator.bootstrap import (
+from .bootstrap import (
     generate_ppf_samples,
     meinshausen_correction,
     skewness_bootstrap,

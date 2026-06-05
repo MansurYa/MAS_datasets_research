@@ -100,7 +100,7 @@ class StudyResult:
     D_obs: Optional[float]
 
     n_attempts: int
-    attempts_log: list = field(default_factory=list)
+    attempts_log: list[dict] = field(default_factory=list)
 
     duration_s: float = 0.0
     data_hash: str = ""

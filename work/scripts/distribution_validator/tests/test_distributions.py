@@ -4,7 +4,7 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from distribution_validator.distributions import (
+from .distributions import (
     custom_loglogistic,
     custom_loglogistic_3p,
     DistParams,

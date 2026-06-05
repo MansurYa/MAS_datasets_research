@@ -11,19 +11,19 @@ from typing import Literal, Optional
 import numpy as np
 from scipy import stats
 
-from distribution_validator.bootstrap import (
+from .bootstrap import (
     meinshausen_correction,
     multi_split_K100,
     parametric_bootstrap,
     skewness_bootstrap,
 )
-from distribution_validator.diagnostics import (
+from .diagnostics import (
     TOSTDiagnostics,
     bootstrap_ci_tost,
     compute_sup_distance_KM,
     tost_check,
 )
-from distribution_validator.distributions import (
+from .distributions import (
     DistParams,
     DistType,
     custom_loglogistic,
@@ -32,9 +32,9 @@ from distribution_validator.distributions import (
     mle_2p,
     support_lower,
 )
-from distribution_validator.ecdf import ecdf_full, ecdf_censored
-from distribution_validator.goodness import kolmogorov_pvalue, ks_distance
-from distribution_validator.profile_mle import profile_mle_3p
+from .ecdf import ecdf_full, ecdf_censored
+from .goodness import kolmogorov_pvalue, ks_distance
+from .profile_mle import profile_mle_3p
 
 logger = logging.getLogger(__name__)
 

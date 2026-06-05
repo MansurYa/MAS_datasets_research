@@ -9,7 +9,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-from distribution_validator.utils import DOCS_DIR
+from .utils import DOCS_DIR
 
 
 @dataclass

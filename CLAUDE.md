@@ -67,10 +67,7 @@ Datasets include annotations using TRAIL taxonomy (Trace Reasoning and Agentic I
 - **System Execution Errors:** Configuration, API Problems (Rate Limiting, Auth, Service Errors), Resource Management (Exhaustion, Timeouts)
 - **Planning/Coordination Errors:** Context Management (Context Handling Failures, Resource Abuse), Task Management (Goal Deviation, Task Orchestration)
 
-Key mappings in analysis:
-- **KV-cache loss** → `Context Handling Failures`
-- **Resource Abuse** → `Resource Abuse`
-- **Tool call timeouts** → `Timeout Issues` / `Service Errors`
+**Примечание:** Названия категорий TRAIL используются как есть — без маппинга на внутренние псевдонимы проекта. Термин `kv_cache_loss` — синтетический, в данных TRAIL не встречается.
 
 # Контекст проекта: Классификация ошибок и статистическое исследование
 
@@ -120,8 +117,8 @@ Key mappings in analysis:
 **Категория 2: Возможно моделировать напрямую**
 Ошибки, которые симулятор воспроизводит без статистических допущений — через
 изменение структуры IR-графа или параметров блоков.
-Примеры: потеря KV-кэша, упор в пропускную способность канала, достижение
-максимального размера контекстного окна.
+Примеры: упор в пропускную способность канала, достижение максимального размера
+контекстного окна.
 
 **Из TZ_3:** Среда SWE-agent убивает агента по **объёму контекста**, не по числу
 шагов. 90% траекторий с `limit_hit` лежат в диапазоне 85k–130k символов. После

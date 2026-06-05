@@ -14,7 +14,7 @@ from scipy import optimize
 from scipy import special
 from scipy import stats
 
-from distribution_validator.distributions import (
+from .distributions import (
     DistParams,
     DistType,
     MLEContext,

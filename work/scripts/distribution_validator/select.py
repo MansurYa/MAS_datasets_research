@@ -13,7 +13,7 @@ from typing import Literal, Optional
 
 import numpy as np
 
-from distribution_validator.utils import get_cache_dir
+from .utils import get_cache_dir
 
 logger = logging.getLogger(__name__)
 

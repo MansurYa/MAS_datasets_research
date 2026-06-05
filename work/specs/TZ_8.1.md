@@ -233,9 +233,9 @@ def filter_subgroup(df: pd.DataFrame, subgroup: str) -> pd.DataFrame:
         return df
     
     if subgroup == "success_targetT":
-        return df[(df["exit_group"] == "success") & (df["target"] == True)]
+        return df[(df["exit_group"] == "success") & df["target"].eq(True)]
     if subgroup == "success_targetF":
-        return df[(df["exit_group"] == "success") & (df["target"] == False)]
+        return df[(df["exit_group"] == "success") & df["target"].eq(False)]
     if subgroup == "limit_hit":
         return df[df["exit_group"] == "limit_hit"]
     if subgroup == "failed":

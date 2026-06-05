@@ -10,7 +10,7 @@ from typing import Optional
 import numpy as np
 from scipy import stats
 
-from distribution_validator.distributions import (
+from .distributions import (
     DistParams,
     DistType,
     THREE_TO_TWO_MAPPING,

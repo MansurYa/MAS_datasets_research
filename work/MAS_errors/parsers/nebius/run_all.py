@@ -15,11 +15,13 @@ from pathlib import Path
 
 def run_all() -> None:
     from work.MAS_errors.parsers.nebius.invalid_invocation.parser import run as run_invalid_invocation
-    run_invalid_invocation()
+    from work.MAS_errors.parsers.nebius.code_execution.parser import run as run_code_execution
 
-    # TODO: другие ошибки nebius (когда будут реализованы в MAS_errors/parsers/nebius/):
-    # from work.MAS_errors.parsers.nebius.{error_type}.parser import run as run_{error_type}
-    # run_{error_type}()
+    run_invalid_invocation()
+    run_code_execution()
+
+    # Добавлено: code_execution (TZ_10) — runtime errors из agent scripts.
+    # Исключает invalid_invocation (A/B/E1/E2) через is_invalid_invocation()."
 
 
 if __name__ == "__main__":

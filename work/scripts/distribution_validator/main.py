@@ -13,7 +13,7 @@ from typing import Optional
 import numpy as np
 import scipy
 
-from distribution_validator import (
+from . import (
     distributions,
     ecdf,
     goodness,
@@ -43,6 +43,8 @@ def main(
     B: int = 10000,
     seed: int = 42,
     data_hash: Optional[str] = None,
+    save_artefacts: bool = True,
+    study_label: Optional[str] = None,
 ) -> tuple[validate_module.ValidationResult, str, str]:
     """Основной pipeline.
 
@@ -100,13 +102,14 @@ def main(
             warnings=selector_result.recommendations,
         )
         # Создаём минимальный отчёт
-        from distribution_validator.report import AuditReport, create_report_from_validation
+        from .report import AuditReport, create_report_from_validation
         report_obj = create_report_from_validation(
             result, data_hash, scipy.__version__,
             selector_result.N_min, selector_result.N_max,
             selector_result.mode, ""
         )
-        report_module.save_report(report_obj)
+        if save_artefacts:
+            report_module.save_report(report_obj)
         return result, "", str(report_module.DOCS_DIR / f"audit-{report_obj.audit_id}.md")
 
     # 5. Сплит если нужно
@@ -167,22 +170,28 @@ def main(
     logger.info(f"Validation: verdict={result.verdict}, D_obs={result.D_obs:.4f}")
 
     # 8. plot
-    try:
-        plot_path = visualization.plot_fit(result, F_frozen, X_test)
-        logger.info(f"Plot saved: {plot_path}")
-    except Exception as e:
-        logger.warning(f"Plot failed: {e}")
+    if save_artefacts:
+        try:
+            plot_path = visualization.plot_fit(result, F_frozen, X_test, study_label=study_label)
+            logger.info(f"Plot saved: {plot_path}")
+        except Exception as e:
+            logger.warning(f"Plot failed: {e}")
+            plot_path = ""
+    else:
         plot_path = ""
 
     # 9. report
-    from distribution_validator.report import create_report_from_validation
+    from .report import create_report_from_validation
     report_obj = create_report_from_validation(
         result, data_hash, scipy.__version__,
         selector_result.N_min, selector_result.N_max,
         selector_result.mode, plot_path,
     )
-    md_path = report_module.save_report(report_obj)
-    logger.info(f"Report saved: {md_path}")
+    if save_artefacts:
+        md_path = report_module.save_report(report_obj)
+        logger.info(f"Report saved: {md_path}")
+    else:
+        md_path = ""
 
     return result, plot_path, str(md_path)
 

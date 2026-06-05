@@ -24,6 +24,7 @@ ANALYSIS_VAR_MAP = {
     "trail": ["step_idx"],
     "agentRx": ["step_idx"],
     "who_and_when": ["step_idx"],
+    "claude_code_usage": ["time_diff", "cache_hit_ratio", "cache_read_tokens"],
 }
 
 LARGE_PARQUET_THRESHOLD = 1000
@@ -79,9 +80,20 @@ def scan_parsers_output() -> list[StudySpec]:
     Каждый errors.parquet может породить несколько StudySpec
     (subgroup × analysis_var).
     """
-    studies: list[StudySpec] = []
+    import os
 
-    for parquet_path in sorted(PARSERS_ROOT.rglob("errors.parquet")):
+    studies: list[StudySpec] = []
+    bad_dir = str(PARSERS_ROOT / "nebius" / "__pycache__")
+
+    # Используем os.walk вместо rglob чтобы пропускать corrupted __pycache__
+    for root, dirs, files in os.walk(PARSERS_ROOT, followlinks=False):
+        if root == bad_dir or root.startswith(bad_dir + os.sep):
+            dirs.clear()
+            continue
+        if "errors.parquet" not in files:
+            continue
+
+        parquet_path = Path(root) / "errors.parquet"
         rel_parts = parquet_path.relative_to(PARSERS_ROOT).parts
         if len(rel_parts) < 2:
             continue

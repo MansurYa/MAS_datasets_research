@@ -2,7 +2,7 @@
 import numpy as np
 import pytest
 
-from distribution_validator.utils import safe_jitter
+from .utils import safe_jitter
 
 
 class TestSafeJitter:

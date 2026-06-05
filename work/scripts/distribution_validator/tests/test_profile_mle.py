@@ -4,8 +4,8 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from distribution_validator.distributions import custom_loglogistic
-from distribution_validator.profile_mle import (
+from .distributions import custom_loglogistic
+from .profile_mle import (
     MLE_STATUS_CONVERGENCE_WARNING,
     MLE_STATUS_DOUBLE_WARNING,
     MLE_STATUS_MARGINAL,

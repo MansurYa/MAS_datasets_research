@@ -1,0 +1,10 @@
+{
+  "dataset": "claude_code_usage",
+  "error_type": "kv_cache_loss",
+  "n_total_requests": 6712,
+  "n_sessions": 68,
+  "n_kv_cache_loss_events": 23,
+  "p_loss_per_request": 0.0034266984505363527,
+  "p_loss_per_session_after_gap": 0.34328358208955223,
+  "parser_version": "TZ_9.1"
+}

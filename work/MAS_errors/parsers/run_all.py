@@ -2,6 +2,8 @@
 from work.MAS_errors.parsers.trail.run_all import run_all as run_trail
 from work.MAS_errors.parsers.agentRx.run_all import run_all as run_agentrx
 from work.MAS_errors.parsers.who_and_when.run_all import run_all as run_whowhen
+from work.MAS_errors.parsers.nebius.run_all import run_all as run_nebius
+from work.MAS_errors.parsers.claude_code_usage.run_all import run_all as run_cc
 
 def run_all() -> None:
     print("=== TRAIL ===")
@@ -10,6 +12,10 @@ def run_all() -> None:
     run_agentrx()
     print("\n=== Who_and_When ===")
     run_whowhen()
+    print("\n=== nebius ===")
+    run_nebius()
+    print("\n=== claude_code_usage ===")
+    run_cc()
     print("\n=== ВСЕ парсеры завершены ===")
 
 if __name__ == "__main__":

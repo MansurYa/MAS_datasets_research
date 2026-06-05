@@ -23,13 +23,13 @@ from work.MAS_errors.setup_logging import setup_logging
 DISTRIBUTIONS = ["W2", "W3", "LN2", "G2", "LL2", "E1", "E2", "N", "GU"]
 
 # Параметры валидации
-EPSILON = 0.05
+EPSILON = 0.03
 ALPHA = 0.05
 POWER = 0.80
 B_DEFAULT = 1000
 
 
-def run_study(spec: StudySpec, fast: bool = False) -> StudyResult:
+def run_study(spec: StudySpec, fast: bool = False, B: int | None = None) -> StudyResult:
     """Запустить одно исследование: Fit_Everything → validate для каждого dist."""
 
     logger = setup_logging()
@@ -50,7 +50,7 @@ def run_study(spec: StudySpec, fast: bool = False) -> StudyResult:
         return _error_result(spec, "NO_DATA", start)
 
     # 3. Fit_Everything цикл
-    B = 500 if fast else B_DEFAULT
+    B = B if B is not None else (500 if fast else B_DEFAULT)
 
     # Импорт здесь — избегаем circular imports
     import work.scripts.distribution_validator.main as dv_main
@@ -58,10 +58,11 @@ def run_study(spec: StudySpec, fast: bool = False) -> StudyResult:
 
     attempts_log: list[dict] = []
     final_result: validate_module.ValidationResult | None = None
+    final_dist_type: str | None = None
 
     for dist_type in DISTRIBUTIONS:
         try:
-            val_result, plot_path, md_path = dv_main.main(
+            val_result, _, _ = dv_main.main(
                 X=X,
                 dist_type=dist_type,
                 epsilon=EPSILON,
@@ -71,6 +72,7 @@ def run_study(spec: StudySpec, fast: bool = False) -> StudyResult:
                 B=B,
                 seed=42,
                 data_hash=None,
+                save_artefacts=False,
             )
 
             attempt = {
@@ -84,6 +86,7 @@ def run_study(spec: StudySpec, fast: bool = False) -> StudyResult:
 
             if val_result.verdict == "ACCEPT":
                 final_result = val_result
+                final_dist_type = dist_type
                 break
             elif val_result.verdict == "UNDERPOWERED":
                 continue
@@ -104,21 +107,52 @@ def run_study(spec: StudySpec, fast: bool = False) -> StudyResult:
     else:
         valid = [a for a in attempts_log if a.get("verdict") in ("REJECT", "REJECT_EQUIVALENCE")]
         if valid:
-            best = max(valid, key=lambda a: a.get("p", 0))
+            best = max(valid, key=lambda a: a.get("p") or 0)
             verdict = best["verdict"]
             best_dist = best["dist"]
             p_final = best.get("p")
             D_obs = best.get("D_obs")
+            final_dist_type = best_dist
         elif attempts_log:
             verdict = attempts_log[-1]["verdict"]
             best_dist = attempts_log[-1].get("dist")
             p_final = attempts_log[-1].get("p")
             D_obs = attempts_log[-1].get("D_obs")
+            final_dist_type = best_dist
         else:
             verdict = "ERROR"
             best_dist = None
             p_final = None
             D_obs = None
+            final_dist_type = None
+
+    # 5. Один финальный вызов с save_artefacts=True для победителя
+    if final_dist_type and verdict not in ("ERROR", "NO_DATA", "MISSING_COLUMN"):
+        parts = [spec.dataset, spec.error_type]
+        if spec.error_subtype:
+            parts.append(spec.error_subtype)
+        if spec.is_dedup:
+            parts.append("dedup")
+        if spec.subgroup and spec.subgroup != "all":
+            parts.append(spec.subgroup)
+        parts.append(spec.analysis_var)
+        study_label = " · ".join(parts)
+        try:
+            dv_main.main(
+                X=X,
+                dist_type=final_dist_type,
+                epsilon=EPSILON,
+                alpha=ALPHA,
+                power=POWER,
+                do_split=True,
+                B=B,
+                seed=42,
+                data_hash=None,
+                save_artefacts=True,
+                study_label=study_label,
+            )
+        except Exception as e:
+            logger.warning(f"Final artefact save failed for {final_dist_type}: {e}")
 
     return StudyResult(
         study_id=spec.study_id,
