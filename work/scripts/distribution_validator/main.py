@@ -45,6 +45,8 @@ def main(
     data_hash: Optional[str] = None,
     save_artefacts: bool = True,
     study_label: Optional[str] = None,
+    is_dedup: bool = False,
+    study_dir: Optional[str] = None,
 ) -> tuple[validate_module.ValidationResult, str, str]:
     """Основной pipeline.
 
@@ -90,7 +92,7 @@ def main(
     selector_result = select.scale_selector(X, epsilon, alpha, power)
     logger.info(f"Scale selector: mode={selector_result.mode}, N_min={selector_result.N_min}, N_max={selector_result.N_max}")
 
-    # Режим UNDERPOWERED — останавливаемся
+    # Режим UNDERPOWERED — останавливаемся, но генерируем PNG
     if selector_result.mode == select.MODE_UNDERPOWERED:
         result = validate_module.ValidationResult(
             verdict=validate_module.VERDICT_UNDERPOWERED,
@@ -101,16 +103,34 @@ def main(
             D_obs=0.0,
             warnings=selector_result.recommendations,
         )
+        # Генерируем PNG даже для UNDERPOWERED (с watermark)
+        plot_path = ""
+        if save_artefacts and study_dir:
+            try:
+                params = distributions.mle_2p(X, dist_type, context="final")
+                F_frozen = distributions.get_dist_instance(dist_type, params)
+                output_path = Path(study_dir) / f"{dist_type}-{result.verdict}.png"
+                plot_path = visualization.plot_fit(
+                    result, F_frozen, X,
+                    output_path=output_path,
+                    study_label=study_label,
+                    is_dedup=is_dedup,
+                )
+                logger.info(f"UNDERPOWERED plot saved: {plot_path}")
+            except Exception as e:
+                logger.warning(f"UNDERPOWERED plot failed: {e}")
+
         # Создаём минимальный отчёт
         from .report import AuditReport, create_report_from_validation
         report_obj = create_report_from_validation(
             result, data_hash, scipy.__version__,
             selector_result.N_min, selector_result.N_max,
-            selector_result.mode, ""
+            selector_result.mode, plot_path
         )
         if save_artefacts:
-            report_module.save_report(report_obj)
-        return result, "", str(report_module.DOCS_DIR / f"audit-{report_obj.audit_id}.md")
+            report_module.save_report(report_obj, output_dir=Path(study_dir) if study_dir else None)
+        dv_report_path = str(Path(study_dir) / f"dv_report-{report_obj.audit_id}.md") if study_dir else str(report_module.DOCS_DIR / f"dv_report-{report_obj.audit_id}.md")
+        return result, plot_path, dv_report_path
 
     # 5. Сплит если нужно
     n = len(X)
@@ -172,7 +192,12 @@ def main(
     # 8. plot
     if save_artefacts:
         try:
-            plot_path = visualization.plot_fit(result, F_frozen, X_test, study_label=study_label)
+            # PNG сохраняется в директории исследования
+            if study_dir:
+                output_path = Path(study_dir) / f"{dist_type}-{result.verdict}.png"
+            else:
+                output_path = None
+            plot_path = visualization.plot_fit(result, F_frozen, X_test, output_path=output_path, study_label=study_label, is_dedup=is_dedup)
             logger.info(f"Plot saved: {plot_path}")
         except Exception as e:
             logger.warning(f"Plot failed: {e}")
@@ -188,7 +213,7 @@ def main(
         selector_result.mode, plot_path,
     )
     if save_artefacts:
-        md_path = report_module.save_report(report_obj)
+        md_path = report_module.save_report(report_obj, output_dir=Path(study_dir) if study_dir else None)
         logger.info(f"Report saved: {md_path}")
     else:
         md_path = ""

@@ -52,6 +52,29 @@ def _map_category(raw_cat: str) -> str:
     return raw_cat.strip().lower().replace(" ", "_")
 
 
+def flatten_spans(spans, counter=None, depth=0, max_depth=1000):
+    """Recursively flatten spans including nested child_spans.
+
+    Returns dict: {span_id: step_idx} in depth-first order.
+    Uses global counter for correct step_idx across all spans.
+    """
+    if depth > max_depth:
+        raise ValueError(f"max_depth={max_depth} exceeded in flatten_spans")
+    if counter is None:
+        counter = [0]
+    result = {}
+    for span in spans:
+        counter[0] += 1
+        sid = span.get("span_id")
+        if sid:
+            result[sid] = counter[0]
+        children = span.get("child_spans", [])
+        if children:
+            child_result = flatten_spans(children, counter, depth + 1, max_depth)
+            result.update(child_result)
+    return result
+
+
 def process_trajectories() -> tuple[dict[str, list[ErrorRecord]], int]:
     print("Загружаю TRAIL...")
     pf = pq.ParquetFile(str(PARQUET_PATH))
@@ -74,9 +97,14 @@ def process_trajectories() -> tuple[dict[str, list[ErrorRecord]], int]:
         except json.JSONDecodeError:
             continue
 
+        # Build span_id → step_idx mapping for this trace
+        span_id_to_step = flatten_spans(trace.get("spans", []) if isinstance(trace, dict) else [])
+
         for err in labels.get("errors", []):
             raw_cat = err.get("category", "")
             cat = _map_category(raw_cat)
+            err_location = err.get("location", "")
+            step_idx = span_id_to_step.get(err_location, 0)
 
             record = ErrorRecord(
                 error_id=f"trail_{trace_id}_{row_idx}_{len(records_by_cat.get(cat, []))}",
@@ -86,10 +114,10 @@ def process_trajectories() -> tuple[dict[str, list[ErrorRecord]], int]:
                 is_dedup=False,
                 instance_id=trace_id,
                 traj_idx=row_idx,
-                step_idx=0,
+                step_idx=step_idx,
                 chars_before_error=0,
                 traj_total_chars=trace_str_len,
-                traj_total_steps=len(trace.get("spans", [])) if isinstance(trace, dict) else 0,
+                traj_total_steps=len(span_id_to_step),
                 target=None,
                 exit_group=None,
                 exit_status=None,

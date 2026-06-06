@@ -5,6 +5,7 @@
 """
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Literal, Optional
 
@@ -12,6 +13,8 @@ import numpy as np
 from scipy import optimize
 from scipy import special
 from scipy import stats
+
+logger = logging.getLogger(__name__)
 
 # Типы распределений
 DistType = Literal[
@@ -255,6 +258,41 @@ def _neg_log_likelihood_loglogistic_2p(params: np.ndarray, X: np.ndarray) -> flo
     return -ll
 
 
+def _minimize_mle(
+    neg_ll,
+    x0: list[float],
+    bounds: list[tuple],
+    gtol: float,
+    max_iter: int,
+    dist_type: str,
+) -> optimize.OptimizeResult:
+    """Запуск L-BFGS-B для MLE с подавлением FP-warnings и аудитом сходимости.
+
+    Зачем существует:
+    1. NLL-функции (например Вейбулла, строка с z**beta) при пробах градиента
+       на больших данных переполняют float64 → RuntimeWarning (overflow/invalid).
+       Эти значения (inf/nan) МАТЕМАТИЧЕСКИ КОРРЕКТНЫ (там правдоподобие ≈ 0),
+       оптимизатор корректно их отбраковывает. np.errstate лишь ГАСИТ ПЕЧАТЬ
+       предупреждений — вычисляемые значения не меняются ни на бит.
+    2. Чтобы не ослепнуть, логируем РЕАЛЬНУЮ проблему: несходимость оптимизатора
+       (res.success=False) или неконечный минимум. Поведение при этом не меняется.
+
+    Подробности: work/docs/mle_numerical_warnings.md
+    """
+    with np.errstate(over="ignore", invalid="ignore", divide="ignore"):
+        res = optimize.minimize(
+            neg_ll, x0, method="L-BFGS-B",
+            bounds=bounds,
+            options={"gtol": gtol, "maxiter": max_iter},
+        )
+    if not res.success or not np.isfinite(res.fun):
+        logger.warning(
+            "MLE %s не сошёлся: success=%s, fun=%s, message=%r",
+            dist_type, res.success, res.fun, getattr(res, "message", ""),
+        )
+    return res
+
+
 def mle_2p(
     X: np.ndarray,
     dist_type: DistType,
@@ -302,10 +340,9 @@ def mle_2p(
         def neg_ll(p):
             return _neg_log_likelihood_weibull_2p(p, X)
 
-        res = optimize.minimize(
-            neg_ll, [alpha0, beta0], method="L-BFGS-B",
-            bounds=[(1e-10, None), (1e-10, None)],
-            options={"gtol": gtol, "maxiter": max_iter},
+        res = _minimize_mle(
+            neg_ll, [alpha0, beta0],
+            [(1e-10, None), (1e-10, None)], gtol, max_iter, "W2",
         )
         return DistParams(
             alpha=res.x[0], beta=res.x[1],
@@ -321,10 +358,9 @@ def mle_2p(
         def neg_ll(p):
             return _neg_log_likelihood_lognorm_2p(p, X)
 
-        res = optimize.minimize(
-            neg_ll, [mu0, sigma0], method="L-BFGS-B",
-            bounds=[(None, None), (1e-10, None)],
-            options={"gtol": gtol, "maxiter": max_iter},
+        res = _minimize_mle(
+            neg_ll, [mu0, sigma0],
+            [(None, None), (1e-10, None)], gtol, max_iter, "LN2",
         )
         return DistParams(
             mu=res.x[0], sigma=res.x[1],
@@ -339,10 +375,9 @@ def mle_2p(
         def neg_ll(p):
             return _neg_log_likelihood_gamma_2p(p, X)
 
-        res = optimize.minimize(
-            neg_ll, [k0, theta0], method="L-BFGS-B",
-            bounds=[(1e-10, None), (1e-10, None)],
-            options={"gtol": gtol, "maxiter": max_iter},
+        res = _minimize_mle(
+            neg_ll, [k0, theta0],
+            [(1e-10, None), (1e-10, None)], gtol, max_iter, "G2",
         )
         return DistParams(
             k=res.x[0], theta=res.x[1],
@@ -356,10 +391,9 @@ def mle_2p(
         def neg_ll(p):
             return _neg_log_likelihood_normal(p, X)
 
-        res = optimize.minimize(
-            neg_ll, [mu0, sigma0], method="L-BFGS-B",
-            bounds=[(None, None), (1e-10, None)],
-            options={"gtol": gtol, "maxiter": max_iter},
+        res = _minimize_mle(
+            neg_ll, [mu0, sigma0],
+            [(None, None), (1e-10, None)], gtol, max_iter, "N",
         )
         return DistParams(
             mu=res.x[0], sigma=res.x[1],
@@ -375,10 +409,9 @@ def mle_2p(
         def neg_ll(p):
             return _neg_log_likelihood_gumbel(p, X)
 
-        res = optimize.minimize(
-            neg_ll, [mu0, beta0], method="L-BFGS-B",
-            bounds=[(None, None), (1e-10, None)],
-            options={"gtol": gtol, "maxiter": max_iter},
+        res = _minimize_mle(
+            neg_ll, [mu0, beta0],
+            [(None, None), (1e-10, None)], gtol, max_iter, "GU",
         )
         return DistParams(
             mu=res.x[0], beta=res.x[1],
@@ -392,10 +425,9 @@ def mle_2p(
         def neg_ll(p):
             return _neg_log_likelihood_expon_1p(p, X)
 
-        res = optimize.minimize(
-            neg_ll, [lam0], method="L-BFGS-B",
-            bounds=[(1e-10, None)],
-            options={"gtol": gtol, "maxiter": max_iter},
+        res = _minimize_mle(
+            neg_ll, [lam0],
+            [(1e-10, None)], gtol, max_iter, "E1",
         )
         return DistParams(
             lam=res.x[0],
@@ -418,10 +450,9 @@ def mle_2p(
         def neg_ll(p):
             return _neg_log_likelihood_expon_2p(p, X, gamma_fixed)
 
-        res = optimize.minimize(
-            neg_ll, [lam0], method="L-BFGS-B",
-            bounds=[(1e-10, None)],
-            options={"gtol": gtol, "maxiter": max_iter},
+        res = _minimize_mle(
+            neg_ll, [lam0],
+            [(1e-10, None)], gtol, max_iter, "E2",
         )
         return DistParams(
             lam=res.x[0], gamma=gamma_fixed,
@@ -436,10 +467,9 @@ def mle_2p(
         def neg_ll(p):
             return _neg_log_likelihood_loglogistic_2p(p, X)
 
-        res = optimize.minimize(
-            neg_ll, [alpha0, beta0], method="L-BFGS-B",
-            bounds=[(1e-10, None), (1e-10, None)],
-            options={"gtol": gtol, "maxiter": max_iter},
+        res = _minimize_mle(
+            neg_ll, [alpha0, beta0],
+            [(1e-10, None), (1e-10, None)], gtol, max_iter, "LL2",
         )
         return DistParams(
             alpha=res.x[0], beta=res.x[1],

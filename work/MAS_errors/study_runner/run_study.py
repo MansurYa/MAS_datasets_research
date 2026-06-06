@@ -59,6 +59,7 @@ def run_study(spec: StudySpec, fast: bool = False, B: int | None = None) -> Stud
     attempts_log: list[dict] = []
     final_result: validate_module.ValidationResult | None = None
     final_dist_type: str | None = None
+    best_reject_result: validate_module.ValidationResult | None = None
 
     for dist_type in DISTRIBUTIONS:
         try:
@@ -88,6 +89,9 @@ def run_study(spec: StudySpec, fast: bool = False, B: int | None = None) -> Stud
                 final_result = val_result
                 final_dist_type = dist_type
                 break
+            elif val_result.verdict in ("REJECT", "REJECT_EQUIVALENCE"):
+                if best_reject_result is None or (val_result.p_final or 0) > (best_reject_result.p_final or 0):
+                    best_reject_result = val_result
             elif val_result.verdict == "UNDERPOWERED":
                 continue
         except Exception as e:
@@ -105,13 +109,11 @@ def run_study(spec: StudySpec, fast: bool = False, B: int | None = None) -> Stud
         p_final = final_result.p_final
         D_obs = final_result.D_obs
     else:
-        valid = [a for a in attempts_log if a.get("verdict") in ("REJECT", "REJECT_EQUIVALENCE")]
-        if valid:
-            best = max(valid, key=lambda a: a.get("p") or 0)
-            verdict = best["verdict"]
-            best_dist = best["dist"]
-            p_final = best.get("p")
-            D_obs = best.get("D_obs")
+        if best_reject_result:
+            verdict = best_reject_result.verdict
+            best_dist = best_reject_result.dist_type
+            p_final = best_reject_result.p_final
+            D_obs = best_reject_result.D_obs
             final_dist_type = best_dist
         elif attempts_log:
             verdict = attempts_log[-1]["verdict"]
@@ -137,6 +139,8 @@ def run_study(spec: StudySpec, fast: bool = False, B: int | None = None) -> Stud
             parts.append(spec.subgroup)
         parts.append(spec.analysis_var)
         study_label = " · ".join(parts)
+        # PNG будет сохранён в директории исследования
+        study_dir = Path(spec.parquet_path).parent / spec.study_id
         try:
             dv_main.main(
                 X=X,
@@ -150,9 +154,37 @@ def run_study(spec: StudySpec, fast: bool = False, B: int | None = None) -> Stud
                 data_hash=None,
                 save_artefacts=True,
                 study_label=study_label,
+                is_dedup=spec.is_dedup,
+                study_dir=str(study_dir),
             )
         except Exception as e:
             logger.warning(f"Final artefact save failed for {final_dist_type}: {e}")
+
+    # Determine winning ValidationResult for extracting new fields
+    winning_result = final_result if final_result else best_reject_result
+
+    # Extract fields from ValidationResult
+    if winning_result:
+        branch = winning_result.branch
+        p_value = winning_result.p_value
+        p_LRT = winning_result.p_LRT
+        skewness = winning_result.skewness
+        # Convert dict to JSON string
+        parameters = json.dumps(winning_result.parameters) if winning_result.parameters else None
+        # ScaleSelectorResult fields - not available in ValidationResult
+        # Would need to parse dv_report or modify ValidationResult
+        N_min = None
+        N_max = None
+        scale_mode = None
+    else:
+        branch = None
+        p_value = None
+        p_LRT = None
+        skewness = None
+        parameters = None
+        N_min = None
+        N_max = None
+        scale_mode = None
 
     return StudyResult(
         study_id=spec.study_id,
@@ -171,6 +203,16 @@ def run_study(spec: StudySpec, fast: bool = False, B: int | None = None) -> Stud
         attempts_log=attempts_log,
         duration_s=time.monotonic() - start,
         data_hash=data_hash(X),
+        # ValidationResult fields
+        branch=branch,
+        p_value=p_value,
+        p_LRT=p_LRT,
+        skewness=skewness,
+        parameters=parameters,
+        # ScaleSelectorResult fields
+        N_min=N_min,
+        N_max=N_max,
+        scale_mode=scale_mode,
     )
 
 
@@ -218,7 +260,47 @@ def save_artefacts(spec: StudySpec, result: StudyResult) -> None:
     with open(artefact_dir / "fit_log.json", "w") as f:
         json.dump(fit_log, f, indent=2)
 
+    # study_result.json (complementary output)
+    study_json = {
+        "metadata": {
+            "study_id": result.study_id,
+            "dataset": result.dataset,
+            "error_type": result.error_type,
+            "error_subtype": result.error_subtype,
+            "is_dedup": result.is_dedup,
+            "subgroup": result.subgroup,
+            "analysis_var": result.analysis_var,
+        },
+        "validation": {
+            "status": result.status,
+            "final_dist": result.final_dist,
+            "p_final": result.p_final,
+            "D_obs": result.D_obs,
+            "branch": result.branch,
+            "p_value": result.p_value,
+            "p_LRT": result.p_LRT,
+            "skewness": result.skewness,
+            "parameters": result.parameters,
+            "N_min": result.N_min,
+            "N_max": result.N_max,
+            "scale_mode": result.scale_mode,
+        },
+        "statistics": {
+            "n_errors": result.n_errors,
+            "n_attempts": result.n_attempts,
+            "duration_s": result.duration_s,
+            "data_hash": result.data_hash,
+        },
+        "fit_log": result.attempts_log,
+    }
+    with open(artefact_dir / "study_result.json", "w") as f:
+        json.dump(study_json, f, indent=2)
+
     # audit_report.md
+    # Extract branch from attempts log for methodology section
+    branches = set(a.get("branch", "") for a in result.attempts_log if a.get("branch"))
+    branch_str = ", ".join(sorted(b for b in branches if b)) if branches else "N/A"
+
     md_content = f"""# Audit Report: {result.study_id}
 
 **Dataset:** {result.dataset}
@@ -237,6 +319,20 @@ def save_artefacts(spec: StudySpec, result: StudyResult) -> None:
 **Errors:** {result.n_errors}
 **Attempts:** {result.n_attempts}
 **Duration:** {result.duration_s:.1f}s
+
+---
+
+## Methodology (МЕТОДОЛОГИЯ-2.0)
+
+| Параметр | Значение |
+|---|---|
+| Branch(es) | {branch_str} |
+| Инженерный допуск ε | 0.03 |
+| Уровень значимости α | 0.05 |
+| Целевая мощность | 0.80 |
+| Бутстреп итерации | B=1000 (fast) / B=10000 (full) |
+
+*Полная методология: см. dv_report-*.md в той же директории*
 
 ---
 

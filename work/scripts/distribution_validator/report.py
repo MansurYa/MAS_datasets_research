@@ -54,19 +54,20 @@ class AuditReport:
     figure_path: str = ""
 
 
-def save_report(report: AuditReport) -> Path:
+def save_report(report: AuditReport, output_dir: Optional[Path] = None) -> Path:
     """Сохранить аудит-отчёт в Markdown.
 
     Args:
         report: AuditReport.
+        output_dir: директория для сохранения. По умолчанию DOCS_DIR.
 
     Returns:
         Путь к сохранённому файлу.
     """
-    output_dir = DOCS_DIR
-    output_dir.mkdir(parents=True, exist_ok=True)
+    save_dir = output_dir if output_dir is not None else DOCS_DIR
+    save_dir.mkdir(parents=True, exist_ok=True)
 
-    path = output_dir / f"audit-{report.audit_id}.md"
+    path = save_dir / f"dv_report-{report.audit_id}.md"
     path.write_text(_render_template(report))
     return path
 
@@ -128,9 +129,9 @@ def _render_template(report: AuditReport) -> str:
 
 ## Вердикт: {report.verdict}
 
-{'Данные согласуются с моделью. Вероятность ошибки I рода — не более {report.alpha*100:.0f}%.' if report.verdict == 'ACCEPT' else ''}
-{'Данные НЕ согласуются с моделью. Отклонение D_obs={report.D_obs:.4f} значимо.' if report.verdict == 'REJECT' else ''}
-{'Данные эквивалентны модели с точностью до ε={report.epsilon:.3f}.' if report.verdict == 'ACCEPT_EQUIVALENCE' else ''}
+{f'Данные согласуются с моделью. Вероятность ошибки I рода — не более {report.alpha*100:.0f}%.' if report.verdict == 'ACCEPT' else ''}
+{f'Данные НЕ согласуются с моделью. Отклонение D_obs={report.D_obs:.4f} значимо.' if report.verdict == 'REJECT' else ''}
+{f'Данные эквивалентны модели с точностью до ε={report.epsilon:.3f}.' if report.verdict == 'ACCEPT_EQUIVALENCE' else ''}
 {'Анализ ЗАБЛОКИРОВАН: данных недостаточно для вывода.' if report.verdict == 'UNDERPOWERED' else ''}
 
 ## Статистика

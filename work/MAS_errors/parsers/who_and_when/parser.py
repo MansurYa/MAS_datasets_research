@@ -18,6 +18,39 @@ OUT_BASE = Path(__file__).parent
 
 N_TOTAL = None  # определяется из данных
 
+# Keyword rules for fallback classification (from archive/tz4_8_who_when.py)
+# Extended with patterns from unclassified records
+KEYWORD_RULES = [
+    ("hallucination",         ["hallucinate", "fabricat", "made up", "assumes the existence", "placeholder"]),
+    ("resource_abuse",        ["exhaustion of the step limits", "step limit", "too many steps", "repeatedly"]),
+    ("orchestration_failure", ["orchestrator", "replan", "wrong direction", "should not decide", "should instruct"]),
+    ("tool_web_failure",      ["failed to access", "failed to", "404", " retrieve", "websurfer", "filesurfer",
+                               "could not access", "not found", "url", "cloudflare",
+                               "does not return", "searching result", "didn't find", "no information",
+                               "no membership", "not useful", "directly gave the answer",
+                               "key word should", "should recognize", "clickable", "expandable tabs"]),
+    ("code_error",            ["code is incorrect", "code is wrong", "python code", "incorrect code",
+                               "code provided", " bug ", "syntax", "the code is", "calculation is wrong",
+                               "caculation is wrong"]),
+    ("factual_error",         ["factual error", "incorrect information", "incorrect assumption",
+                               "incorrect fact", "wrong answer", "information is incorrect",
+                               "incorrect instructions", "omitted", "included instead",
+                               "does not verify", "is incorrect", "reasoning process is wrong",
+                               "the question asks for", "reasoning is wrong"]),
+    ("misinterpretation",     ["misinterpret", "misidentif", "incorrect interpretation", "wrong interpretation"]),
+]
+
+
+def classify_by_keyword(text: str) -> str | None:
+    """Classify error by keyword matching in mistake_reason text."""
+    if not isinstance(text, str):
+        return None
+    t = text.lower()
+    for cat, kws in KEYWORD_RULES:
+        if any(kw in t for kw in kws):
+            return cat
+    return None
+
 
 def normalize_error_pattern(text: str) -> str:
     t = re.split(r"\(Open file:|\(Current directory:|bash-\$", text)[0]
@@ -35,18 +68,32 @@ def process_trajectories() -> tuple[dict[str, list[ErrorRecord]], int]:
 
     records_by_cat: dict[str, list[ErrorRecord]] = defaultdict(list)
     traj_ids: list[str] = []
+    field_classified = 0
+    keyword_classified = 0
+    unclassified = 0
 
     for row_idx in range(len(t["question_ID"])):
         mistake_type = t["mistake_type"][row_idx]
-        if mistake_type is None:
-            continue
-
-        cat = mistake_type.strip().lower().replace(" ", "_")
+        mistake_reason = t["mistake_reason"][row_idx] or ""
         q_id = t["question_ID"][row_idx]
         traj_ids.append(q_id)
 
+        # Classification: try field first, then keyword fallback
+        if mistake_type is not None:
+            cat = mistake_type.strip().lower().replace(" ", "_")
+            classification_method = "field"
+            field_classified += 1
+        else:
+            # Keyword fallback from mistake_reason
+            cat = classify_by_keyword(mistake_reason)
+            if cat is None:
+                cat = "unclassified"
+                unclassified += 1
+            else:
+                keyword_classified += 1
+            classification_method = "keyword"
+
         step_idx = int(t["mistake_step"][row_idx]) if t["mistake_step"][row_idx] is not None else 0
-        mistake_reason = t["mistake_reason"][row_idx] or ""
 
         record = ErrorRecord(
             error_id=f"ww_{q_id}",
@@ -71,6 +118,7 @@ def process_trajectories() -> tuple[dict[str, list[ErrorRecord]], int]:
 
     n_trajectories = len(set(traj_ids))
     print(f"Загружено: {len(records_by_cat)} категорий, {n_trajectories} траекторий")
+    print(f"Классификация: field={field_classified}, keyword={keyword_classified}, unclassified={unclassified}")
     return records_by_cat, n_trajectories
 
 

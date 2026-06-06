@@ -33,33 +33,30 @@ Huawei Joint Lab, СПбГУ × Huawei. Начало 2025.
 - TZ_8.4 (Study Runner: запуск исследований) — **завершён** (2026-06-04)
 - TZ_8.5 (Агрегация и анализ результатов) — **завершён** (2026-06-04)
 - TZ_9 (Claude Code Usage KV Cache Loss parser) — **завершён** (2026-06-05)
+- TZ_10 (MAS_errors Pipeline: исправления) — **завершён** (2026-06-06)
+- TZ_10 Отчёт: `work/docs/MAS_errors_pipeline_report.md` — все фазы исправлений документированы
 
 ## Текущая задача
 
-**TZ_9: Claude Code Usage KV Cache Loss (2026-06-05)**
+**TZ_10: MAS_errors Pipeline Исправления (2026-06-06)**
 
-Парсер для исследования KV cache loss на основе Claude Code API-логов.
-Особенность: данные не имеют траекторий — сессии выделяются по перерывам >30 мин.
+Завершены все три фазы исправлений MAS_errors pipeline:
+- Фаза 1 (критические): TRAIL parser fix, who_and_when keyword fallback, PNG directory
+- Фаза 2 (UI/UX): UNDERPOWERED гистограммы, PNG заголовок, audit reports
+- Фаза 3 (аналитика): results.csv расширен до 23 колонок, JSON output, HTML report
 
-**Статистика (только тёплые сессии, используют cache):**
-- 68 тёплых сессий, 6712 запросов
-- 23 события KV cache loss
-- P(loss|after_gap) = 34.3%
+**Артефакты:**
+- `work/MAS_errors/results.csv` — 23 колонки (было 15)
+- `work/MAS_errors/summary.html` — интерактивный HTML отчёт
+- `work/MAS_errors/parsers/*/study_result.json` — JSON complementary output
+- `work/docs/MAS_errors_pipeline_report.md` — отчёт о выполненных исправлениях
 
-**Важно:** 18 холодных сессий (849 запросов) не используют cache — для них анализ не применим.
-
-**Файлы:**
-- `work/MAS_errors/parsers/claude_code_usage/parser.py` — парсер
-- `work/specs/TZ_9.md` — спецификация
-- `work/docs/kv_cache_loss_concept.md` — концепция
-- `work/docs/claude_code_usage_dataset.md` — описание датасета
+**Следующий шаг:** Полный перезапуск исследований на всех 170+ исследованиях.
 
 **Запуск:**
 ```bash
-PYTHONPATH=. python work/MAS_errors/parsers/claude_code_usage/parser.py
+PYTHONPATH=. python work/MAS_errors/study_runner/run_all.py --fast
 ```
-
-Автоматический запуск исследований на выходах парсеров. Реализация:
 
 - `study_runner/generate_study_list.py` — сканирование парсеров → список StudySpec (170 исследований)
 - `study_runner/run_study.py` — Fit_Everything по 9 распределениям → первый ACCEPT или REJECT

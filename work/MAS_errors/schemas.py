@@ -104,3 +104,15 @@ class StudyResult:
 
     duration_s: float = 0.0
     data_hash: str = ""
+
+    # ValidationResult fields
+    branch: Optional[str] = None
+    p_value: Optional[float] = None
+    p_LRT: Optional[float] = None
+    skewness: Optional[float] = None
+    parameters: Optional[str] = None  # JSON string
+
+    # ScaleSelectorResult fields
+    N_min: Optional[int] = None
+    N_max: Optional[int] = None
+    scale_mode: Optional[str] = None

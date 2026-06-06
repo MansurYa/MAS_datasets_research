@@ -444,8 +444,13 @@ def profile_mle_3p(
             result.alpha_final = 1.0 / p.lam
             result.beta_final = p.lam
     else:
-        # 2P fallback: используем params_2p напрямую
+        # 2P fallback: используем params_2p напрямую.
+        # gamma=0.0 обязательно: params_2p оценён на ИСХОДНОМ X (без сдвига),
+        # поэтому корректное 3P-представление имеет нулевой сдвиг.
+        # Без этого params_3p.gamma=None → крах в get_dist_instance (W3/E2):
+        # 'unsupported operand type(s) for -: float and NoneType'.
         result.params_3p = params_2p  # params_2p has valid alpha, beta for 2P
+        result.params_3p.gamma = 0.0
         result.use_3p = False
         result.alpha_final = params_2p.alpha or 0.0
         result.beta_final = params_2p.beta or 0.0
